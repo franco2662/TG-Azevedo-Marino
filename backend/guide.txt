@@ -1,0 +1,35 @@
+-Virtual Enviroment:
+
+creacion: python -m venv nombre
+
+activacion: ir a ruta y ejecutar activate.bat : cd backend\venv\Scripts
+desactivacion: comando deactivate
+
+
+-Instalacion de paquetes:
+
+pip install -r requirements.txt
+
+para actualizar el archivo: pip freeze > requirements.txt
+
+-Django:
+
+crear directorio de inicio:
+django-admin startproject nombreproyecto
+
+crear app de inicio: 
+cd nombreproyecto
+python manage.py startapp myapp
+
+migrar cambios: 
+python manage.py makemigrations
+python manage.py migrate
+
+inicializar:
+python manage.py runserver
+
+crear usuarios admin:
+python manage.py createsuperuser
+
+-Migrar tablas de Postgresql a modelos de Django: https://docs.djangoproject.com/en/4.0/howto/legacy-databases/
+python manage.py inspectdb > ruta\models.py : python manage.py inspectdb > tgamapp\models.py
