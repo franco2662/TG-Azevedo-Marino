@@ -10,11 +10,8 @@ function App() {
     <div className="App">
       <CssBaseline />
       <Box>
-        <Navbar />
-        <Stack direction="row">
-          <Sidebar />
-          <Feed />
-        </Stack>
+        <Navbar />        
+        <Feed />
       </Box>
     </div>
   );
