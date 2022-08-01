@@ -1,49 +1,67 @@
 import React from "react";
-import { AppBar, Toolbar, styled, Typography, Box, InputBase, Badge, Grid, ListItem, ListItemButton, ListItemIcon, ListItemText, tableFooterClasses } from "@mui/material";
+import { AppBar, Toolbar, styled, Typography, Box, InputBase, Badge, Grid, ListItem, ListItemButton, ListItemIcon, ListItemText, tableFooterClasses, Divider } from "@mui/material";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import LayersIcon from '@mui/icons-material/Layers';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-const Sidebar = () => {
-  
+
+
+const Sidebar = (props) => {
+
+  const CustomListItemButton = styled(ListItemButton)({
+    minHeight: 48,
+    justifyContent: props.open ? 'initial' : 'center',
+    px: 2.5
+  });
+
+  const CustomListItemIcon = styled(ListItemIcon)({
+    minWidth: 0,
+    mr: props.open ? 3 : 'auto',
+    justifyContent: 'center',
+  });
+
   return (
     
       <Box
         flex={1}
-        p={2}
+        p={4}
         sx={{ display: { xs: "none", sm: "block" } }}
       >
-        <ListItemButton>
-          <ListItemIcon>
+        <CustomListItemButton>
+          <CustomListItemIcon>
             <DashboardIcon />
-          </ListItemIcon>
+          </CustomListItemIcon>
           <ListItemText primary="Dashboard" />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemIcon>
+        </CustomListItemButton>
+        <Divider />
+        <CustomListItemButton>
+          <CustomListItemIcon>
             <ShoppingCartIcon />
-          </ListItemIcon>
+          </CustomListItemIcon>
           <ListItemText primary="Orders" />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemIcon>
+        </CustomListItemButton>
+        <Divider/>
+        <CustomListItemButton>
+          <CustomListItemIcon>
             <PeopleIcon />
-          </ListItemIcon>
+          </CustomListItemIcon>
           <ListItemText primary="Customers" />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemIcon>
+        </CustomListItemButton>
+        <Divider/>
+        <CustomListItemButton>
+          <CustomListItemIcon>
             <BarChartIcon />
-          </ListItemIcon>
+          </CustomListItemIcon>
           <ListItemText primary="Reports" />
-        </ListItemButton>
-        <ListItemButton>
-          <ListItemIcon>
+        </CustomListItemButton>
+        <Divider/>
+        <CustomListItemButton>
+          <CustomListItemIcon>
             <LayersIcon />
-          </ListItemIcon>
+          </CustomListItemIcon>
           <ListItemText primary="Integrations" />
-        </ListItemButton>
+        </CustomListItemButton>
       </Box>
   )
 }

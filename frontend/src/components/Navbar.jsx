@@ -8,6 +8,27 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState, useEffect } from "react";
 import { useTheme } from '@mui/material/styles';
 
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
 const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
   padding: "0 10px",
@@ -22,7 +43,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
+
 const drawerWidth = 200;
+
 const CustomAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -43,19 +66,19 @@ const CustomAppBar = styled(AppBar, {
 const Navbar = () => {
   
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const toggleDrawerOpen = () => {
     setOpen(true);
-    console.log('toggleDrawerOpen');
+    // console.log('toggleDrawerOpen');
   };
   const toggleDrawerClose = () => {
     setOpen(false);
-    console.log('toggleDrawerClose');
+    // console.log('toggleDrawerClose');
   };
   useEffect(() => {
-    setOpen(false);
-    console.log('useEffect called');
+    setOpen(true);
+    // console.log('useEffect called');
   },[])
 
   return (
@@ -90,7 +113,7 @@ const Navbar = () => {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <Sidebar />
+        <Sidebar open={open}/>
       </Drawer>
     </Box>
 
