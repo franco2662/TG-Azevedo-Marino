@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, styled, Typography, Box, InputBase, Badge, Drawer, IconButton, Stack, Divider, Button,ButtonBase, List, ListItem, ListItemButton  } from "@mui/material";
+import { AppBar, Toolbar, styled, Typography, Box, InputBase, Badge, Drawer, IconButton, Stack, Divider, Button, ButtonBase, List, ListItem, ListItemButton, Modal, Container } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuIcon from '@mui/icons-material/Menu';
 import Sidebar from "./Sidebar";
@@ -8,27 +8,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState, useEffect } from "react";
 import { useTheme } from '@mui/material/styles';
 import SignIn from "./SignIn";
-
-const openedMixin = (theme) => ({
-  width: drawerWidth,
-  transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: 'hidden',
-});
-
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
 
 const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
@@ -65,14 +44,10 @@ const CustomAppBar = styled(AppBar, {
 }));
 
 const Navbar = () => {
-  
+
   const theme = useTheme();
   const [open, setOpen] = useState(true);
-  const [signInModal, setSignInModal] = useState(false);
-
-  const showSignInModal = () => {
-    return <SignIn/>
-  }
+  const [openSignIn, setSignIn] = useState(false);
 
   const toggleDrawerOpen = () => {
     setOpen(true);
@@ -82,17 +57,25 @@ const Navbar = () => {
     setOpen(false);
     // console.log('toggleDrawerClose');
   };
+
+
   useEffect(() => {
     setOpen(true);
-    setSignInModal(false);
+    setSignIn(false);
     // console.log('useEffect called');
   }, [])
+  const openSingInModal = () => {
+    setSignIn(true);
+  };
 
+  const closeSingInModal = () => {
+    setSignIn(false);
+  };
 
   return (
-    <Box sx={{ display: 'flex',alignItems:"center"}}>
+    <Box sx={{ display: 'flex', alignItems: "center", flexGrow: 1 }}>
       <CustomAppBar id="appbar" position="fixed" open={open}>
-        <Toolbar id = "toolbar" display="flex">
+        <Toolbar id="toolbar" display="flex">
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -107,16 +90,19 @@ const Navbar = () => {
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }} >Dashboard</Typography>
           <Search sx={{ display: { xs: "none", sm: "block" } }} ><InputBase placeholder="search..." /></Search>
-          <List width="15%" sx={{ display: 'flex', marginLeft: "10px", alignItems: 'center' }}>
-            <ListItem sx={{flexGrow: 1}}>        
-            <Badge badgeContent={1} color="error">
-              <NotificationsIcon  />
-            </Badge>
+          <Box width="15%" sx={{ display: 'flex', marginLeft: "10px", alignItems: 'center' }}>
+            <ListItem sx={{ flexGrow: 1 }}>
+              <Badge badgeContent={1} color="error">
+                <NotificationsIcon />
+              </Badge>
             </ListItem>
-            <ListItemButton variant ="contained" sx={{flexGrow: 4 }} onClick={showSignInModal} >
-                <Typography variant="h7">Iniciar Sesión</Typography>
-              </ListItemButton> 
-              </List>
+            <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={openSingInModal}>
+              <Typography variant="h7">Iniciar Sesión</Typography>
+            </ListItemButton>            
+            <Modal open={openSignIn} onClose={closeSingInModal}>
+                <Container><SignIn></SignIn></Container>
+              </Modal>
+          </Box>
         </Toolbar>
       </CustomAppBar>
       <Drawer variant="persistent" open={open} >
