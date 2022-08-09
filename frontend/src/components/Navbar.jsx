@@ -123,7 +123,7 @@ const Navbar = () => {
               </Modal>
             
             <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={openRegisterModal}>
-              <Typography variant="h8">Registro</Typography>
+              <Typography variant="h8">Registrarse</Typography>
             </ListItemButton>            
             <Modal open={openRegister} onClose={closeRegisterModal}>
                 <Container><Register></Register></Container>

@@ -14,20 +14,37 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Modal } from '@mui/material';
 import { useState } from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 800,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
+
+
 const Register = () => {
   
+  const [gender, setGender] = React.useState('');
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setGender(event.target.value);
+  };
+
+  const [rol, setRol] = React.useState('');
+
+  const handleChange2 = (event: SelectChangeEvent) => {
+    setRol(event.target.value);
+  };
 
   const theme = createTheme();
 
@@ -46,47 +63,150 @@ const Register = () => {
             <Typography component="h1" variant="h5">
               Registrarse
             </Typography>
+            
             <Box component="form" noValidate sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Correo Electrónico"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Recordarme"
-              />
+              
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="nombre"
+                    label="Nombre"
+                    name="nombre"
+                    autoComplete="nombre"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={6}>  
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="apellido"
+                  label="Apellido"
+                  type="apellido"
+                  id="apellido"
+                  autoComplete="apellido"
+                />
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs={6}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="fechaNac"
+                    label="Fecha de Nacimiento"
+                    name="fechaNac"
+                    autoComplete="fechaNac"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={4}>  
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="docIdent"
+                  label="Doc. de Identidad"
+                  type="docIdent"
+                  id="docIdent"
+                  autoComplete="docIdent"
+                />
+                </Grid>
+                <Grid item xs={1}>
+                <InputLabel id="gender">Sexo</InputLabel>
+                <Select
+                  labelId="gender"
+                  id="gender"
+                  value={gender}
+                  label="sexo"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"F"}>F</MenuItem>
+                  <MenuItem value={"M"}>M</MenuItem>
+                </Select>
+                </Grid>
+              </Grid>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Correo Electronico"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={6}>  
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="email2"
+                  label="Repetir Correo"
+                  type="email2"
+                  id="email2"
+                  autoComplete="email2"
+                />
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs={4}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="password"
+                    label="Contraseña"
+                    name="password"
+                    autoComplete="password"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={4}>  
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password2"
+                  label="Repetir Contraseña"
+                  type="password2"
+                  id="password2"
+                  autoComplete="password2"
+                />
+                </Grid>
+                <Grid item xs={1}>
+                <InputLabel id="rol">Rol</InputLabel>
+                <Select
+                  labelId="rol"
+                  id="rol"
+                  value={rol}
+                  label="rol"
+                  onChange={handleChange2}
+                >
+                  <MenuItem value={"admin"}>Administrador</MenuItem>
+                  <MenuItem value={"database"}>Lo que sea base de dato</MenuItem>
+                </Select>
+                </Grid>
+              </Grid>
+
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Iniciar Sesión
+                Resgistrarse
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Olvidó su contraseña?
-                  </Link>
-                </Grid>                
-              </Grid>
             </Box>
+
           </Box>
     );
   }
