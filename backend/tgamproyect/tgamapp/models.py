@@ -10,8 +10,8 @@ from django.db import models
 
 class Flag(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    tipo = models.CharField(db_column='Tipo', max_length=-1)  # Field name made lowercase.
-    comentario = models.CharField(db_column='Comentario', max_length=-1, blank=True, null=True)  # Field name made lowercase.
+    tipo = models.CharField(db_column='Tipo', max_length=100)  # Field name made lowercase.
+    comentario = models.CharField(db_column='Comentario', max_length=100, blank=True, null=True)  # Field name made lowercase.
     fk_tipo = models.ForeignKey('Tipo', models.DO_NOTHING, db_column='Fk_Tipo')  # Field name made lowercase.
 
     class Meta:
@@ -21,10 +21,10 @@ class Flag(models.Model):
 
 class Persona(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=-1)  # Field name made lowercase.
-    apellido = models.CharField(db_column='Apellido', max_length=-1)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=100)  # Field name made lowercase.
+    apellido = models.CharField(db_column='Apellido', max_length=100)  # Field name made lowercase.
     fechanac = models.DateField(db_column='FechaNac')  # Field name made lowercase.
-    docidentidad = models.CharField(db_column='DocIdentidad', max_length=-1)  # Field name made lowercase.
+    docidentidad = models.CharField(db_column='DocIdentidad', max_length=100)  # Field name made lowercase.
     sexo = models.TextField(db_column='Sexo')  # Field name made lowercase. This field type is a guess.
 
     class Meta:
@@ -34,8 +34,8 @@ class Persona(models.Model):
 
 class Rol(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=-1)  # Field name made lowercase.
-    descripcion = models.CharField(db_column='Descripcion', max_length=-1, blank=True, null=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=100)  # Field name made lowercase.
+    descripcion = models.CharField(db_column='Descripcion', max_length=100, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -55,8 +55,8 @@ class Sesion(models.Model):
 
 class Tipo(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=-1)  # Field name made lowercase.
-    descripcion = models.CharField(db_column='Descripcion', max_length=-1, blank=True, null=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=100)  # Field name made lowercase.
+    descripcion = models.CharField(db_column='Descripcion', max_length=100, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -65,8 +65,8 @@ class Tipo(models.Model):
 
 class Usuario(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    email = models.CharField(db_column='Email', max_length=-1)  # Field name made lowercase.
-    clave = models.CharField(db_column='Clave', max_length=-1)  # Field name made lowercase.
+    email = models.CharField(db_column='Email', max_length=100)  # Field name made lowercase.
+    clave = models.CharField(db_column='Clave', max_length=100)  # Field name made lowercase.
     fechacreacion = models.DateTimeField(db_column='FechaCreacion')  # Field name made lowercase.
     fk_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='Fk_Rol', blank=True, null=True)  # Field name made lowercase.
     fk_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column='Fk_Persona', blank=True, null=True)  # Field name made lowercase.
@@ -78,9 +78,9 @@ class Usuario(models.Model):
 
 class Virus(models.Model):
     id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=-1)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=100)  # Field name made lowercase.
     fechacreacion = models.DateTimeField(db_column='FechaCreacion')  # Field name made lowercase.
-    descripcion = models.CharField(db_column='Descripcion', max_length=-1, blank=True, null=True)  # Field name made lowercase.
+    descripcion = models.CharField(db_column='Descripcion', max_length=100, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
