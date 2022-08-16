@@ -1,3 +1,4 @@
+import email
 import imp
 from os import stat
 from django.shortcuts import render
@@ -16,6 +17,13 @@ def user_list(request):
     serializer = SignInSerializer(users, many=True)
     return Response(serializer.data,status.HTTP_200_OK)
 
-def prueba(self):
-    str = "estaesunaprueba"
-    print(user_get_password(str))
+@api_view(['GET'])
+def verify_user(request,user_email):
+    if request.method == 'GET':
+        try:
+            user = Usuario.objects.get(email=user_email)
+        except:
+            return Response(False,status=status.HTTP_404_NOT_FOUND)
+        serializer = SignInSerializer(user)
+        return Response(True,status.HTTP_200_OK)
+            

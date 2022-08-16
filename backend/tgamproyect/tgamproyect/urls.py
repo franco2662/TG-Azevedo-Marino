@@ -20,5 +20,5 @@ from tgamapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',views.user_list),
-    path('prueba/',views.prueba)
+    path('verifyuser/<str:user_email>', views.verify_user)
 ]
