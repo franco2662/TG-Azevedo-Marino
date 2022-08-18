@@ -28,22 +28,18 @@ def verify_user(request,user_email):
         except:
             return Response(False,status=status.HTTP_404_NOT_FOUND)
         serializer = SignInSerializer(user)
-        return Response(True,status.HTTP_200_OK)
-    else: return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(True,status.HTTP_200_OK)    
 
 @api_view(['POST'])
 def validate_sign_in(request):
     if request.method == 'POST':
-        try:
-            print("hola")            
+        try:                       
             received_json = json.loads(request.body)
             user_entry = received_json['email']
             pass_entry = received_json['clave']
             pass_entry_hash = user_get_password(pass_entry)
-            print(received_json)
-            user = Usuario.objects.get(email=user_entry)            
-            real_password = user_get_password(user.clave)
-            if(real_password==pass_entry_hash):       
+            user = Usuario.objects.get(email=user_entry)
+            if(pass_entry_hash==user.clave):       
                 return Response(True,status.HTTP_202_ACCEPTED)
             else:
                 return Response(False,status.HTTP_401_UNAUTHORIZED)
