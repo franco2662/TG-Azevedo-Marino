@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Modal } from '@mui/material';
 import { useState } from 'react';
+import axios from "axios";
 
 const style = {
   position: 'absolute',
@@ -26,6 +27,29 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+const handleSignIn = async (e) =>{
+  e.preventDefault();
+  try
+  {
+    const obj = {email: "franco2662@gmail.com", clave: "admin"};
+    const json_request = JSON.stringify(obj);
+    const response = await axios.post("http://127.0.0.1:8000/validatesignin/",json_request);
+    console.log(response);
+  }
+  catch(err)
+  {
+    if (!err?.response) 
+    {
+      console.log("No Server Response");
+    }
+    else
+    {
+      console.log("Registration Failed");
+    }    
+  }
+}
+
 const SignIn = () => {
   
 
@@ -76,6 +100,7 @@ const SignIn = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick ={handleSignIn}
               >
                 Iniciar Sesión
               </Button>
