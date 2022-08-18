@@ -28,14 +28,23 @@ const style = {
   p: 4,
 };
 
-const handleSignIn = async (e) =>{
-  e.preventDefault();
+const SignIn = () => {
+  
+  const theme = createTheme();
+  const[user,setUser]=useState("");
+  const[pass,setPass]=useState("");
+  
+async function verifyUser(){
   try
-  {
-    const obj = {email: "franco2662@gmail.com", clave: "admin"};
-    const json_request = JSON.stringify(obj);
-    const response = await axios.post("http://127.0.0.1:8000/validatesignin/",json_request);
-    console.log(response);
+  {       
+    const response = await axios.get("http://127.0.0.1:8000/verifyuser/"+user);
+    if(!response?.data)
+      return false;
+    else 
+      if(response?.data == true)
+        return true;
+      else
+        return false;
   }
   catch(err)
   {
@@ -45,16 +54,44 @@ const handleSignIn = async (e) =>{
     }
     else
     {
-      console.log("Registration Failed");
-    }    
+      console.log("User verification failed");
+    }
+    return false;    
   }
 }
 
-const SignIn = () => {
-  
-
-  const theme = createTheme();
-
+const handleSignIn = async(e)=>{
+  try
+  { 
+    e.preventDefault()        
+    console.log("arepa  "+user+"    "+pass);
+    const verificacion_usuario = await verifyUser();
+    console.log(verificacion_usuario)
+    if(verificacion_usuario)
+    {
+      const obj = { email: user, clave: pass };
+      const json_request = JSON.stringify(obj);
+      const response = await axios.post("http://127.0.0.1:8000/validatesignin/", json_request);
+      console.log(response);
+    }
+    else
+    {
+      console.log("Usuario Inválido");
+    }
+       
+  }
+  catch(err)
+  {
+    if (!err?.response) 
+    {
+      console.log("No Server Response");
+    }
+    else
+    {
+      console.log("Registration Failed" + err?.response);
+    }    
+  }
+}
   return (
     
       <Box
@@ -80,6 +117,8 @@ const SignIn = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={user}
+                onChange={(e)=>setUser(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -90,6 +129,8 @@ const SignIn = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={pass}
+                onChange={(e)=>setPass(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
