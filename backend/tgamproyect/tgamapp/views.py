@@ -27,7 +27,6 @@ def verify_user(request,user_email):
             user = Usuario.objects.get(email=user_email)
         except:
             return Response(False,status=status.HTTP_404_NOT_FOUND)
-        serializer = SignInSerializer(user)
         return Response(True,status.HTTP_200_OK)    
 
 @api_view(['POST'])

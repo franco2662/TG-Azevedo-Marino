@@ -27,7 +27,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
+const baseURL = "http://127.0.0.1:8000/";
 const SignIn = () => {
   
   const theme = createTheme();
@@ -37,11 +37,11 @@ const SignIn = () => {
 async function verifyUser(){
   try
   {       
-    const response = await axios.get("http://127.0.0.1:8000/verifyuser/"+user);
+    const response = await axios.get(baseURL+"verifyuser/"+user);
     if(!response?.data)
       return false;
     else 
-      if(response?.data == true)
+      if(response.data == true)
         return true;
       else
         return false;
@@ -63,15 +63,15 @@ async function verifyUser(){
 const handleSignIn = async(e)=>{
   try
   { 
-    e.preventDefault()        
-    console.log("arepa  "+user+"    "+pass);
+    e.preventDefault();        
+    console.log(user+"    "+pass);
     const verificacion_usuario = await verifyUser();
     console.log(verificacion_usuario)
     if(verificacion_usuario)
     {
       const obj = { email: user, clave: pass };
       const json_request = JSON.stringify(obj);
-      const response = await axios.post("http://127.0.0.1:8000/validatesignin/", json_request);
+      const response = await axios.post(baseURL+"validatesignin/", json_request);
       console.log(response);
     }
     else
@@ -88,7 +88,7 @@ const handleSignIn = async(e)=>{
     }
     else
     {
-      console.log("Registration Failed" + err?.response);
+      console.log("Sign In Failed");
     }    
   }
 }
