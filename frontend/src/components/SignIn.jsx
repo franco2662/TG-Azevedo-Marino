@@ -13,7 +13,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Modal } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import { useState } from 'react';
+import axios from "axios";
 
 const style = {
   position: 'absolute',
@@ -26,11 +29,88 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+const baseURL = "http://127.0.0.1:8000/";
 const SignIn = () => {
   
+  const instance = axios.create()
+  instance.defaults.baseURL = baseURL;
 
   const theme = createTheme();
+  const[user,setUser]=useState("");
+  const[pass,setPass]=useState("");
+  const[error,setError]=useState("");
+  const[success,setSuccess]=useState("");
+  const[errorAlert,setErrorAlert]=useState(false);  
+  const[successAlert,setSuccessAlert]=useState(false);
+  
+  const handleClose = ()=>{
+    setSuccessAlert(false);
+    setErrorAlert(false);
+  }
 
+async function verifyUser(){
+  try
+  { 
+    setSuccessAlert(false);
+    setErrorAlert(false);
+    const response = await instance.get("verifyuser/"+user);
+    if(!response?.data)
+      return false;
+    else 
+      if(response.data == true)
+        return true;
+      else
+        return false;
+  }
+  catch(err)
+  {
+    if (!err?.response) 
+    {
+      console.log("No Server Response");
+    }
+    else
+    {
+      console.log("User verification failed");
+    }
+    return false;    
+  }
+}
+
+const handleSignIn = async(e)=>{
+  try
+  { 
+    e.preventDefault();
+    const verificacion_usuario = await verifyUser();
+    if(verificacion_usuario)
+    {
+      const obj = { email: user, clave: pass };
+      const json_request = JSON.stringify(obj);
+      const response = await instance.post("validatesignin/", json_request);
+      if(response.data==true){
+        setSuccess("Ha iniciado sesión!");
+        setSuccessAlert(true);
+      }      
+    }
+    else
+    {
+      setError("Usuario Inválido");
+      setErrorAlert(true);
+    }       
+  }
+  catch(err)
+  {
+    if (!err?.response) 
+    {
+      setError("Error en el servidor");
+    }
+    else
+    {
+      setError("Credenciales incorrectas")
+    }
+    setSuccessAlert(false);
+    setErrorAlert(true);    
+  }
+}
   return (
     
       <Box
@@ -56,6 +136,8 @@ const SignIn = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={user}
+                onChange={(e)=>setUser(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -66,6 +148,8 @@ const SignIn = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={pass}
+                onChange={(e)=>setPass(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -76,6 +160,7 @@ const SignIn = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick ={handleSignIn}
               >
                 Iniciar Sesión
               </Button>
@@ -87,6 +172,16 @@ const SignIn = () => {
                 </Grid>                
               </Grid>
             </Box>
+            <Snackbar open={successAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
+              <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%' }}>
+                {success}
+              </Alert>
+            </Snackbar>
+            <Snackbar open={errorAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
+              <Alert onClose={handleClose} severity="error" variant='filled' sx={{ width: '100%' }}>
+                {error}
+              </Alert>
+            </Snackbar>
           </Box>
     );
   }

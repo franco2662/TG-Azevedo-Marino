@@ -20,7 +20,7 @@ SET row_security = off;
 -- Data for Name: Usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Usuario" ("Id", "Email", "Clave", "FechaCreacion", "Fk_Rol", "Fk_Persona") VALUES (1, 'franco2662@gmail.com', 'prueba', '2022-08-05 12:16:03.382721', 1, 1);
+INSERT INTO public."Usuario" ("Id", "Email", "Clave", "FechaCreacion", "Fk_Rol", "Fk_Persona") VALUES (1, 'franco2662@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2022-08-05 12:16:03.382721', 1, 1);
 
 
 --
