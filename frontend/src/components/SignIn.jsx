@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Modal } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import { useState } from 'react';
 import axios from "axios";
 
@@ -30,14 +32,28 @@ const style = {
 const baseURL = "http://127.0.0.1:8000/";
 const SignIn = () => {
   
+  const instance = axios.create()
+  instance.defaults.baseURL = baseURL;
+
   const theme = createTheme();
   const[user,setUser]=useState("");
   const[pass,setPass]=useState("");
+  const[error,setError]=useState("");
+  const[success,setSuccess]=useState("");
+  const[errorAlert,setErrorAlert]=useState(false);  
+  const[successAlert,setSuccessAlert]=useState(false);
   
+  const handleClose = ()=>{
+    setSuccessAlert(false);
+    setErrorAlert(false);
+  }
+
 async function verifyUser(){
   try
-  {       
-    const response = await axios.get(baseURL+"verifyuser/"+user);
+  { 
+    setSuccessAlert(false);
+    setErrorAlert(false);
+    const response = await instance.get("verifyuser/"+user);
     if(!response?.data)
       return false;
     else 
@@ -63,33 +79,36 @@ async function verifyUser(){
 const handleSignIn = async(e)=>{
   try
   { 
-    e.preventDefault();        
-    console.log(user+"    "+pass);
+    e.preventDefault();
     const verificacion_usuario = await verifyUser();
-    console.log(verificacion_usuario)
     if(verificacion_usuario)
     {
       const obj = { email: user, clave: pass };
       const json_request = JSON.stringify(obj);
-      const response = await axios.post(baseURL+"validatesignin/", json_request);
-      console.log(response);
+      const response = await instance.post("validatesignin/", json_request);
+      if(response.data==true){
+        setSuccess("Ha iniciado sesión!");
+        setSuccessAlert(true);
+      }      
     }
     else
     {
-      console.log("Usuario Inválido");
-    }
-       
+      setError("Usuario Inválido");
+      setErrorAlert(true);
+    }       
   }
   catch(err)
   {
     if (!err?.response) 
     {
-      console.log("No Server Response");
+      setError("Error en el servidor");
     }
     else
     {
-      console.log("Sign In Failed");
-    }    
+      setError("Credenciales incorrectas")
+    }
+    setSuccessAlert(false);
+    setErrorAlert(true);    
   }
 }
   return (
@@ -153,6 +172,16 @@ const handleSignIn = async(e)=>{
                 </Grid>                
               </Grid>
             </Box>
+            <Snackbar open={successAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
+              <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%' }}>
+                {success}
+              </Alert>
+            </Snackbar>
+            <Snackbar open={errorAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
+              <Alert onClose={handleClose} severity="error" variant='filled' sx={{ width: '100%' }}>
+                {error}
+              </Alert>
+            </Snackbar>
           </Box>
     );
   }
