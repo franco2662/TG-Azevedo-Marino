@@ -6,7 +6,7 @@ import Sidebar from "./components/Sidebar";
 import Feed from "./components/Feed";
 //import axios from "axios";
 function App() {
-  const baseURL = "http://127.0.0.1:8000/users/";
+  const baseURL = "http://127.0.0.1:8000/";
 //   { axios.get(baseURL+'users/')
 // .then(function (response) {
 // 	console.log(response);
