@@ -19,5 +19,7 @@ from tgamapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/',views.user_list)
+    path('users/',views.user_list),
+    path('persons/',views.person_list),
+    path('roles/',views.role_list)
 ]
