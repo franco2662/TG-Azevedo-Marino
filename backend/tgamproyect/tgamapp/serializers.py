@@ -15,4 +15,4 @@ class PersonaSerializer(serializers.ModelSerializer):
 class RolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rol
-        fields = ['nombre','descripcion','docidentidad']
+        fields = ['nombre','descripcion']
