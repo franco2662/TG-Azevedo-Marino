@@ -1,25 +1,23 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { Box, CssBaseline, Stack } from "@mui/material";
 import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
 import Feed from "./components/Feed";
-import axios from "axios";
+import { AppContextProvider,useAppContext } from "./AppContext";
+
 function App() {
-  const baseURL = "http://127.0.0.1:8000/";
-//   { axios.get(baseURL+'users/')
-// .then(function (response) {
-// 	console.log(response);
-// })}
   return (
     <div className="App">
       <CssBaseline />
       <Box>
         <Navbar />        
         <Feed />
-      </Box>
+      </Box>      
     </div>
   );
 }
 
-export default App;
+export default () => (
+<AppContextProvider>
+  <App></App>
+</AppContextProvider>);
+

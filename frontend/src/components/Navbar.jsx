@@ -8,6 +8,11 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState, useEffect } from "react";
 import { useTheme } from '@mui/material/styles';
 import SignIn from "./SignIn";
+import { useAppContext } from "../AppContext";
+
+
+const Navbar = () => {
+const {usuarioPrueba,cambiarUsuario} = useAppContext();
 
 const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
@@ -43,8 +48,6 @@ const CustomAppBar = styled(AppBar, {
   }),
 }));
 
-const Navbar = () => {
-
   const theme = useTheme();
   const [open, setOpen] = useState(true);
   const [openSignIn, setSignIn] = useState(false);
@@ -62,7 +65,9 @@ const Navbar = () => {
   useEffect(() => {
     setOpen(true);
     setSignIn(false);
-    // console.log('useEffect called');
+    console.log(usuarioPrueba);
+    cambiarUsuario('franco');   
+    console.log(usuarioPrueba);
   }, [])
   const openSingInModal = () => {
     setSignIn(true);
