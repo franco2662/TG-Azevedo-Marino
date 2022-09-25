@@ -46,6 +46,9 @@ const Register = () => {
     setRol(event.target.value);
   };
 
+  const initialStatePersona = {nombre:" ",apellido: " ",fechaNac: " ",docIdent: " ", sexo: " "};
+  const[persona, setPersona] = useState(initialStatePersona);
+
   const theme = createTheme();
 
   return (
@@ -75,6 +78,7 @@ const Register = () => {
                     id="nombre"
                     label="Nombre"
                     name="nombre"
+                    value={persona.nombre}
                     autoComplete="nombre"
                     autoFocus
                   />
@@ -85,6 +89,7 @@ const Register = () => {
                   required
                   fullWidth
                   name="apellido"
+                  value={persona.apellido}
                   label="Apellido"
                   type="apellido"
                   id="apellido"
@@ -101,6 +106,7 @@ const Register = () => {
                     id="fechaNac"
                     label="Fecha de Nacimiento"
                     name="fechaNac"
+                    value={persona.fechaNac}
                     autoComplete="fechaNac"
                     autoFocus
                   />
@@ -111,6 +117,7 @@ const Register = () => {
                   required
                   fullWidth
                   name="docIdent"
+                  value={persona.docIdent}
                   label="Doc. de Identidad"
                   type="docIdent"
                   id="docIdent"
@@ -122,7 +129,7 @@ const Register = () => {
                 <Select
                   labelId="gender"
                   id="gender"
-                  value={gender}
+                  value={persona.sexo}
                   label="sexo"
                   onChange={handleChange}
                 >

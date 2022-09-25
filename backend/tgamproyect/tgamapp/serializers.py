@@ -10,7 +10,7 @@ class SignInSerializer(serializers.ModelSerializer):
 class PersonaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Persona
-        fields = ['nombre','apellido','docidentidad']
+        fields = ['nombre','apellido','docidentidad','fechanac','sexo']
 
 class RolSerializer(serializers.ModelSerializer):
     class Meta:
