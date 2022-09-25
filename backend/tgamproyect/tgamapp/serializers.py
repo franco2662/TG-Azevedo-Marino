@@ -5,4 +5,14 @@ from .models import *
 class SignInSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['email','clave']
+        fields = ['id','email','clave']
+
+class PersonaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Persona
+        fields = ['nombre','apellido','docidentidad']
+
+class RolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rol
+        fields = ['nombre','descripcion','docidentidad']

@@ -45,3 +45,16 @@ def validate_sign_in(request):
         except:
             return Response(False,status=status.HTTP_404_NOT_FOUND)
             
+
+
+@api_view(['GET'])
+def person_list(request):
+    persons = Persona.objects.all()
+    serializer = PersonaSerializer(persons, many=True)
+    return Response(serializer.data,status.HTTP_200_OK)
+
+@api_view(['GET'])
+def role_list(request):
+    roles = Rol.objects.all()
+    serializer = RolSerializer(roles, many=True)
+    return Response(serializer.data,status.HTTP_200_OK)

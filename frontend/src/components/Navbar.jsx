@@ -8,6 +8,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState, useEffect } from "react";
 import { useTheme } from '@mui/material/styles';
 import SignIn from "./SignIn";
+import Register from "./Register";
 import { useAppContext } from "../AppContext";
 
 
@@ -51,6 +52,7 @@ const CustomAppBar = styled(AppBar, {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
   const [openSignIn, setSignIn] = useState(false);
+  const [openRegister, setRegister] = useState(false);
 
   const toggleDrawerOpen = () => {
     setOpen(true);
@@ -77,6 +79,19 @@ const CustomAppBar = styled(AppBar, {
     setSignIn(false);
   };
 
+  useEffect(() => {
+    setOpen(true);
+    setRegister(false);
+    // console.log('useEffect called');
+  }, [])
+  const openRegisterModal = () => {
+    setRegister(true);
+  };
+
+  const closeRegisterModal = () => {
+    setRegister(false);
+  };
+
   return (
     <Box sx={{ display: 'flex', alignItems: "center", flexGrow: 1 }}>
       <CustomAppBar id="appbar" position="fixed" open={open}>
@@ -94,12 +109,16 @@ const CustomAppBar = styled(AppBar, {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }} >Dashboard</Typography>
+
           <Search sx={{ display: { xs: "none", sm: "block" } }} ><InputBase placeholder="search..." /></Search>
+
           <Box width="15%" sx={{ display: 'flex', marginLeft: "10px", alignItems: 'center' }}>
+            
             <ListItem sx={{ flexGrow: 1 }}>
               <Badge badgeContent={1} color="error">
                 <NotificationsIcon />
               </Badge>
+
             </ListItem>
             <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={openSingInModal}>
               <Typography variant="h7">Iniciar Sesión</Typography>
@@ -107,7 +126,17 @@ const CustomAppBar = styled(AppBar, {
             <Modal open={openSignIn} onClose={closeSingInModal}>
                 <Container><SignIn></SignIn></Container>
               </Modal>
+            
+            <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={openRegisterModal}>
+              <Typography variant="h8">Registrarse</Typography>
+            </ListItemButton>            
+            <Modal open={openRegister} onClose={closeRegisterModal}>
+                <Container><Register></Register></Container>
+              </Modal>
+
           </Box>
+
+
         </Toolbar>
       </CustomAppBar>
       <Drawer variant="persistent" open={open} >
