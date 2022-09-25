@@ -45,8 +45,6 @@ def validate_sign_in(request):
         except:
             return Response(False,status=status.HTTP_404_NOT_FOUND)
             
-
-
 @api_view(['GET'])
 def person_list(request):
     persons = Persona.objects.all()
