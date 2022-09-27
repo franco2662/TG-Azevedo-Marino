@@ -49,7 +49,15 @@ const Register = () => {
   const initialStatePersona = {nombre:" ",apellido: " ",fechaNac: " ",docIdent: " ", sexo: " "};
   const[persona, setPersona] = useState(initialStatePersona);
 
+  const handleInputChange = (e) => {
+
+    setPersona({ ...persona, [e.target.name]: e.target.value });
+
+  }
+
   const theme = createTheme();
+
+  
 
   return (
     
@@ -79,6 +87,7 @@ const Register = () => {
                     label="Nombre"
                     name="nombre"
                     value={persona.nombre}
+                    onChange={handleInputChange}
                     autoComplete="nombre"
                     autoFocus
                   />
@@ -90,6 +99,7 @@ const Register = () => {
                   fullWidth
                   name="apellido"
                   value={persona.apellido}
+                  onChange={handleInputChange}
                   label="Apellido"
                   type="apellido"
                   id="apellido"
@@ -107,6 +117,7 @@ const Register = () => {
                     label="Fecha de Nacimiento"
                     name="fechaNac"
                     value={persona.fechaNac}
+                    onChange={handleInputChange}
                     autoComplete="fechaNac"
                     autoFocus
                   />
@@ -118,6 +129,7 @@ const Register = () => {
                   fullWidth
                   name="docIdent"
                   value={persona.docIdent}
+                  onChange={handleInputChange}
                   label="Doc. de Identidad"
                   type="docIdent"
                   id="docIdent"
@@ -129,9 +141,10 @@ const Register = () => {
                 <Select
                   labelId="gender"
                   id="gender"
+                  name="sexo"
                   value={persona.sexo}
+                  onChange={handleInputChange}
                   label="sexo"
-                  onChange={handleChange}
                 >
                   <MenuItem value={"F"}>F</MenuItem>
                   <MenuItem value={"M"}>M</MenuItem>
@@ -204,7 +217,7 @@ const Register = () => {
                 </Grid>
               </Grid>
 
-              <Button
+              <Button 
                 type="submit"
                 fullWidth
                 variant="contained"
