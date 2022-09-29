@@ -13,7 +13,7 @@ import { useAppContext } from "../AppContext";
 
 
 const Navbar = () => {
-const {usuarioPrueba,cambiarUsuario} = useAppContext();
+const {usuarioPrueba,cambiarUsuario,showSidebar,handleSidebar} = useAppContext();
 
 const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
@@ -30,7 +30,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const drawerWidth = 200;
+const drawerWidth = 10.7;
 
 const CustomAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -40,8 +40,8 @@ const CustomAppBar = styled(AppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
+    width: `calc(100% - ${drawerWidth}%)`,
+    marginLeft: `${drawerWidth}%`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -50,27 +50,31 @@ const CustomAppBar = styled(AppBar, {
 }));
 
   const theme = useTheme();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(showSidebar);
   const [openSignIn, setSignIn] = useState(false);
   const [openRegister, setRegister] = useState(false);
 
   const toggleDrawerOpen = () => {
-    setOpen(true);
-    // console.log('toggleDrawerOpen');
+      console.log('entra Open ');    
+      setOpen(true);      
+      handleSidebar();
+      console.log('setea Open ');    
   };
-  const toggleDrawerClose = () => {
-    setOpen(false);
-    // console.log('toggleDrawerClose');
+  const toggleDrawerClose = () => {    
+      console.log('entra Close '+open);
+      setOpen(false);
+      console.log('showSidebar '+showSidebar);
+      handleSidebar();
+      console.log('showSidebar '+showSidebar);
+      console.log('setea Close ');
   };
-
 
   useEffect(() => {
     setOpen(true);
     setSignIn(false);
-    console.log(usuarioPrueba);
-    cambiarUsuario('franco');   
-    console.log(usuarioPrueba);
-  }, [])
+    setRegister(false);
+  }, []);
+
   const openSingInModal = () => {
     setSignIn(true);
   };
@@ -79,11 +83,6 @@ const CustomAppBar = styled(AppBar, {
     setSignIn(false);
   };
 
-  useEffect(() => {
-    setOpen(true);
-    setRegister(false);
-    // console.log('useEffect called');
-  }, [])
   const openRegisterModal = () => {
     setRegister(true);
   };
@@ -94,7 +93,7 @@ const CustomAppBar = styled(AppBar, {
 
   return (
     <Box sx={{ display: 'flex', alignItems: "center", flexGrow: 1 }}>
-      <CustomAppBar id="appbar" position="fixed" open={open}>
+      <CustomAppBar id="appbar" position="fixed" open={open} sx = {{minHeight:'5%'}}>
         <Toolbar id="toolbar" display="flex">
           <IconButton
             color="inherit"
