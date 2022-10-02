@@ -17,6 +17,9 @@ import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import axios from 'axios';
+
+const baseURL = "http://127.0.0.1:8000/";
 
 
 const style = {
@@ -32,17 +35,20 @@ const style = {
 };
 
 
-const Register = () => {
-  
+const Register = ({onCloseModal}) => {
+
+  const instance = axios.create()
+  instance.defaults.baseURL = baseURL;
+  const [isLoading, setIsLoading] = React.useState(false);
   const [gender, setGender] = React.useState('');
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleGenderChange = (event: SelectChangeEvent) => {
     setGender(event.target.value);
   };
 
   const [rol, setRol] = React.useState('');
 
-  const handleChange2 = (event: SelectChangeEvent) => {
+  const handleRolChange = (event: SelectChangeEvent) => {
     setRol(event.target.value);
   };
 
@@ -55,9 +61,40 @@ const Register = () => {
 
   }
 
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    try{
+      setIsLoading(true);
+      const json_request = JSON.stringify(persona);
+      const payloadPersona = { 
+        nombre:persona.nombre,
+        apellido:persona.apellido,
+        sexo:persona.sexo,
+        docidentidad:persona.docIdent,
+        fechanac:persona.fechaNac
+      }
+      //Aca va el otro payload
+      console.log(payloadPersona);
+    const [responseInsertPerson,responseApiCall2] = await Promise.all([
+        instance.post("insertPerson/", payloadPersona),
+        //insertar otra llamada de api
+      ]);
+      //La otra respuesta 
+      setIsLoading(false);
+      if (!responseInsertPerson?.data /*|| !responseApiCall2?.data*/ ){
+        console.log("Error, No hay data")
+      }else{
+        onCloseModal();
+      }
+    }catch(error){
+      setIsLoading(false);
+      console.log(error);
+
+    }
+  }
+  
   const theme = createTheme();
 
-  
 
   return (
     
@@ -209,7 +246,7 @@ const Register = () => {
                   id="rol"
                   value={rol}
                   label="rol"
-                  onChange={handleChange2}
+                  onChange={handleRolChange}
                 >
                   <MenuItem value={"admin"}>Administrador</MenuItem>
                   <MenuItem value={"database"}>Lo que sea base de dato</MenuItem>
@@ -222,6 +259,8 @@ const Register = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleSubmit}
+                disabled={isLoading}
               >
                 Registrarse
               </Button>
