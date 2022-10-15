@@ -10,9 +10,14 @@ class SignInSerializer(serializers.ModelSerializer):
 class PersonaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Persona
-        fields = ['nombre','apellido','docidentidad']
+        fields = ['id','nombre','apellido','docidentidad','fechanac','sexo']
+
+class UsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ['email','clave','fechacreacion','fk_rol','fk_persona']
 
 class RolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rol
-        fields = ['nombre','descripcion','docidentidad']
+        fields = ['id','nombre','descripcion']

@@ -130,7 +130,7 @@ const CustomAppBar = styled(AppBar, {
               <Typography variant="h8">Registrarse</Typography>
             </ListItemButton>            
             <Modal open={openRegister} onClose={closeRegisterModal}>
-                <Container><Register></Register></Container>
+                <Container><Register onCloseModal={closeRegisterModal}></Register></Container>
               </Modal>
 
           </Box>
