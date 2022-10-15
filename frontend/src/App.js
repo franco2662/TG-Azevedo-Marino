@@ -1,18 +1,21 @@
 import React from "react";
 import { Box, CssBaseline, Stack } from "@mui/material";
-import Navbar from "./components/Navbar";
-import Feed from "./components/Feed";
+import Dashboard from "./components/Dashboard";
+import ModuloUsuario from "./components/ModuloUsuario";
+import SignIn from "./components/SignIn";
 import { AppContextProvider,useAppContext } from "./AppContext";
+import {BrowserRouter,Routes,Route}from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <CssBaseline />
-      <Box>
-        <Navbar />        
-        <Feed />
-      </Box>      
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard/>}>
+          <Route index path="/" element = {<ModuloUsuario/>}/>               
+        </Route>
+        <Route path="/home" element = {<SignIn/>}/>        
+      </Routes>
+    </BrowserRouter>
   );
 }
 

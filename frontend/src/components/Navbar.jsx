@@ -30,7 +30,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const drawerWidth = 10.7;
+const [drawerWidth,setDrawerWidth] = useState(10.7);
 
 const CustomAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -55,18 +55,12 @@ const CustomAppBar = styled(AppBar, {
   const [openRegister, setRegister] = useState(false);
 
   const toggleDrawerOpen = () => {
-      console.log('entra Open ');    
       setOpen(true);      
-      handleSidebar();
-      console.log('setea Open ');    
+      handleSidebar(); 
   };
-  const toggleDrawerClose = () => {    
-      console.log('entra Close '+open);
+  const toggleDrawerClose = () => {   
       setOpen(false);
-      console.log('showSidebar '+showSidebar);
       handleSidebar();
-      console.log('showSidebar '+showSidebar);
-      console.log('setea Close ');
   };
 
   useEffect(() => {
@@ -74,6 +68,15 @@ const CustomAppBar = styled(AppBar, {
     setSignIn(false);
     setRegister(false);
   }, []);
+
+  useEffect(() => {
+    if (showSidebar) {
+      setDrawerWidth(10.7);
+    }
+    else {
+      setDrawerWidth(0);
+    }
+  }, [showSidebar]);
 
   const openSingInModal = () => {
     setSignIn(true);
@@ -102,10 +105,10 @@ const CustomAppBar = styled(AppBar, {
             onClick={toggleDrawerOpen}
             sx={{
               marginRight: 5,
-              ...(open && { display: 'none' }),
+              ...(showSidebar && { display: 'none' }),
             }}
           >
-            <MenuIcon />
+          <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }} >Dashboard</Typography>
 
@@ -132,21 +135,9 @@ const CustomAppBar = styled(AppBar, {
             <Modal open={openRegister} onClose={closeRegisterModal}>
                 <Container><Register></Register></Container>
               </Modal>
-
           </Box>
-
-
         </Toolbar>
-      </CustomAppBar>
-      <Drawer variant="persistent" open={open} >
-        <DrawerHeader>
-          <IconButton onClick={toggleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <Sidebar open={open} />
-      </Drawer>
+      </CustomAppBar>      
     </Box>
 
   )

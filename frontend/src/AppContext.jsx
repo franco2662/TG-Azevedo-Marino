@@ -11,9 +11,9 @@ export function AppContextProvider(props){
   const [showSidebar,setShowSidebar] = useState(true);
 
   function handleSidebar(){
-    console.log('sidebar actual '+ showSidebar);
+    //console.log('sidebar actual '+ showSidebar);
     setShowSidebar(!showSidebar);    
-    console.log('cambio sidebar a ' + showSidebar);
+    //console.log('cambio sidebar a ' + showSidebar);
   }
   const value  = useMemo(()=>{
     return({
