@@ -33,6 +33,24 @@ def verify_user(request,user_email):
             return Response(False,status=status.HTTP_404_NOT_FOUND)
         return Response(True,status.HTTP_200_OK)    
 
+@api_view(['GET'])
+def verify_person(request,person_docidentidad):
+    if request.method == 'GET':
+        try:
+            user = Persona.objects.get(docidentidad=person_docidentidad)
+        except:
+            return Response(False,status=status.HTTP_404_NOT_FOUND)
+        return Response(True,status.HTTP_200_OK)   
+
+@api_view(['GET'])
+def fk_person(request,person_docidentidad):
+    if request.method == 'GET':
+        try:
+            user = Persona.objects.get(docidentidad=person_docidentidad)
+        except:
+            return Response(False,status=status.HTTP_404_NOT_FOUND)
+        return Response(user.id,status.HTTP_200_OK)   
+
 @api_view(['POST'])
 def validate_sign_in(request):
     if request.method == 'POST':
@@ -72,6 +90,24 @@ def insert_person(request):
                 persona_serializer.save()
                 return JsonResponse(persona_serializer.data,status=status.HTTP_200_OK)
             return JsonResponse(persona_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        except:
+            return Response(False,status=status.HTTP_404_NOT_FOUND)    
+
+@api_view(['POST'])
+def insert_user(request):
+    print(request)
+    if request.method == 'POST':
+        try:
+            received_json = json.loads(request.body)
+            pass_entry = received_json['clave']
+            pass_entry_hash = user_get_password(pass_entry)
+            received_json['clave']=pass_entry_hash
+            usuario_serializer=UsuarioSerializer(data=received_json)
+            if usuario_serializer.is_valid():
+                usuario_serializer.save()
+                return JsonResponse(usuario_serializer.data,status=status.HTTP_200_OK)
+            return JsonResponse(usuario_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
         except:
             return Response(False,status=status.HTTP_404_NOT_FOUND)    

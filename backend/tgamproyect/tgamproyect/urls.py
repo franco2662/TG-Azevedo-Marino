@@ -23,6 +23,9 @@ urlpatterns = [
     path('verifyuser/<str:user_email>', views.verify_user),
     path('validatesignin/',views.validate_sign_in),
     path('persons/',views.person_list),
+    path('verifyperson/<str:person_docidentidad>', views.verify_person),
+    path('fkperson/<str:person_docidentidad>', views.fk_person),
     path('roles/',views.role_list),
-    path('insertPerson/',views.insert_person)
+    path('insertPerson/',views.insert_person),
+    path('insertUser/',views.insert_user)
 ]
