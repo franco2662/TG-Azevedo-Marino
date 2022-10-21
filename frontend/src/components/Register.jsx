@@ -19,9 +19,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent, selectClasses } from '@mui/material/Select';
 import axios from 'axios';
 import { useEffect } from 'react';
-
-
-const baseURL = "http://127.0.0.1:8000/";
+import { useAppContext } from "../AppContext";
 
 
 const style = {
@@ -38,7 +36,7 @@ const style = {
 
 
 const Register = ({ onCloseModal }) => {
-
+  const {baseURL} = useAppContext();
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
   const [isLoading, setIsLoading] = React.useState(false);

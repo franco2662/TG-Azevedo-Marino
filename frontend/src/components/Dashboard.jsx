@@ -11,6 +11,7 @@ const Dashboard = () => {
     const { showSidebar,handleSidebar} = useAppContext();
     const [feedMarginTop,setFeedMarginTop] = useState('5%');
     const [feedMarginLeft,setFeedMarginLeft] = useState('10%');
+    const [feedMarginRight,setFeedMarginRight] = useState('5%');
 
     useEffect(() => {    
         if (showSidebar) {
@@ -28,7 +29,7 @@ const Dashboard = () => {
                 <Navbar />
                 <section className="Modulos">
                 <Box
-                    sx={{ marginLeft: feedMarginLeft, marginTop: feedMarginTop }}
+                    sx={{ marginLeft: feedMarginLeft, marginTop: feedMarginTop, marginRight: feedMarginRight }}
                 >
                    <Outlet/>
                 </Box>

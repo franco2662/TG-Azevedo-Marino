@@ -68,8 +68,8 @@ class Usuario(models.Model):
     email = models.CharField(db_column='Email', max_length=100)  # Field name made lowercase.
     clave = models.CharField(db_column='Clave', max_length=100)  # Field name made lowercase.
     fechacreacion = models.DateTimeField(db_column='FechaCreacion')  # Field name made lowercase.
-    fk_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='Fk_Rol', blank=True, null=True)  # Field name made lowercase.
-    fk_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column='Fk_Persona', blank=True, null=True)  # Field name made lowercase.
+    fk_rol = models.ForeignKey(Rol, related_name='rol', on_delete =models.DO_NOTHING, db_column='Fk_Rol', blank=True, null=True)  # Field name made lowercase.
+    fk_persona = models.ForeignKey(Persona, related_name='persona', on_delete =models.DO_NOTHING, db_column='Fk_Persona', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

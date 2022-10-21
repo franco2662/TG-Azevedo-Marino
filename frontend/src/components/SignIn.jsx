@@ -17,6 +17,7 @@ import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import { useState } from 'react';
 import axios from "axios";
+import { useAppContext } from "../AppContext";
 
 const style = {
   position: 'absolute',
@@ -29,9 +30,9 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const baseURL = "http://127.0.0.1:8000/";
 const SignIn = () => {
   
+  const {baseURL} = useAppContext();
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
 

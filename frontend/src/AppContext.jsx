@@ -9,7 +9,7 @@ export function AppContextProvider(props){
     setUsuarioPrueba(usuario);
   }
   const [showSidebar,setShowSidebar] = useState(true);
-
+  const baseURL = "http://127.0.0.1:8000/";
   function handleSidebar(){
     //console.log('sidebar actual '+ showSidebar);
     setShowSidebar(!showSidebar);    
@@ -20,7 +20,8 @@ export function AppContextProvider(props){
       usuarioPrueba,
       cambiarUsuario,
       showSidebar,
-      handleSidebar   
+      handleSidebar,
+      baseURL   
     })
   },[usuarioPrueba,showSidebar])
   

@@ -21,8 +21,8 @@ from rest_framework import status
 @api_view(['GET'])
 def user_list(request):
     users = Usuario.objects.all()
-    serializer = SignInSerializer(users, many=True)
-    return Response(serializer.data,status.HTTP_200_OK)
+    serializer = ListUsersSerializer(users,many=True)
+    return JsonResponse(json.dumps(serializer.data),safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def verify_user(request,user_email):
