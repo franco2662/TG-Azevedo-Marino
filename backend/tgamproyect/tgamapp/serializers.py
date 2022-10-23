@@ -22,4 +22,4 @@ class ListUsersSerializer(serializers.ModelSerializer):
     fk_rol = RolSerializer()
     class Meta:
         model = Usuario
-        fields = ['id','email','clave','fechacreacion','fk_persona','fk_rol']
+        fields = ['id','email','clave','fechacreacion','fk_persona','fk_rol','estado']

@@ -47,6 +47,7 @@ class Sesion(models.Model):
     horainicio = models.DateTimeField(db_column='HoraInicio')  # Field name made lowercase.
     horafin = models.DateTimeField(db_column='HoraFin', blank=True, null=True)  # Field name made lowercase.
     ipconexion = models.CharField(db_column='IpConexion', max_length=15)  # Field name made lowercase.
+    fk_usuario = models.ForeignKey('Usuario',related_name='usuario', on_delete =models.DO_NOTHING, db_column='Fk_Usuario')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -70,7 +71,7 @@ class Usuario(models.Model):
     fechacreacion = models.DateTimeField(db_column='FechaCreacion')  # Field name made lowercase.
     fk_rol = models.ForeignKey(Rol, related_name='rol', on_delete =models.DO_NOTHING, db_column='Fk_Rol', blank=True, null=True)  # Field name made lowercase.
     fk_persona = models.ForeignKey(Persona, related_name='persona', on_delete =models.DO_NOTHING, db_column='Fk_Persona', blank=True, null=True)  # Field name made lowercase.
-
+    estado = models.BooleanField(db_column='Estado', blank=True, null=True)  # Field name made lowercase.
     class Meta:
         managed = False
         db_table = 'Usuario'
