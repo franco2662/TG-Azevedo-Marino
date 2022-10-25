@@ -106,11 +106,9 @@ const Register = ({ onCloseModal }) => {
         nombre: persona.nombre,
         apellido: persona.apellido,
         sexo: persona.sexo,
-        docidentidad: persona.docIdent,
-        fechanac: persona.fechaNac
+        docidentidad: persona.docIdent.trim(),
+        fechanac: persona.fechaNac.trim()
       }
-
-      
 
       const responseInsertPerson = await instance.post("insertPerson/", payloadPersona);
 
@@ -126,8 +124,7 @@ const Register = ({ onCloseModal }) => {
         }),
         fk_rol: selectRol.id,
         fk_persona: fkpersona.data
-      }
-
+      }      
       const responseInsertUser = await instance.post("insertUser/", payloadUsuario);
 
       console.log(payloadPersona);

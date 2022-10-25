@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from email.policy import default
 from django.db import models
 
 
@@ -25,7 +26,7 @@ class Persona(models.Model):
     apellido = models.CharField(db_column='Apellido', max_length=100)  # Field name made lowercase.
     fechanac = models.DateField(db_column='FechaNac')  # Field name made lowercase.
     docidentidad = models.CharField(db_column='DocIdentidad', max_length=100)  # Field name made lowercase.
-    sexo = models.TextField(db_column='Sexo')  # Field name made lowercase. This field type is a guess.
+    sexo = models.CharField(db_column='Sexo', max_length=100)  # Field name made lowercase. This field type is a guess.
 
     class Meta:
         managed = False
@@ -71,7 +72,7 @@ class Usuario(models.Model):
     fechacreacion = models.DateTimeField(db_column='FechaCreacion')  # Field name made lowercase.
     fk_rol = models.ForeignKey(Rol, related_name='rol', on_delete =models.DO_NOTHING, db_column='Fk_Rol', blank=True, null=True)  # Field name made lowercase.
     fk_persona = models.ForeignKey(Persona, related_name='persona', on_delete =models.DO_NOTHING, db_column='Fk_Persona', blank=True, null=True)  # Field name made lowercase.
-    estado = models.BooleanField(db_column='Estado', blank=True, null=True)  # Field name made lowercase.
+    estado = models.BooleanField(db_column='Estado', blank=True, null=True, default=True)  # Field name made lowercase.
     class Meta:
         managed = False
         db_table = 'Usuario'

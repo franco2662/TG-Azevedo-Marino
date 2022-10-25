@@ -1,3 +1,5 @@
+from ast import parse
+from datetime import datetime
 import email
 import imp
 import json
@@ -85,14 +87,17 @@ def insert_person(request):
     if request.method == 'POST':
         try:
             received_json = json.loads(request.body)
-            persona_serializer=PersonaSerializer(data=received_json)
+            fecha = received_json['fechanac']
+            fecha_formateada = format_date(fecha)
+            received_json['fechanac'] = fecha_formateada            
+            persona_serializer=PersonaSerializer(data=received_json) 
             if persona_serializer.is_valid():
                 persona_serializer.save()
                 return JsonResponse(persona_serializer.data,status=status.HTTP_200_OK)
             return JsonResponse(persona_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
-        except:
-            return Response(False,status=status.HTTP_404_NOT_FOUND)    
+        except Exception as e:
+            return Response(str(e),status=status.HTTP_404_NOT_FOUND)    
 
 @api_view(['POST'])
 def insert_user(request):
