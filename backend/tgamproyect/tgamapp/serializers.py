@@ -23,3 +23,8 @@ class ListUsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = ['id','email','clave','fechacreacion','fk_persona','fk_rol','estado']
+
+class ViewUsersListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ViewUserList
+        fields = '__all__'

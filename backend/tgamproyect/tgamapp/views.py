@@ -115,4 +115,10 @@ def insert_user(request):
             return JsonResponse(usuario_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
         except:
-            return Response(False,status=status.HTTP_404_NOT_FOUND)    
+            return Response(False,status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def vw_user_list(request):
+    users = ViewUserList.objects.all()
+    serializer = ViewUsersListSerializer(users,many=True)
+    return JsonResponse(json.dumps(serializer.data),safe =False,status=status.HTTP_200_OK)

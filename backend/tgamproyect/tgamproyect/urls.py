@@ -27,5 +27,6 @@ urlpatterns = [
     path('fkperson/<str:person_docidentidad>', views.fk_person),
     path('roles/',views.role_list),
     path('insertPerson/',views.insert_person),
-    path('insertUser/',views.insert_user)
+    path('insertUser/',views.insert_user),
+    path('viewuserlist/',views.vw_user_list),
 ]

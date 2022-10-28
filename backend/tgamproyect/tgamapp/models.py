@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+import email
 from email.policy import default
 from django.db import models
 
@@ -88,6 +89,16 @@ class Virus(models.Model):
         managed = False
         db_table = 'Virus'
 
+class ViewUserList(models.Model):
+    id = models.BigIntegerField(db_column='id',primary_key=True)  # Field name made lowercase.
+    nombre_completo = models.CharField(db_column='nombre_completo', max_length=150)
+    email = models.CharField(db_column='email', max_length=100)  # Field name made lowercase.
+    doc_identidad = models.CharField(db_column='doc_identidad', max_length=100)  # Field name made lowercase.
+    rol = models.CharField(db_column='rol', max_length=100)  # Field name made lowercase.
+    estado = models.BooleanField(db_column='estado', blank=True, null=True, default=True)  # Field name made lowercase.
+    class Meta:
+        managed = False
+        db_table = 'vw_user_list'
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
