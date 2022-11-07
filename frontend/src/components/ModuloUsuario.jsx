@@ -21,6 +21,23 @@ const ModuloUsuario = () =>{
   const [filterName, setFilterName] = useState('');
   const [listaUsuarios, setListaUsuarios] = useState([]);
   const [listaUsuariosFiltrada, setListaUsuariosFiltrada] = useState([]);
+  const [idSelected,setIdSelected] = useState([]);
+
+  function selectAllRows(){     
+    if(idSelected.length>0)
+      setIdSelected([]);
+    else{      
+    const seleccionados = listaUsuariosFiltrada.map((item)=> {return item.id})
+    setIdSelected(seleccionados);  
+    }
+  }
+
+  function isSelectedRow(id){
+    if(idSelected.indexOf(id) !== -1)      
+      return true;
+    else return false;
+  }
+
   const handleFilterName = (event) =>{
     setFilterName(event.target.value);
   }
@@ -95,7 +112,7 @@ const ModuloUsuario = () =>{
             <TableHead>
             
               <TableRow>
-                <TableCell align="center" sx={{width:'10%'}}>ID</TableCell>           
+                <TableCell align="center" sx={{width:'10%'}}><Checkbox onClick={()=>selectAllRows()}/>ID</TableCell>           
                 <TableCell align="left">Nombre Completo</TableCell>
                 <TableCell align="left">Email</TableCell>
                 <TableCell align="left">Doc Identidad</TableCell>
@@ -104,12 +121,12 @@ const ModuloUsuario = () =>{
               </TableRow>
             </TableHead>
             <TableBody>              
-              {listaUsuariosFiltrada.map((row) => (
+              {listaUsuariosFiltrada.map((row) => (                
                 <TableRow
                   key={row.id}
                   sx={{'&:last-child td, &:last-child th': { border: 0 }}}                  
                 >  <TableCell align="center" scope="row">
-                <Checkbox/>
+                <Checkbox checked={isSelectedRow(row.id)}/>
                 {row.id}
                 </TableCell>               
                   <TableCell align="left" scope="row">

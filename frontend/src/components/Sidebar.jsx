@@ -9,6 +9,7 @@ import { useAppContext } from "../AppContext";
 import { useTheme } from '@mui/material/styles';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = () => {
 
@@ -48,39 +49,36 @@ const Sidebar = () => {
         p={4}
         sx={{ display: { xs: "none", sm: "block" } }}
       >
-        <CustomListItemButton>
-          <CustomListItemIcon>
-            <DashboardIcon />
-          </CustomListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </CustomListItemButton>
-        <Divider />
-        <CustomListItemButton>
-          <CustomListItemIcon>
-            <ShoppingCartIcon />
-          </CustomListItemIcon>
-          <ListItemText primary="Orders" />
-        </CustomListItemButton>
-        <Divider/>
-        <CustomListItemButton>
-          <CustomListItemIcon>
-            <PeopleIcon />
-          </CustomListItemIcon>
-          <ListItemText primary="Customers" />
-        </CustomListItemButton>
-        <Divider/>
+        <Link to="/">
         <CustomListItemButton>
           <CustomListItemIcon>
             <BarChartIcon />
           </CustomListItemIcon>
           <ListItemText primary="Reports" />
         </CustomListItemButton>
+        </Link>
+        {/* <Divider />
+        <CustomListItemButton>
+          <CustomListItemIcon>
+            <ShoppingCartIcon />
+          </CustomListItemIcon>
+          <ListItemText primary="Orders" />
+        </CustomListItemButton> */}
+        <Divider/>
+        <Link to="/usuarios">
+        <CustomListItemButton>
+          <CustomListItemIcon>
+            <PeopleIcon />
+          </CustomListItemIcon>
+          <ListItemText primary="Usuarios" />
+        </CustomListItemButton>
+        </Link>        
         <Divider/>
         <CustomListItemButton>
           <CustomListItemIcon>
             <LayersIcon />
           </CustomListItemIcon>
-          <ListItemText primary="Integrations" />
+          <ListItemText primary="Archivo" />
         </CustomListItemButton>
       </Box>
       </Drawer>

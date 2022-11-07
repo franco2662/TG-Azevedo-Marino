@@ -30,7 +30,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const [drawerWidth,setDrawerWidth] = useState(10.7);
+const [drawerWidth,setDrawerWidth] = useState(9);
 
 const CustomAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -71,7 +71,7 @@ const CustomAppBar = styled(AppBar, {
 
   useEffect(() => {
     if (showSidebar) {
-      setDrawerWidth(10.7);
+      setDrawerWidth(9);
     }
     else {
       setDrawerWidth(0);
@@ -95,7 +95,7 @@ const CustomAppBar = styled(AppBar, {
   };
 
   return (
-    <Box sx={{ display: 'flex', alignItems: "center", flexGrow: 1 }}>
+    <Box sx={{  alignItems: "center" }}>
       <CustomAppBar id="appbar" position="fixed" open={open} sx = {{minHeight:'5%'}}>
         <Toolbar id="toolbar" display="flex">
           <IconButton
@@ -112,16 +112,16 @@ const CustomAppBar = styled(AppBar, {
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }} >Dashboard</Typography>
 
-          <Search sx={{ display: { xs: "none", sm: "block" } }} ><InputBase placeholder="search..." /></Search>
+          {/* <Search sx={{ display: { xs: "none", sm: "block" } }} ><InputBase placeholder="search..." /></Search> */}
 
           <Box width="15%" sx={{ display: 'flex', marginLeft: "10px", alignItems: 'center' }}>
             
-            <ListItem sx={{ flexGrow: 1 }}>
+            {/* <ListItem sx={{ flexGrow: 1 }}>
               <Badge badgeContent={1} color="error">
                 <NotificationsIcon />
               </Badge>
 
-            </ListItem>
+            </ListItem> */}
             <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={openSingInModal}>
               <Typography variant="h7">Iniciar Sesión</Typography>
             </ListItemButton>            
