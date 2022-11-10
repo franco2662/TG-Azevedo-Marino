@@ -1,5 +1,5 @@
 
-import { React,useState, useEffect } from "react";
+import { React,useState, useEffect,useRef } from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,6 +12,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import Checkbox from '@mui/material/Checkbox';
 import axios from "axios";
 import { useAppContext } from "../AppContext";
+import RuleIcon from '@mui/icons-material/Rule';
+import UserMoreOptions from "./UserMoreOptions";
 
 const ModuloUsuario = () =>{
   const {baseURL} = useAppContext();
@@ -22,13 +24,17 @@ const ModuloUsuario = () =>{
   const [listaUsuarios, setListaUsuarios] = useState([]);
   const [listaUsuariosFiltrada, setListaUsuariosFiltrada] = useState([]);
   const [idSelected,setIdSelected] = useState([]);
+  const [numSelected,setNumSelected] = useState(0);
 
-  function selectAllRows(){     
-    if(idSelected.length>0)
+  function selectAllRows(){    
+    if(idSelected.length>0){
       setIdSelected([]);
+      setNumSelected(0);
+    }      
     else{      
     const seleccionados = listaUsuariosFiltrada.map((item)=> {return item.id})
-    setIdSelected(seleccionados);  
+    setIdSelected(seleccionados);
+    setNumSelected(seleccionados.length);  
     }
   }
 
@@ -65,6 +71,7 @@ const ModuloUsuario = () =>{
 
   useEffect(() => {
     getUserList();
+    setNumSelected(0);
   }, []);
 
   useEffect(() => {
@@ -94,7 +101,19 @@ const ModuloUsuario = () =>{
   }
     return (
       <>
-        <Toolbar>
+      {numSelected > 0 ? (       
+      <Toolbar display="flex" sx={{ minWidth: 650, justifyContent: 'space-between',bgcolor:'#E4EBEB' }}>
+        <Typography component="div" variant="subtitle1">
+        {numSelected} Seleccionados
+        </Typography>
+      <Tooltip title="Cambiar Estado">
+          <IconButton>
+            <RuleIcon/>
+          </IconButton>
+        </Tooltip>
+      </Toolbar>
+      ) : (
+        <Toolbar sx={{ minWidth: 650 }}>
           <OutlinedInput
             value={filterName}
             onChange={handleFilterName}
@@ -107,6 +126,10 @@ const ModuloUsuario = () =>{
             sx={{ width:'20%' }}
           />
         </Toolbar>
+      )}
+
+      
+              
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -118,6 +141,7 @@ const ModuloUsuario = () =>{
                 <TableCell align="left">Doc Identidad</TableCell>
                 <TableCell align="left">Rol</TableCell>
                 <TableCell align="left">Estado</TableCell>
+                <TableCell align="left"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>              
@@ -135,7 +159,10 @@ const ModuloUsuario = () =>{
                   <TableCell align="left">{row.email}</TableCell>                  
                   <TableCell align="left">{row.doc_identidad}</TableCell>                  
                   <TableCell align="left">{row.rol}</TableCell>                  
-                  {getEstadoTableCell(row.estado)}                  
+                  {getEstadoTableCell(row.estado)}
+                  <TableCell align="right">
+                    <UserMoreOptions userId={row.id}/>
+                  </TableCell>                  
                 </TableRow>
                 
               ))}
