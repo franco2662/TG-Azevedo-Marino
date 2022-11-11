@@ -122,3 +122,29 @@ def vw_user_list(request):
     users = ViewUserList.objects.all()
     serializer = ViewUsersListSerializer(users,many=True)
     return JsonResponse(json.dumps(serializer.data),safe =False,status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def update_user_status(request,userId):
+    if request.method == 'POST':
+        try:
+            user = Usuario.objects.get(id=userId)
+            print(user.estado)
+            user.estado = not user.estado
+            user.save()
+            return Response(True,status.HTTP_200_OK)
+        except:
+            return Response(False,status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def update_allusers_status(request):
+    if request.method == 'POST':
+        try:
+            users = Usuario.objects.all()
+            for user in users:
+                user.estado = not user.estado
+                user.save()
+            return Response(True,status.HTTP_200_OK)
+        except:
+            return Response(False,status=status.HTTP_400_BAD_REQUEST)
+
+

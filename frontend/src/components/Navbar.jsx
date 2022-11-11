@@ -128,13 +128,13 @@ const CustomAppBar = styled(AppBar, {
             <Modal open={openSignIn} onClose={closeSingInModal}>
                 <Container><SignIn></SignIn></Container>
               </Modal>
-            
+{/*             
             <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={openRegisterModal}>
               <Typography variant="h8">Registrarse</Typography>
             </ListItemButton>            
             <Modal open={openRegister} onClose={closeRegisterModal}>
                 <Container><Register onCloseModal={closeRegisterModal}></Register></Container>
-              </Modal>
+              </Modal> */}
           </Box>
         </Toolbar>
       </CustomAppBar>      

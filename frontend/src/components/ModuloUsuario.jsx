@@ -7,13 +7,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Toolbar, Tooltip, IconButton, Typography, OutlinedInput, InputAdornment } from '@mui/material';
+import { Toolbar, Tooltip, IconButton, Typography, OutlinedInput, InputAdornment, Stack, Button, Modal } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Checkbox from '@mui/material/Checkbox';
 import axios from "axios";
 import { useAppContext } from "../AppContext";
 import RuleIcon from '@mui/icons-material/Rule';
+import AddIcon from '@mui/icons-material/Add';
 import UserMoreOptions from "./UserMoreOptions";
+import Register from "./Register";
+import { Container } from "@mui/system";
 
 const ModuloUsuario = () =>{
   const {baseURL} = useAppContext();
@@ -25,6 +28,7 @@ const ModuloUsuario = () =>{
   const [listaUsuariosFiltrada, setListaUsuariosFiltrada] = useState([]);
   const [idSelected,setIdSelected] = useState([]);
   const [numSelected,setNumSelected] = useState(0);
+  const [openRegister, setRegister] = useState(false);
 
   function selectAllRows(){    
     if(idSelected.length>0){
@@ -48,7 +52,7 @@ const ModuloUsuario = () =>{
     setFilterName(event.target.value);
   }
   
-  function filterListByName(){ 
+  function filterListByName(){
     if(filterName.trim()=="") // Si no hay nada escrito setea la original
       setListaUsuariosFiltrada(listaUsuarios)
     else{
@@ -59,8 +63,8 @@ const ModuloUsuario = () =>{
             String(item.doc_identidad).toLowerCase().includes(filterName.toLowerCase()) ||
             String(item.rol).toLowerCase().includes(filterName.toLowerCase()) ||
               ( 
-                (filterName.toLowerCase().includes("activo") && item.estado) || //Para buscar por estado
-                (filterName.toLowerCase().includes("inactivo") && !item.estado )
+                (filterName.toLowerCase()=="activo" && item.estado) || //Para buscar por estado
+                (filterName.toLowerCase()=="inactivo" && !item.estado )
               )
           )
           return item;
@@ -87,7 +91,7 @@ const ModuloUsuario = () =>{
     } catch (error) {
       console.log(error);
       throw new Error(error);
-    } finally {  
+    } finally {        
     }
   };
 
@@ -99,14 +103,50 @@ const ModuloUsuario = () =>{
         return(<TableCell align="left" sx={{color:"red",fontWeight: "bold"}}>Inactivo</TableCell>)
     
   }
+
+  async function updateAllUsersState() {
+    try {
+      let response = await instance.post("updateAllUsersStatus/");
+      if (response?.data)
+        window.location.reload();
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    } 
+  }
+
+  const handleUpdateAll=()=>{
+    updateAllUsersState();
+  }
+
+  const openRegisterModal = () => {
+    setRegister(true);
+  };
+
+  const closeRegisterModal = () => {
+    setRegister(false);
+  };
+
     return (
       <>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+          <Typography variant="h4" gutterBottom>
+            Listado de Usuarios
+          </Typography>
+          <Button variant="contained" startIcon={<AddIcon/>} onClick={openRegisterModal}>
+            Registrar Usuario
+          </Button>
+        </Stack>
+        <Modal open={openRegister} onClose={closeRegisterModal}>
+          <Container><Register onCloseModal={closeRegisterModal}></Register></Container>
+        </Modal>
+        
       {numSelected > 0 ? (       
       <Toolbar display="flex" sx={{ minWidth: 650, justifyContent: 'space-between',bgcolor:'#E4EBEB' }}>
         <Typography component="div" variant="subtitle1">
         {numSelected} Seleccionados
         </Typography>
-      <Tooltip title="Cambiar Estado">
+      <Tooltip title="Cambiar Estado" onClick={handleUpdateAll}>
           <IconButton>
             <RuleIcon/>
           </IconButton>

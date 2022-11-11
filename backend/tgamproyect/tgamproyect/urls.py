@@ -29,4 +29,6 @@ urlpatterns = [
     path('insertPerson/',views.insert_person),
     path('insertUser/',views.insert_user),
     path('viewuserlist/',views.vw_user_list),
+    path('updateUserStatus/<int:userId>',views.update_user_status),
+    path('updateAllUsersStatus/',views.update_allusers_status)
 ]
