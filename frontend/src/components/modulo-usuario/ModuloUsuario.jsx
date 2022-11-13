@@ -11,11 +11,11 @@ import { Toolbar, Tooltip, IconButton, Typography, OutlinedInput, InputAdornment
 import SearchIcon from '@mui/icons-material/Search';
 import Checkbox from '@mui/material/Checkbox';
 import axios from "axios";
-import { useAppContext } from "../AppContext";
+import { useAppContext } from "../../AppContext";
 import RuleIcon from '@mui/icons-material/Rule';
 import AddIcon from '@mui/icons-material/Add';
 import UserMoreOptions from "./UserMoreOptions";
-import Register from "./Register";
+import Register from "../Register";
 import { Container } from "@mui/system";
 
 const ModuloUsuario = () =>{

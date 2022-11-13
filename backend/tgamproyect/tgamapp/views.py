@@ -147,4 +147,14 @@ def update_allusers_status(request):
         except:
             return Response(False,status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def get_user_by_id(request,userId):
+    if request.method == 'GET':
+        try:
+            user = Usuario.objects.get(id=userId)
+            serializer = ListUsersSerializer(user)
+        except:
+            return Response(False,status=status.HTTP_404_NOT_FOUND)
+        return Response(json.dumps(serializer.data),status.HTTP_200_OK)
+
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, CssBaseline, Stack } from "@mui/material";
 import Dashboard from "./components/Dashboard";
-import ModuloUsuario from "./components/ModuloUsuario";
-import ModuloReportes from "./components/ModuloReportes";
+import ModuloUsuario from "./components/modulo-usuario/ModuloUsuario";
+import ModuloReportes from "./components/modulo-reportes/ModuloReportes";
 import SignIn from "./components/SignIn";
 import { AppContextProvider,useAppContext } from "./AppContext";
 import {BrowserRouter,Routes,Route}from 'react-router-dom'

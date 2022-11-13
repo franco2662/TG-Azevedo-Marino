@@ -30,5 +30,6 @@ urlpatterns = [
     path('insertUser/',views.insert_user),
     path('viewuserlist/',views.vw_user_list),
     path('updateUserStatus/<int:userId>',views.update_user_status),
-    path('updateAllUsersStatus/',views.update_allusers_status)
+    path('updateAllUsersStatus/',views.update_allusers_status),
+    path('getUserById/<int:userId>',views.get_user_by_id)
 ]

@@ -2,7 +2,6 @@ import React from "react";
 import { Box, CssBaseline, Stack } from "@mui/material";
 import Navbar from './Navbar' 
 import Sidebar from "./Sidebar";
-import Feed from "./Feed";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAppContext } from "../AppContext";
