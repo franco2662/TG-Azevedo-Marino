@@ -41,14 +41,14 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
   instance.defaults.baseURL = baseURL;
   const [isLoading, setIsLoading] = React.useState(false);
   const [gender, setGender] = React.useState('');
-  const [user,setUser] = useState([]);
+  const [usuario,setUsuario] = useState([]);
   
   async function getUser(){
       try {
           let response = await instance.get("getUserById/" + IdUser.userId);
           console.log(response);
           if (response?.data) {
-              setUser(JSON.parse(response.data));
+            setUsuario(JSON.parse(response.data));
           }
       } catch (error) {
         console.log(error);
@@ -56,11 +56,8 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
       } 
   }
 
-
   useEffect(() => {
     getUser();
-    let a = user;
-    debugger;
   }, []);
 
 
@@ -89,7 +86,6 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
       </Typography>
 
       <Box component="form" noValidate sx={{ mt: 1 }}>
-
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <TextField
