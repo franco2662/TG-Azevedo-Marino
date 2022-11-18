@@ -65,7 +65,13 @@ class Tipo(models.Model):
         managed = False
         db_table = 'Tipo'
 
+class Empresa(models.Model):
+     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+     nombre = models.CharField(db_column='Nombre', max_length=100)  # Field name made lowercase. 
 
+     class Meta:
+        managed = False
+        db_table = 'Empresa'
 class Usuario(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
     email = models.CharField(db_column='Email', max_length=100)  # Field name made lowercase.
@@ -74,10 +80,11 @@ class Usuario(models.Model):
     fk_rol = models.ForeignKey(Rol, related_name='rol', on_delete =models.DO_NOTHING, db_column='Fk_Rol', blank=True, null=True)  # Field name made lowercase.
     fk_persona = models.ForeignKey(Persona, related_name='persona', on_delete =models.DO_NOTHING, db_column='Fk_Persona', blank=True, null=True)  # Field name made lowercase.
     estado = models.BooleanField(db_column='Estado', blank=True, null=True, default=True)  # Field name made lowercase.
+    fk_empresa = models.ForeignKey(Empresa, related_name='empresa', on_delete =models.DO_NOTHING, db_column='Fk_Empresa', blank=True, null=True)  # Field name made lowercase.
+
     class Meta:
         managed = False
         db_table = 'Usuario'
-
 
 class Virus(models.Model):
     id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
@@ -95,6 +102,7 @@ class ViewUserList(models.Model):
     email = models.CharField(db_column='email', max_length=100)  # Field name made lowercase.
     doc_identidad = models.CharField(db_column='doc_identidad', max_length=100)  # Field name made lowercase.
     rol = models.CharField(db_column='rol', max_length=100)  # Field name made lowercase.
+    empresa = models.CharField(db_column='empresa', max_length=100)  # Field name made lowercase.
     estado = models.BooleanField(db_column='estado', blank=True, null=True, default=True)  # Field name made lowercase.
     class Meta:
         managed = False

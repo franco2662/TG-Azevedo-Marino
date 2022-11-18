@@ -62,6 +62,7 @@ const ModuloUsuario = () =>{
             String(item.email).toLowerCase().includes(filterName.toLowerCase()) ||
             String(item.doc_identidad).toLowerCase().includes(filterName.toLowerCase()) ||
             String(item.rol).toLowerCase().includes(filterName.toLowerCase()) ||
+            String(item.empresa).toLowerCase().includes(filterName.toLowerCase()) ||
               ( 
                 (filterName.toLowerCase()=="activo" && item.estado) || //Para buscar por estado
                 (filterName.toLowerCase()=="inactivo" && !item.estado )
@@ -180,6 +181,7 @@ const ModuloUsuario = () =>{
                 <TableCell align="left">Email</TableCell>
                 <TableCell align="left">Doc Identidad</TableCell>
                 <TableCell align="left">Rol</TableCell>
+                <TableCell align="left">Empresa</TableCell>
                 <TableCell align="left">Estado</TableCell>
                 <TableCell align="left"></TableCell>
               </TableRow>
@@ -198,7 +200,8 @@ const ModuloUsuario = () =>{
                     </TableCell>
                   <TableCell align="left">{row.email}</TableCell>                  
                   <TableCell align="left">{row.doc_identidad}</TableCell>                  
-                  <TableCell align="left">{row.rol}</TableCell>                  
+                  <TableCell align="left">{row.rol}</TableCell>
+                  <TableCell align="left">{row.empresa}</TableCell>                  
                   {getEstadoTableCell(row.estado)}
                   <TableCell align="right">
                     <UserMoreOptions userId={row.id}/>

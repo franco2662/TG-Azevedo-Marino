@@ -48,6 +48,9 @@ const Register = ({ onCloseModal }) => {
   const [optionDataRoles, setOptionDataRoles] = useState([]);
   //Este es el seleccionado de Rol
   const [selectRol, setSelectRol] = useState("");
+  const [optionDataEmpresas, setOptionDataEmpresas] = useState([]);
+  //Este es el seleccionado de Rol
+  const [selectEmpresa, setSelectEmpresa] = useState("");
 
   const handleRolChange = (event) => {
     const { target: { value } } = event;
@@ -55,6 +58,28 @@ const Register = ({ onCloseModal }) => {
     setSelectRol(value);
     console.log(selectRol);
   }
+
+  const handleEmpresaChange = (event) => {
+    const { target: { value } } = event;
+    console.log(event.target);
+    setSelectEmpresa(value);
+    console.log(selectEmpresa);
+  }
+
+  const getEmpresa = async () => {
+    try {
+      setIsLoading(true);
+      const response = await instance.get("empresas/");
+      console.log(response);
+      const empresasData = response?.data
+      setOptionDataEmpresas((_prevEmpresas) => empresasData)
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     const getRol = async () => {
@@ -72,11 +97,12 @@ const Register = ({ onCloseModal }) => {
       }
     };
     getRol();
+    getEmpresa();
   }, []);
 
-  const initialStatePersona = { nombre: " ", apellido: " ", fechaNac: " ", docIdent: " ", sexo: " " };
+  const initialStatePersona = { nombre: "", apellido: "", fechaNac: "", docIdent: "", sexo: "" };
   const [persona, setPersona] = useState(initialStatePersona);
-  const initialStateUsuario = { email: " ", clave: " ", fechacreacion: " ", fk_rol: " ", fk_persona: " " };
+  const initialStateUsuario = { email: "", clave: "", fechacreacion: "", fk_rol: "", fk_persona: "", fk_empresa:"" };
   const [usuario, setUsuario] = useState(initialStateUsuario);
 
   const handleInputChange = (e) => {
@@ -99,6 +125,7 @@ const Register = ({ onCloseModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      let a = selectEmpresa.id
       setIsLoading(true);
       const json_request = JSON.stringify(persona);
 
@@ -123,7 +150,8 @@ const Register = ({ onCloseModal }) => {
           year:'numeric',month:'2-digit',day:'2-digit'
         }),
         fk_rol: selectRol.id,
-        fk_persona: fkpersona.data
+        fk_persona: fkpersona.data,
+        fk_empresa: selectEmpresa.id
       }      
       const responseInsertUser = await instance.post("insertUser/", payloadUsuario);
 
@@ -294,7 +322,7 @@ const Register = ({ onCloseModal }) => {
               autoComplete="password2"
             />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={4}>
           
           <FormControl fullWidth>   
               <InputLabel id="rol">Rol</InputLabel>
@@ -316,7 +344,29 @@ const Register = ({ onCloseModal }) => {
                   ))
                 }
               </Select>
-          </FormControl>     
+          </FormControl> 
+
+          <FormControl fullWidth>   
+              <InputLabel id="empresa">Empresa</InputLabel>
+              <Select
+                //defaultValue='Select Rol'
+                displayEmpty
+                labelId="empresa"
+                id="select"
+                value={selectEmpresa}
+                onChange={handleEmpresaChange}
+                label="Empresa"
+              >
+                <MenuItem disabled value={null} >
+                  <em>Select Empresa</em>
+                </MenuItem>
+                {
+                  optionDataEmpresas?.map((empresa) => (
+                    <MenuItem key={empresa?.id} value={empresa}>{empresa?.nombre}</MenuItem>
+                  ))
+                }
+              </Select>
+          </FormControl>      
           </Grid>
         </Grid>
 

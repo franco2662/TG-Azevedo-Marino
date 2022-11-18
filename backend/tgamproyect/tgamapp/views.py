@@ -77,7 +77,7 @@ def person_list(request):
 
 @api_view(['GET'])
 def role_list(request):
-    roles = Rol.objects.all()
+    roles = Rol.objects.all().order_by('id')
     serializer = RolSerializer(roles, many=True)
     return Response(serializer.data,status.HTTP_200_OK)
 
@@ -156,5 +156,15 @@ def get_user_by_id(request,userId):
         except:
             return Response(False,status=status.HTTP_404_NOT_FOUND)
         return Response(json.dumps(serializer.data),status.HTTP_200_OK)
+
+@api_view(['GET'])
+def empresa_list(request):
+    if request.method == 'GET':
+        try:
+            empresas = Empresa.objects.all().order_by('id')
+            serializer = EmpresaSerializer(empresas,many=True)
+        except:
+            return Response(False,status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.data,status.HTTP_200_OK)
 
 
