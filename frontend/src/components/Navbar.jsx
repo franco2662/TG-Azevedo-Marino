@@ -13,7 +13,7 @@ import { useAppContext } from "../AppContext";
 
 
 const Navbar = () => {
-const {usuarioPrueba,cambiarUsuario,showSidebar,handleSidebar} = useAppContext();
+const {usuarioConectado,cambiarUsuario,showSidebar,handleSidebar} = useAppContext();
 
 const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",

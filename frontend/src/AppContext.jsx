@@ -1,29 +1,49 @@
 import React from "react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
+import axios from "axios";
 
 const AppContext = React.createContext();
 export function AppContextProvider(props){
   
-  const [usuarioPrueba,setUsuarioPrueba] = useState('prueba');
-  function cambiarUsuario(usuario){
-    setUsuarioPrueba(usuario);
-  }
-  const [showSidebar,setShowSidebar] = useState(true);
+  
   const baseURL = "http://127.0.0.1:8000/";
-  function handleSidebar(){
-    //console.log('sidebar actual '+ showSidebar);
-    setShowSidebar(!showSidebar);    
-    //console.log('cambio sidebar a ' + showSidebar);
+  
+  const usuarioConectado = useRef('');
+  function cambiarUsuario(usuario){
+    usuarioConectado.current =usuario;
   }
+
+  const [showSidebar,setShowSidebar] = useState(true);
+  function handleSidebar(){
+    setShowSidebar(!showSidebar);  
+  }
+
+  const ipConexion= useRef('');
+  async function getIpConexion(){
+    const res = await axios.get('https://geolocation-db.com/json/')
+    ipConexion.current = res.data.IPv4;
+  }
+
+  const[dateConexion,setDateConexion] = useState(new Date().toLocaleString())
+  function getDateConexion(){
+    var today = new Date().toLocaleString();
+    setDateConexion(today);
+  };
+
   const value  = useMemo(()=>{
     return({
-      usuarioPrueba,
+      usuarioConectado,
       cambiarUsuario,
       showSidebar,
       handleSidebar,
-      baseURL   
+      baseURL,
+      ipConexion,
+      getIpConexion,
+      dateConexion,
+      setDateConexion,
+      getDateConexion   
     })
-  },[usuarioPrueba,showSidebar])
+  },[usuarioConectado,showSidebar])
   
   return <AppContext.Provider value = {value}{...props}/>
 }

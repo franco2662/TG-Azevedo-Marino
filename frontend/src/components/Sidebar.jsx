@@ -13,7 +13,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = () => {
 
-  const {usuarioPrueba,cambiarUsuario,showSidebar,handleSidebar} = useAppContext();
+  const {usuarioConectado,cambiarUsuario,showSidebar,handleSidebar} = useAppContext();
   
   const theme = useTheme();
   const DrawerHeader = styled('div')(({ theme }) => ({

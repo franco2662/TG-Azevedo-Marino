@@ -18,6 +18,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { useState } from 'react';
 import axios from "axios";
 import { useAppContext } from "../AppContext";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: 'absolute',
@@ -32,10 +33,18 @@ const style = {
 };
 const SignIn = () => {
   
-  const {baseURL} = useAppContext();
+  const {
+    usuarioConectado,
+    cambiarUsuario,
+    baseURL,
+    ipConexion,
+    getIpConexion,
+    dateConexion,
+    getDateConexion} = useAppContext();
+  
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
-
+  const navigate = useNavigate();
   const theme = createTheme();
   const[user,setUser]=useState("");
   const[pass,setPass]=useState("");
@@ -47,6 +56,21 @@ const SignIn = () => {
   const handleClose = ()=>{
     setSuccessAlert(false);
     setErrorAlert(false);
+  }
+
+  async function setUserData(){
+    try{
+      cambiarUsuario(user);
+      await getIpConexion();
+      getDateConexion();
+    }catch{
+
+    }finally{
+      console.log(usuarioConectado);
+      console.log(ipConexion);
+      console.log(dateConexion);
+      setTimeout(1000,navigate("/"));
+    }
   }
 
 async function verifyUser(){
@@ -87,9 +111,10 @@ const handleSignIn = async(e)=>{
       const obj = { email: user, clave: pass };
       const json_request = JSON.stringify(obj);
       const response = await instance.post("validatesignin/", json_request);
-      if(response.data==true){
+      if(response.data==true){    
         setSuccess("Ha iniciado sesión!");
         setSuccessAlert(true);
+        setUserData();        
       }      
     }
     else
