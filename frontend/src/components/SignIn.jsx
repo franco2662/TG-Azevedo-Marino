@@ -34,14 +34,9 @@ const style = {
 const SignIn = () => {
   
   const {
-    usuarioConectado,
-    cambiarUsuario,
     baseURL,
-    ipConexion,
-    getIpConexion,
-    dateConexion,
-    getDateConexion,
-    makeSesion} = useAppContext();
+    makeSesion,
+    usuarioObjeto} = useAppContext();
   
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
@@ -61,16 +56,10 @@ const SignIn = () => {
 
   async function setUserData(){
     try{
-      cambiarUsuario(user);
-      await getIpConexion();
-      getDateConexion();
+      await makeSesion(user);
     }catch{
 
     }finally{
-      // console.log(usuarioConectado);
-      // console.log(ipConexion);
-      // console.log(dateConexion);
-      makeSesion();
       setTimeout(1000,navigate("/"));
     }
   }

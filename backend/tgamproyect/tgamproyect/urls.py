@@ -33,5 +33,6 @@ urlpatterns = [
     path('updateAllUsersStatus/',views.update_allusers_status),
     path('getUserById/<int:userId>',views.get_user_by_id),
     path('empresas/',views.empresa_list),
-    path('insertSesion/',views.insert_sesion)
+    path('insertSesion/',views.insert_sesion),
+    path('getUserByEmail/<str:user_email>',views.get_user_by_email),
 ]

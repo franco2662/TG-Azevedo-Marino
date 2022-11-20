@@ -179,4 +179,14 @@ def insert_sesion(request):
         except:
             return Response(False,status=status.HTTP_404_NOT_FOUND)
 
+@api_view(['GET'])
+def get_user_by_email(request,user_email):
+    if request.method == 'GET':
+        try:
+            user = Usuario.objects.get(email=user_email)
+            serializer = ListUsersSerializer(user)
+        except:
+            return Response(False,status=status.HTTP_404_NOT_FOUND)
+        return Response(json.dumps(serializer.data),status.HTTP_200_OK)
+
 
