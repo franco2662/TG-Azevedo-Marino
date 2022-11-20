@@ -18,17 +18,29 @@ export function AppContextProvider(props){
     setShowSidebar(!showSidebar);  
   }
 
-  const ipConexion= useRef('');
+  const ipConexion = useRef('');
   async function getIpConexion(){
     const res = await axios.get('https://geolocation-db.com/json/')
     ipConexion.current = res.data.IPv4;
   }
 
-  const[dateConexion,setDateConexion] = useState(new Date().toLocaleString())
+  const dateConexion = useRef(new Date().toISOString())
   function getDateConexion(){
-    var today = new Date().toLocaleString();
-    setDateConexion(today);
+    var today = new Date().toISOString();
+    dateConexion.current = today;
   };
+
+  async function makeSesion(){
+    const instance = axios.create()
+  instance.defaults.baseURL = baseURL;
+    let objeto = {
+      horainicio: dateConexion.current,
+      ipconexion:ipConexion.current,
+      fk_usuario:0,
+      user_email:usuarioConectado.current
+    }
+    await instance.post("insertSesion/", objeto);
+  }
 
   const value  = useMemo(()=>{
     return({
@@ -40,8 +52,8 @@ export function AppContextProvider(props){
       ipConexion,
       getIpConexion,
       dateConexion,
-      setDateConexion,
-      getDateConexion   
+      getDateConexion,
+      makeSesion   
     })
   },[usuarioConectado,showSidebar])
   

@@ -83,7 +83,6 @@ def role_list(request):
 
 @api_view(['POST'])
 def insert_person(request):
-    print(request)
     if request.method == 'POST':
         try:
             received_json = json.loads(request.body)
@@ -101,7 +100,6 @@ def insert_person(request):
 
 @api_view(['POST'])
 def insert_user(request):
-    print(request)
     if request.method == 'POST':
         try:
             received_json = json.loads(request.body)
@@ -128,7 +126,6 @@ def update_user_status(request,userId):
     if request.method == 'POST':
         try:
             user = Usuario.objects.get(id=userId)
-            print(user.estado)
             user.estado = not user.estado
             user.save()
             return Response(True,status.HTTP_200_OK)
@@ -166,5 +163,20 @@ def empresa_list(request):
         except:
             return Response(False,status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.data,status.HTTP_200_OK)
+
+@api_view(['POST'])
+def insert_sesion(request):
+    if request.method == 'POST':
+        try:
+            received_json = json.loads(request.body)
+            user_email = received_json['user_email']
+            received_json['fk_usuario']= Usuario.objects.get(email=user_email).id
+            serializer=SesionSerializer(data=received_json)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data,status=status.HTTP_200_OK)
+            return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)            
+        except:
+            return Response(False,status=status.HTTP_404_NOT_FOUND)
 
 

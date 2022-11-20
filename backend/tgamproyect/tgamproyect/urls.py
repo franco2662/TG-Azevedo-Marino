@@ -32,5 +32,6 @@ urlpatterns = [
     path('updateUserStatus/<int:userId>',views.update_user_status),
     path('updateAllUsersStatus/',views.update_allusers_status),
     path('getUserById/<int:userId>',views.get_user_by_id),
-    path('empresas/',views.empresa_list)
+    path('empresas/',views.empresa_list),
+    path('insertSesion/',views.insert_sesion)
 ]

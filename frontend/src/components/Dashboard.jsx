@@ -7,7 +7,11 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../AppContext";
 
 const Dashboard = () => {
-    const { showSidebar,handleSidebar} = useAppContext();
+    const {usuarioConectado,
+        showSidebar,
+        baseURL,
+        ipConexion,
+        dateConexion} = useAppContext();
     const [feedMarginTop,setFeedMarginTop] = useState('5%');
     const [feedMarginLeft,setFeedMarginLeft] = useState('10%');
     const [feedMarginRight,setFeedMarginRight] = useState('5%');

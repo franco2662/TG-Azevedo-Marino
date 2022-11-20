@@ -40,7 +40,8 @@ const SignIn = () => {
     ipConexion,
     getIpConexion,
     dateConexion,
-    getDateConexion} = useAppContext();
+    getDateConexion,
+    makeSesion} = useAppContext();
   
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
@@ -66,9 +67,10 @@ const SignIn = () => {
     }catch{
 
     }finally{
-      console.log(usuarioConectado);
-      console.log(ipConexion);
-      console.log(dateConexion);
+      // console.log(usuarioConectado);
+      // console.log(ipConexion);
+      // console.log(dateConexion);
+      makeSesion();
       setTimeout(1000,navigate("/"));
     }
   }

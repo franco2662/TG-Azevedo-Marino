@@ -32,3 +32,8 @@ class ViewUsersListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ViewUserList
         fields = '__all__'
+
+class SesionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sesion
+        fields = ['horainicio','ipconexion','fk_usuario']
