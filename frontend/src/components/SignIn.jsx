@@ -60,7 +60,7 @@ const SignIn = () => {
     }catch{
 
     }finally{
-      setTimeout(1000,navigate("/"));
+      setTimeout(1000,navigate("/dashboard"));
     }
   }
 

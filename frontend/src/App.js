@@ -11,11 +11,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard/>}>          
-          <Route index path="/" element = {<ModuloReportes/>}/>           
-          <Route index path="/usuarios" element = {<ModuloUsuario/>}/>     
-        </Route>
-        <Route path="/home" element = {<SignIn/>}/>        
+        <Route path="/" element = {<SignIn/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}>          
+          <Route index path="/dashboard" element = {<ModuloReportes/>}/>           
+          <Route index path="/dashboard/usuarios" element = {<ModuloUsuario/>}/>     
+        </Route>                
       </Routes>
     </BrowserRouter>
   );

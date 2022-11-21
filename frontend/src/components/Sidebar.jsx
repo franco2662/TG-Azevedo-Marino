@@ -10,10 +10,11 @@ import { useTheme } from '@mui/material/styles';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Link, NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 const Sidebar = () => {
 
-  const {usuarioConectado,cambiarUsuario,showSidebar,handleSidebar} = useAppContext();
+  const {usuarioObjeto,showSidebar,handleSidebar} = useAppContext();
   
   const theme = useTheme();
   const DrawerHeader = styled('div')(({ theme }) => ({
@@ -49,7 +50,7 @@ const Sidebar = () => {
         p={4}
         sx={{ display: { xs: "none", sm: "block" } }}
       >
-        <Link to="/">
+        <Link to="/dashboard">
         <CustomListItemButton>
           <CustomListItemIcon>
             <BarChartIcon />
@@ -57,22 +58,20 @@ const Sidebar = () => {
           <ListItemText primary="Reports" />
         </CustomListItemButton>
         </Link>
-        {/* <Divider />
-        <CustomListItemButton>
-          <CustomListItemIcon>
-            <ShoppingCartIcon />
-          </CustomListItemIcon>
-          <ListItemText primary="Orders" />
-        </CustomListItemButton> */}
-        <Divider/>
-        <Link to="/usuarios">
+        {
+          usuarioObjeto.current.fk_rol.id <= 2 ?
+          <> 
+          <Divider/>
+        <Link to="/dashboard/usuarios">
         <CustomListItemButton>
           <CustomListItemIcon>
             <PeopleIcon />
           </CustomListItemIcon>
           <ListItemText primary="Usuarios" />
         </CustomListItemButton>
-        </Link>        
+        </Link>
+        </>   
+        :<></>}             
         <Divider/>
         <CustomListItemButton>
           <CustomListItemIcon>

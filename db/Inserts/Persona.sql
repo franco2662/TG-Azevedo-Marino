@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2022-11-17 22:42:53
+-- Started on 2022-11-20 22:18:07
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -27,6 +27,7 @@ SET row_security = off;
 INSERT INTO public."Persona" ("Id", "Nombre", "Apellido", "FechaNac", "DocIdentidad", "Sexo") VALUES (1, 'Franco', 'Marino', '1997-06-26', '26254452', 'M');
 INSERT INTO public."Persona" ("Id", "Nombre", "Apellido", "FechaNac", "DocIdentidad", "Sexo") VALUES (3, 'Francisco', 'Azevedo', '1990-12-06', '19965675', 'M');
 INSERT INTO public."Persona" ("Id", "Nombre", "Apellido", "FechaNac", "DocIdentidad", "Sexo") VALUES (6, 'Ana Karina', 'Fernandes', '2000-01-01', '20100300', 'F');
+INSERT INTO public."Persona" ("Id", "Nombre", "Apellido", "FechaNac", "DocIdentidad", "Sexo") VALUES (7, 'John', 'Doe', '2000-01-01', '10100200', 'M');
 
 
 --
@@ -35,10 +36,10 @@ INSERT INTO public."Persona" ("Id", "Nombre", "Apellido", "FechaNac", "DocIdenti
 -- Name: Persona_Id_seq1; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Persona_Id_seq1"', 6, true);
+SELECT pg_catalog.setval('public."Persona_Id_seq1"', 7, true);
 
 
--- Completed on 2022-11-17 22:42:54
+-- Completed on 2022-11-20 22:18:07
 
 --
 -- PostgreSQL database dump complete

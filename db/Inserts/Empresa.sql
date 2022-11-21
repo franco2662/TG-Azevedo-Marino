@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2022-11-17 22:42:38
+-- Started on 2022-11-20 22:17:47
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -26,6 +26,7 @@ SET row_security = off;
 
 INSERT INTO public."Empresa" ("Id", "Nombre") OVERRIDING SYSTEM VALUE VALUES (1, 'TGAM');
 INSERT INTO public."Empresa" ("Id", "Nombre") OVERRIDING SYSTEM VALUE VALUES (2, 'UCAB');
+INSERT INTO public."Empresa" ("Id", "Nombre") OVERRIDING SYSTEM VALUE VALUES (3, 'Independiente');
 
 
 --
@@ -34,10 +35,10 @@ INSERT INTO public."Empresa" ("Id", "Nombre") OVERRIDING SYSTEM VALUE VALUES (2,
 -- Name: Empresa_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Empresa_Id_seq"', 2, true);
+SELECT pg_catalog.setval('public."Empresa_Id_seq"', 3, true);
 
 
--- Completed on 2022-11-17 22:42:38
+-- Completed on 2022-11-20 22:17:47
 
 --
 -- PostgreSQL database dump complete

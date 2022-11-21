@@ -66,7 +66,7 @@ export function AppContextProvider(props){
       horainicio:dateConexion.current,
       ipconexion:ipConexion.current,
       }
-    console.log(usuarioObjeto.current);
+    // console.log(usuarioObjeto.current);
   }
 
   const value  = useMemo(()=>{
