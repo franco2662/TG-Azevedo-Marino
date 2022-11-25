@@ -8,7 +8,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState, useEffect } from "react";
 import { useTheme } from '@mui/material/styles';
 import SignIn from "./SignIn";
-import Register from "./Register";
 import { useAppContext } from "../AppContext";
 
 

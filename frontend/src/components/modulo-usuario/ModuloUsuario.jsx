@@ -15,11 +15,12 @@ import { useAppContext } from "../../AppContext";
 import RuleIcon from '@mui/icons-material/Rule';
 import AddIcon from '@mui/icons-material/Add';
 import UserMoreOptions from "./UserMoreOptions";
-import Register from "../Register";
+import Register from "./Register";
 import { Container } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const ModuloUsuario = () =>{
-  const {baseURL} = useAppContext();
+  const {usuarioObjeto,baseURL} = useAppContext();
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
 
@@ -29,6 +30,7 @@ const ModuloUsuario = () =>{
   const [idSelected,setIdSelected] = useState([]);
   const [numSelected,setNumSelected] = useState(0);
   const [openRegister, setRegister] = useState(false);
+  const navigate = useNavigate();
 
   function selectAllRows(){    
     if(idSelected.length>0){
@@ -75,6 +77,9 @@ const ModuloUsuario = () =>{
   }
 
   useEffect(() => {
+    // if (!Number.isInteger(usuarioObjeto.current.Id) || usuarioObjeto.current.fk_rol.id > 2)
+    //   navigate("/")
+    let a  = usuarioObjeto.current;
     getUserList();
     setNumSelected(0);
   }, []);

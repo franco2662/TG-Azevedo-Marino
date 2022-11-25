@@ -35,4 +35,6 @@ urlpatterns = [
     path('empresas/',views.empresa_list),
     path('insertSesion/',views.insert_sesion),
     path('getUserByEmail/<str:user_email>',views.get_user_by_email),
+    path('modifyPerson/',views.modify_person),
+    path('modifyUser/',views.modify_user)
 ]

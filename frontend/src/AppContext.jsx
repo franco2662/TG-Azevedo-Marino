@@ -52,6 +52,7 @@ export function AppContextProvider(props){
     await instance.post("insertSesion/", objeto);
 
     const response = await instance.get("getUserByEmail/"+user);
+    //console.log(response?.data);
     const userInfo = JSON.parse(response.data)
 
     usuarioObjeto.current = {

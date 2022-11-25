@@ -20,8 +20,16 @@ class EmpresaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Empresa
         fields = ['id','nombre']
+class FullUsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = '__all__'
+class FullPersonaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Persona
+        fields = '__all__'
 class ListUsersSerializer(serializers.ModelSerializer):
-    fk_persona = PersonaSerializer()
+    fk_persona = FullPersonaSerializer()
     fk_rol = RolSerializer()
     fk_empresa = EmpresaSerializer()
     class Meta:
@@ -37,3 +45,4 @@ class SesionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sesion
         fields = ['horainicio','ipconexion','fk_usuario']
+

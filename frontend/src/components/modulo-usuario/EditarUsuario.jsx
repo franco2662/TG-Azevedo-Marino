@@ -20,6 +20,7 @@ import Select, { SelectChangeEvent, selectClasses } from '@mui/material/Select';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useAppContext } from "../../AppContext";
+import { useRef } from 'react';
 
 
 const style = {
@@ -35,42 +36,141 @@ const style = {
 };
 
 
-const EditarUsuario = ({ onCloseModal,IdUser }) => {
-  const {baseURL} = useAppContext();
+const EditarUsuario = ({ onCloseModal,usuarioProp }) => {
+  const {usuarioObjeto,baseURL} = useAppContext();
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [gender, setGender] = React.useState('');
-  const [usuario,setUsuario] = useState([]);
-  
-  async function getUser(){
-      try {
-          let response = await instance.get("getUserById/" + IdUser.userId);
-          console.log(response);
-          if (response?.data) {
-            setUsuario(JSON.parse(response.data));
-          }
-      } catch (error) {
-        console.log(error);
-        throw new Error(error);
-      } 
-  }
+  const usuarioEdit = useRef(usuarioProp);
 
-  useEffect(() => {
-    getUser();
+
+  //const initialStatePersona = { nombre: usuarioProp.fk_persona.nombre, apellido: "", fechanac: "", docidentidad: "", sexo: "" };
+  const [persona, setPersona] = useState(usuarioProp.fk_persona);
+  const initialStateUsuario = { email: usuarioProp.email, clave: "",clave2:"", fechacreacion: "", fk_rol: usuarioProp.fk_rol, fk_persona: usuarioProp.fk_persona, fk_empresa:usuarioProp.fk_empresa };
+  const [usuario, setUsuario] = useState(initialStateUsuario);
+  const [optionDataRoles, setOptionDataRoles] = useState([]);
+  //Este es el seleccionado de Rol
+  const [selectRol, setSelectRol] = useState("");
+  const [optionDataEmpresas, setOptionDataEmpresas] = useState([]);
+  //Este es el seleccionado de Rol
+  const [selectEmpresa, setSelectEmpresa] = useState("");
+
+  const handleRolChange = (event) => {
+    const { target: { value } } = event;
+    console.log(event.target);
+    setSelectRol(value);
+    console.log(selectRol);
+  };
+
+  const handleEmpresaChange = (event) => {
+    const { target: { value } } = event;
+    console.log(event.target);
+    setSelectEmpresa(value);
+    console.log(selectEmpresa);
+  };
+
+  const getEmpresa = async () => {
+    try {
+      const response = await instance.get("empresas/");
+      const empresasData = response?.data
+      empresasData?.map((empresa) => {
+        if (empresa.id = usuarioProp.fk_empresa.id)
+        setSelectEmpresa(empresa);
+      });
+      setOptionDataEmpresas((_prevEmpresas) => empresasData)
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    } finally {
+    }
+  };
+
+  const getRol = async () => {
+    try {
+      const response = await instance.get("roles/");
+      const rolesData = response?.data
+      rolesData?.map((rol) => {
+        if (rol.id = usuarioProp.fk_rol.id)
+          setSelectRol(rol);
+      });
+      setOptionDataRoles((_prevRoles) => rolesData);
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    } finally {
+    }
+  };
+
+  const handleInputChange = (e) => {
+
+    setPersona({ ...persona, [e.target.name]: e.target.value });
+
+  };
+
+  const handleInputUsuario = (e) => {
+
+    setUsuario({ ...usuario, [e.target.name]: e.target.value });
+
+  };
+
+  function comparePassword(){
+    if(usuario.clave.length<=5 || (usuario.clave !=usuario.clave2)){
+      return usuarioProp.clave;
+    }
+    else{
+      return usuario.clave;
+    }
+  }
+  
+  useEffect(() => {  
+      console.log(usuarioProp);
+      getEmpresa().then(() => {
+        getRol();
+      });      
   }, []);
 
-
-
+  
   const handleSubmit = async (e) => {
-   
+    e.preventDefault();
+    try {
+      let user_password = comparePassword();
+
+      const payloadPersona = {
+        id:persona.id,
+        nombre: persona.nombre,
+        apellido: persona.apellido,
+        docidentidad: persona.docidentidad.trim(),
+        fechanac: persona.fechanac.trim(),
+        sexo: persona.sexo
+      }     
+
+      const payloadUsuario = {
+        id:usuarioProp.id,
+        email: usuario.email,
+        clave: user_password,
+        fechacreacion: usuarioProp.fechacreacion,
+        estado:usuarioProp.estado,
+        fk_rol: selectRol.id,
+        fk_persona: persona.id,
+        fk_empresa: selectEmpresa.id
+      }
+      const responseModifyUser = await instance.post("modifyUser/", payloadUsuario);
+      const responseModifyPerson = await instance.post("modifyPerson/", payloadPersona);
+
+      if (!responseModifyPerson?.data || !responseModifyUser?.data) {
+        console.log("Error, No hay data")
+      } else {
+        onCloseModal();
+      }
+    } catch (error) {
+      console.log(error);
+
+    }
   }
 
   const theme = createTheme();
 
-
-  return (
-
+  
+  return (    
     <Box
 
       sx={{
@@ -78,6 +178,7 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
       }}
     >
       <CssBaseline />
+      
       <Avatar sx={{ m: 2, bgcolor: 'secondary.main' }}>
         <LockOutlinedIcon />
       </Avatar>
@@ -96,7 +197,10 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
               label="Nombre"
               name="nombre"
               autoComplete="nombre"
+              value={persona.nombre}
+              onChange={handleInputChange}                        
               autoFocus
+              
             />
           </Grid>
           <Grid item xs={6}>
@@ -109,6 +213,8 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
               type="apellido"
               id="apellido"
               autoComplete="apellido"
+              value={persona.apellido}
+              onChange={handleInputChange}
             />
           </Grid>
         </Grid>
@@ -123,6 +229,8 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
               name="fechaNac"
               autoComplete="fechaNac"
               autoFocus
+              value={persona.fechanac}
+              onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={4}>
@@ -135,6 +243,8 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
               type="docIdent"
               id="docIdent"
               autoComplete="docIdent"
+              value={persona.docidentidad}
+              onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={1}>
@@ -144,6 +254,8 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
               id="gender"
               name="sexo"
               label="sexo"
+              value={persona.sexo}
+              onChange={handleInputChange}
             >
               <MenuItem value={"F"}>F</MenuItem>
               <MenuItem value={"M"}>M</MenuItem>
@@ -161,6 +273,8 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
               name="email"
               autoComplete="email"
               autoFocus
+              value={usuario.email}
+              onChange={handleInputUsuario}
             />
           </Grid>
           <Grid item xs={6}>
@@ -184,9 +298,12 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
               fullWidth
               id="clave"
               label="Contraseña"
+              type="password"
               name="clave"
               autoComplete="clave"
               autoFocus
+              value={usuario.clave}
+              onChange={handleInputUsuario}
             />
           </Grid>
           <Grid item xs={4}>
@@ -194,11 +311,13 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
               margin="normal"
               required
               fullWidth
-              name="password2"
+              name="clave2"
               label="Repetir Contraseña"
-              type="password2"
+              type="password"
               id="password2"
               autoComplete="password2"
+              value={usuario.clave2}
+              onChange={handleInputUsuario}
             />
           </Grid>
           <Grid item xs={2}>
@@ -211,11 +330,39 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
                 labelId="rol"
                 id="select"
                 label="Rol"
+                value={selectRol}
+                onChange={handleRolChange}
               >
                 <MenuItem disabled value={null} >
                   <em>Select Rol</em>
                 </MenuItem>
-                
+                {
+                  optionDataRoles?.map((rol) => (
+                    <MenuItem key={rol?.id} value={rol}>{rol?.nombre}</MenuItem>
+                  ))
+                }
+              </Select>
+          </FormControl>
+          
+          <FormControl fullWidth>   
+              <InputLabel id="empresa">Empresa</InputLabel>
+              <Select
+                //defaultValue='Select Rol'
+                displayEmpty
+                labelId="empresa"
+                id="select"
+                value={selectEmpresa}
+                onChange={handleEmpresaChange}
+                label="Empresa"
+              >
+                <MenuItem disabled value={null} >
+                  <em>Select Empresa</em>
+                </MenuItem>
+                {
+                  optionDataEmpresas?.map((empresa) => (
+                    <MenuItem key={empresa?.id} value={empresa}>{empresa?.nombre}</MenuItem>
+                  ))
+                }
               </Select>
           </FormControl>     
           </Grid>
@@ -227,7 +374,6 @@ const EditarUsuario = ({ onCloseModal,IdUser }) => {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
           onClick={handleSubmit}
-          disabled={isLoading}
         >
           Guardar Cambios
         </Button>

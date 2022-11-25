@@ -189,4 +189,38 @@ def get_user_by_email(request,user_email):
             return Response(False,status=status.HTTP_404_NOT_FOUND)
         return Response(json.dumps(serializer.data),status.HTTP_200_OK)
 
+@api_view(['POST'])
+def modify_user(request):
+    if request.method == 'POST':
+        try:
+            received_json = json.loads(request.body)
+            usuario = Usuario.objects.get(id=received_json['id'])            
+            pass_entry = received_json['clave']
+            if(usuario.clave!=pass_entry):
+                pass_entry_hash = user_get_password(pass_entry)
+                received_json['clave']=pass_entry_hash
+            usuario_serializer=UsuarioSerializer(usuario,data=received_json)
+            if usuario_serializer.is_valid():
+                usuario_serializer.save()
+                return Response(True,status.HTTP_200_OK)
+            return JsonResponse(usuario_serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)            
+        except Exception as e:
+            return Response(str(e),status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+def modify_person(request):
+    if request.method == 'POST':
+        try:
+            received_json = json.loads(request.body)
+            fecha = received_json['fechanac']
+            fecha_formateada = format_date(fecha)
+            received_json['fechanac'] = fecha_formateada
+            persona = Persona.objects.get(id=received_json['id'])            
+            persona_serializer=PersonaSerializer(persona,data=received_json) 
+            if persona_serializer.is_valid():
+                persona_serializer.save()
+                return Response(True,status.HTTP_200_OK)
+            return JsonResponse(persona_serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
+            
+        except Exception as e:
+            return Response(str(e),status=status.HTTP_400_BAD_REQUEST)

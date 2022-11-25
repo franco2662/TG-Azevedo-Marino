@@ -19,7 +19,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent, selectClasses } from '@mui/material/Select';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useAppContext } from "../AppContext";
+import { useAppContext } from '../../AppContext';
 
 
 const style = {
@@ -40,10 +40,10 @@ const Register = ({ onCloseModal }) => {
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
   const [isLoading, setIsLoading] = React.useState(false);
-  const [gender, setGender] = React.useState('');
-  const handleGenderChange = (event: SelectChangeEvent) => {
-    setGender(event.target.value);
-  };
+  // const [gender, setGender] = React.useState('');
+  // const handleGenderChange = (event: SelectChangeEvent) => {
+  //   setGender(event.target.value);
+  // };
 
   const [optionDataRoles, setOptionDataRoles] = useState([]);
   //Este es el seleccionado de Rol
@@ -117,15 +117,9 @@ const Register = ({ onCloseModal }) => {
 
   }
 
-
-
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let a = selectEmpresa.id
       setIsLoading(true);
       const json_request = JSON.stringify(persona);
 
