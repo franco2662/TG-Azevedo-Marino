@@ -5,9 +5,7 @@ import axios from "axios";
 const AppContext = React.createContext();
 export function AppContextProvider(props){
   
-  
   const baseURL = "http://127.0.0.1:8000/";
-  
   const [showSidebar,setShowSidebar] = useState(true);
   function handleSidebar(){
     setShowSidebar(!showSidebar);  
@@ -67,7 +65,24 @@ export function AppContextProvider(props){
       horainicio:dateConexion.current,
       ipconexion:ipConexion.current,
       }
-    // console.log(usuarioObjeto.current);
+      getSession();
+  }
+
+  function getSession(){
+    if (sessionStorage.getItem('user_session') === null) {
+      sessionStorage.setItem('user_session',JSON.stringify(usuarioObjeto.current));
+    }
+    else{
+      if(usuarioObjeto.current.id == '')
+        usuarioObjeto.current = JSON.parse(sessionStorage.getItem('user_session'));
+      //console.log(JSON.parse(sessionStorage.getItem('user_session')));
+    }
+  }
+
+  function singOut(){
+    
+    sessionStorage.removeItem('user_session');
+    
   }
 
   const value  = useMemo(()=>{
@@ -76,7 +91,9 @@ export function AppContextProvider(props){
       handleSidebar,
       baseURL,
       makeSesion,
-      usuarioObjeto   
+      usuarioObjeto,
+      getSession,
+      singOut  
     })
   },[usuarioObjeto,showSidebar])
   

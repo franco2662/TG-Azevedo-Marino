@@ -158,6 +158,7 @@ const Register = ({ onCloseModal }) => {
         console.log("Error, No hay data")
       } else {
         onCloseModal();
+        window.location.reload();
       }
     } catch (error) {
       setIsLoading(false);

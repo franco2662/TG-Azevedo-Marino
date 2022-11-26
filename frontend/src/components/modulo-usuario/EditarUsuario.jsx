@@ -160,6 +160,7 @@ const EditarUsuario = ({ onCloseModal,usuarioProp }) => {
         console.log("Error, No hay data")
       } else {
         onCloseModal();
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

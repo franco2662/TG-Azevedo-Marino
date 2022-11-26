@@ -81,7 +81,7 @@ const ModuloUsuario = () =>{
     //   navigate("/")
     let a  = usuarioObjeto.current;
     getUserList();
-    setNumSelected(0);
+    setNumSelected(0);    
   }, []);
 
   useEffect(() => {

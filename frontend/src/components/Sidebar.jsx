@@ -14,7 +14,7 @@ import { useEffect } from "react";
 
 const Sidebar = () => {
 
-  const {usuarioObjeto,showSidebar,handleSidebar} = useAppContext();
+  const {usuarioObjeto,showSidebar,handleSidebar,getSession} = useAppContext();
   
   const theme = useTheme();
   const DrawerHeader = styled('div')(({ theme }) => ({

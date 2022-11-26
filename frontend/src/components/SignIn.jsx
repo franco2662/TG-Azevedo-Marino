@@ -55,7 +55,7 @@ const SignIn = () => {
   }
 
   async function setUserData(){
-    try{
+    try{      
       await makeSesion(user);
     }catch{
 

@@ -7,16 +7,16 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../AppContext";
 
 const Dashboard = () => {
-    const {usuarioConectado,
+    const {
         showSidebar,
-        baseURL,
-        ipConexion,
-        dateConexion} = useAppContext();
+        getSession} = useAppContext();
     const [feedMarginTop,setFeedMarginTop] = useState('5%');
     const [feedMarginLeft,setFeedMarginLeft] = useState('10%');
     const [feedMarginRight,setFeedMarginRight] = useState('5%');
-
-    useEffect(() => {    
+    useEffect(() => {
+        getSession();
+      }, []);
+    useEffect(() => {         
         if (showSidebar) {
             setFeedMarginLeft('15%');
         }
