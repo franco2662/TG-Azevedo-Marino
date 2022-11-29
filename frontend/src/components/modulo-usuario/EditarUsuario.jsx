@@ -42,8 +42,6 @@ const EditarUsuario = ({ onCloseModal,usuarioProp }) => {
   instance.defaults.baseURL = baseURL;
   const usuarioEdit = useRef(usuarioProp);
 
-
-  //const initialStatePersona = { nombre: usuarioProp.fk_persona.nombre, apellido: "", fechanac: "", docidentidad: "", sexo: "" };
   const [persona, setPersona] = useState(usuarioProp.fk_persona);
   const initialStateUsuario = { email: usuarioProp.email, clave: "",clave2:"", fechacreacion: "", fk_rol: usuarioProp.fk_rol, fk_persona: usuarioProp.fk_persona, fk_empresa:usuarioProp.fk_empresa };
   const [usuario, setUsuario] = useState(initialStateUsuario);
@@ -122,7 +120,6 @@ const EditarUsuario = ({ onCloseModal,usuarioProp }) => {
   }
   
   useEffect(() => {  
-      console.log(usuarioProp);
       getEmpresa().then(() => {
         getRol();
       });      

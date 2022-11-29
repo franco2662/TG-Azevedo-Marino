@@ -76,10 +76,7 @@ const ModuloUsuario = () =>{
     }
   }
 
-  useEffect(() => {
-    // if (!Number.isInteger(usuarioObjeto.current.Id) || usuarioObjeto.current.fk_rol.id > 2)
-    //   navigate("/")
-    let a  = usuarioObjeto.current;
+  useEffect(() => {   
     getUserList();
     setNumSelected(0);    
   }, []);
