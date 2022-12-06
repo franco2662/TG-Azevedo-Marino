@@ -6,6 +6,7 @@ import ModuloReportes from "./components/modulo-reportes/ModuloReportes";
 import SignIn from "./components/SignIn";
 import { AppContextProvider,useAppContext } from "./AppContext";
 import {BrowserRouter,Routes,Route}from 'react-router-dom'
+import ModuloArchivo from "./components/modulo-archivo/ModuloArchivo";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/" element = {<SignIn/>}/>
         <Route path="/dashboard" element={<Dashboard/>}>          
           <Route index path="/dashboard" element = {<ModuloReportes/>}/>           
-          <Route index path="/dashboard/usuarios" element = {<ModuloUsuario/>}/>     
+          <Route index path="/dashboard/usuarios" element = {<ModuloUsuario/>}/>
+          <Route index path="/dashboard/archivo" element = {<ModuloArchivo/>}/>     
         </Route>                
       </Routes>
     </BrowserRouter>

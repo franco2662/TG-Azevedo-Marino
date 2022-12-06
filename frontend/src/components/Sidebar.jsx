@@ -73,12 +73,14 @@ const Sidebar = () => {
         </>   
         :<></>}             
         <Divider/>
+        <Link to="/dashboard/archivo">
         <CustomListItemButton>
           <CustomListItemIcon>
             <LayersIcon />
           </CustomListItemIcon>
           <ListItemText primary="Archivo" />
         </CustomListItemButton>
+        </Link>
       </Box>
       </Drawer>
   )
