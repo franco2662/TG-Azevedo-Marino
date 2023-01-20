@@ -3,13 +3,12 @@ import axios from "axios";
 import { useAppContext } from "../../AppContext";
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Input, Typography } from "@mui/material";
 
 const ModuloArchivo = () =>{
   
   const {usuarioObjeto} = useAppContext();
   const navigate = useNavigate();
-  const uploadInputRef = useRef(null);
   const[selectedFile,setSelectedFile] =  useState(null);
 
   const onFileChange = (event) => {
@@ -28,7 +27,7 @@ const ModuloArchivo = () =>{
         }
 
         reader.readAsText(selectedFile);
-    console.log(reader.content); 
+    //console.log(reader); 
     // Create an object of formData
     const formData = new FormData();
     
@@ -44,24 +43,20 @@ const ModuloArchivo = () =>{
 
     return (
       
-        <div>
-        <h1>
-          GeeksforGeeks
-        </h1>
-            <h3>
-                File Upload using React!
-            </h3>
-            <div>
-                <input type="file" onChange={onFileChange} />
-                <button onClick={onFileUpload}>
-                    Upload!
-                </button>
-            </div>
+      <Container>
+        <Typography variant="h4" gutterBottom>
+          Carga de Archivo
+        </Typography>
+        <Container>
+          <Input type="file" onChange={onFileChange} />
+        </Container>
       {selectedFile != null ?
         
       
-        <div>
-          <h2>File Details:</h2>
+        <Container>
+          <Typography variant="h5" gutterBottom>
+          Detalles del Archivo:
+        </Typography>
           <p>File Name: {selectedFile.name}</p>
 
           <p>File Type: {selectedFile.type}</p>
@@ -71,17 +66,23 @@ const ModuloArchivo = () =>{
             {selectedFile.lastModifiedDate.toDateString()}
           </p>
 
-        </div>
+        </Container>
       
     : 
       
         <div>
           <br />
-          <h4>Choose before Pressing the Upload button</h4>
+            <Typography variant="subtitle1" gutterBottom>
+              Seleccione un archivo antes de presionar el boton de Subir
+            </Typography>
         </div>
       
       }
-    </div>
+      
+      <Button onClick={onFileUpload}>
+            SUBIR
+          </Button>
+    </Container>
       );
 }
 
