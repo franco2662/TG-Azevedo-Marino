@@ -1,0 +1,1459 @@
+HKEY_CLASSES_ROOT
+    EditFlags    REG_BINARY    00000000
+
+HKEY_CLASSES_ROOT\*
+    AlwaysShowExt    REG_SZ    
+    ConflictPrompt    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified;System.DateCreated
+    ContentViewModeForBrowse    REG_SZ    prop:~System.ItemNameDisplay;System.ItemTypeText;~System.LayoutPattern.PlaceHolder;~System.LayoutPattern.PlaceHolder;System.DateModified;System.Size
+    ContentViewModeForSearch    REG_SZ    prop:~System.ItemNameDisplay;~System.ItemFolderPathDisplay;~System.LayoutPattern.PlaceHolder;System.ItemTypeText;System.DateModified;System.Size
+    ContentViewModeLayoutPatternForBrowse    REG_SZ    delta
+    ContentViewModeLayoutPatternForSearch    REG_SZ    delta
+    ExtendedTileInfo    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified;System.OfflineAvailability
+    FullDetails    REG_SZ    prop:System.PropGroup.FileSystem;System.ItemNameDisplay;System.ItemTypeText;System.ItemFolderPathDisplay;System.Size;System.DateCreated;System.DateModified;System.FileAttributes;*System.StorageProviderState;*System.OfflineAvailability;*System.OfflineStatus;*System.SharedWith;*System.FileOwner;*System.ComputerName
+    InfoTip    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified
+    NoRecentDocs    REG_SZ    
+    NoStaticDefaultVerb    REG_SZ    
+    PreviewDetails    REG_SZ    prop:System.DateModified;System.Size;System.DateCreated;*System.StorageProviderState;*System.OfflineAvailability;*System.OfflineStatus;*System.SharedWith
+    PreviewTitle    REG_SZ    prop:System.ItemNameDisplay;System.ItemTypeText
+    QuickTip    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified
+    SetDefaultsFor    REG_SZ    prop:System.Author;System.Document.DateCreated
+    TileInfo    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified
+
+HKEY_CLASSES_ROOT\*\OpenWithList
+
+HKEY_CLASSES_ROOT\*\OpenWithList\Excel.exe
+
+HKEY_CLASSES_ROOT\*\OpenWithList\IExplore.exe
+
+HKEY_CLASSES_ROOT\*\OpenWithList\MSPaint.exe
+    (Default)    REG_SZ    
+
+HKEY_CLASSES_ROOT\*\OpenWithList\notepad.exe
+    (Default)    REG_SZ    
+
+HKEY_CLASSES_ROOT\*\OpenWithList\Winword.exe
+
+HKEY_CLASSES_ROOT\*\OpenWithList\WordPad.exe
+    (Default)    REG_SZ    
+
+HKEY_CLASSES_ROOT\*\shell
+
+HKEY_CLASSES_ROOT\*\shell\removeproperties
+    ProgrammaticAccessOnly    REG_SZ    Apartment
+
+HKEY_CLASSES_ROOT\*\shell\removeproperties\DropTarget
+    CLSID    REG_SZ    {09a28848-0e97-4cef-b950-cea037161155}
+
+HKEY_CLASSES_ROOT\*\shell\UpdateEncryptionSettingsWork
+    AppliesTo    REG_SZ    System.StorageProviderId:<>"network" AND System.StorageProviderProtectionMode:<>1 AND System.StorageProviderProtectionMode:<>2
+    AttributeMask    REG_DWORD    0x2000
+    AttributeValue    REG_DWORD    0x2000
+    ExtendedSubCommandsKey    REG_SZ    *\shell\UpdateEncryptionSettingsWork
+    ImpliedSelectionModel    REG_DWORD    0x0
+    MUIVerb    REG_SZ    @efscore.dll,-101
+    MultiSelectModel    REG_SZ    Player
+    Position    REG_SZ    Bottom
+
+HKEY_CLASSES_ROOT\*\shell\UpdateEncryptionSettingsWork\Shell
+
+HKEY_CLASSES_ROOT\*\shell\UpdateEncryptionSettingsWork\Shell\Decrypt
+    AttributeMask    REG_DWORD    0x2000
+    AttributeValue    REG_DWORD    0x2000
+    CommandStateHandler    REG_SZ    {5B6D1451-B1E1-4372-90F5-88E541B4DAB9}
+    Icon    REG_SZ    edputil.dll,-1002
+    MUIVerb    REG_SZ    @efscore.dll,-103
+    ShowAsDisabledIfHidden    REG_SZ    
+    UpdateType    REG_DWORD    0x0
+
+HKEY_CLASSES_ROOT\*\shell\UpdateEncryptionSettingsWork\Shell\Decrypt\command
+    DelegateExecute    REG_SZ    {5B6D1451-B1E1-4372-90F5-88E541B4DAB9}
+
+HKEY_CLASSES_ROOT\*\shellex
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\Adobe.Acrobat.ContextMenu
+    (Default)    REG_SZ    {D25B2CAB-8A9A-4517-A9B2-CB5F68A5A802}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\MEGA (Context menu)
+    (Default)    REG_SZ    {0229E5E7-09E9-45CF-9228-0228EC7D5F17}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\ModernSharing
+    (Default)    REG_SZ    {e2bf9676-5f8f-435c-97eb-11607a5bedf7}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\Open With
+    (Default)    REG_SZ    {09799AFB-AD67-11d1-ABCD-00C04FC30936}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\Open With EncryptionMenu
+    (Default)    REG_SZ    {A470F8CF-A1E8-4f65-8335-227475AA5C46}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\Sharing
+    (Default)    REG_SZ    {f81e9010-6ea4-11ce-a7ff-00aa003ca9f6}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\WinRAR
+    (Default)    REG_SZ    {B41DB860-64E4-11D2-9906-E49FADC173CA}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\WinRAR32
+    (Default)    REG_SZ    {B41DB860-8EE4-11D2-9906-E49FADC173CA}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\WorkFolders
+    (Default)    REG_SZ    {E61BF828-5E63-4287-BEF1-60B1A4FDE0E3}
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\{90AA3A4E-1CBA-4233-B8BB-535773D48449}
+    (Default)    REG_SZ    Taskband Pin
+
+HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\{a2a9545d-a0c2-42b4-9708-a0b2badd77c8}
+    (Default)    REG_SZ    Start Menu Pin
+
+HKEY_CLASSES_ROOT\*\shellex\PropertySheetHandlers
+
+HKEY_CLASSES_ROOT\*\shellex\PropertySheetHandlers\CryptoSignMenu
+    (Default)    REG_SZ    {7444C719-39BF-11D1-8CD9-00C04FC29D45}
+
+HKEY_CLASSES_ROOT\*\shellex\PropertySheetHandlers\FCI Properties
+    (Default)    REG_SZ    {748F920F-FB24-4D09-B360-BAF6F199AD6D}
+
+HKEY_CLASSES_ROOT\*\shellex\PropertySheetHandlers\{1f2e5c40-9550-11ce-99d2-00aa006e086c}
+
+HKEY_CLASSES_ROOT\*\shellex\PropertySheetHandlers\{3EA48300-8CF6-101B-84FB-666CCB9BCD32}
+    (Default)    REG_SZ    OLE DocFile Property Page
+
+HKEY_CLASSES_ROOT\*\shellex\PropertySheetHandlers\{883373C3-BF89-11D1-BE35-080036B11A03}
+    (Default)    REG_SZ    Summary Properties Page
+
+HKEY_CLASSES_ROOT\.001
+    (Default)    REG_SZ    WinRAR
+
+HKEY_CLASSES_ROOT\.386
+    (Default)    REG_SZ    vxdfile
+    PerceivedType    REG_SZ    system
+
+HKEY_CLASSES_ROOT\.386\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.3ds
+    (Default)    REG_SZ    Photoshop.3DSFileType.150
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.3fr
+    (Default)    REG_SZ    Photoshop.3FRFile.150
+    Content Type    REG_SZ    image/3FR
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.3fr\OpenWithProgids
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.3fr\ShellEx
+
+HKEY_CLASSES_ROOT\.3fr\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.3g2
+    (Default)    REG_SZ    VLC.3g2
+    Content Type    REG_SZ    video/3gpp2
+    PerceivedType    REG_SZ    video
+    VLC.backup    REG_SZ    WMP11.AssocFile.3G2
+
+HKEY_CLASSES_ROOT\.3g2\OpenWithProgids
+    AppX6eg8h5sxqq90pv53845wmnbewywdqq5h    REG_NONE    
+    AppXk0g4vb8gvt7b93tg50ybcy892pge6jmt    REG_NONE    
+    WMP11.AssocFile.3G2    REG_NONE    
+
+HKEY_CLASSES_ROOT\.3g2\ShellEx
+
+HKEY_CLASSES_ROOT\.3g2\ShellEx\{BB2E617C-0920-11D1-9A0B-00C04FC2D6C1}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.3g2\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.3ga
+    (Default)    REG_SZ    VLC.3ga
+
+HKEY_CLASSES_ROOT\.3gp
+    (Default)    REG_SZ    BSPlayerFile.3GP
+    BSPbk    REG_SZ    VLC.3gp
+    Content Type    REG_SZ    video/3gpp
+    PerceivedType    REG_SZ    video
+    VLC.backup    REG_SZ    BSPlayerFile.3GP
+
+HKEY_CLASSES_ROOT\.3gp\OpenWithProgids
+    AppX6eg8h5sxqq90pv53845wmnbewywdqq5h    REG_NONE    
+    AppXk0g4vb8gvt7b93tg50ybcy892pge6jmt    REG_NONE    
+    BSPlayerFile.3GP    REG_SZ    
+    WMP11.AssocFile.3GP    REG_NONE    
+
+HKEY_CLASSES_ROOT\.3gp\ShellEx
+
+HKEY_CLASSES_ROOT\.3gp\ShellEx\{BB2E617C-0920-11D1-9A0B-00C04FC2D6C1}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.3gp\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.3gp2
+    (Default)    REG_SZ    VLC.3gp2
+    Content Type    REG_SZ    video/3gpp2
+    PerceivedType    REG_SZ    video
+    VLC.backup    REG_SZ    WMP11.AssocFile.3G2
+
+HKEY_CLASSES_ROOT\.3gp2\OpenWithProgids
+    AppX6eg8h5sxqq90pv53845wmnbewywdqq5h    REG_NONE    
+    AppXk0g4vb8gvt7b93tg50ybcy892pge6jmt    REG_NONE    
+    WMP11.AssocFile.3G2    REG_NONE    
+
+HKEY_CLASSES_ROOT\.3gp2\ShellEx
+
+HKEY_CLASSES_ROOT\.3gp2\ShellEx\{BB2E617C-0920-11D1-9A0B-00C04FC2D6C1}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.3gp2\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.3gpp
+    (Default)    REG_SZ    VLC.3gpp
+    Content Type    REG_SZ    video/3gpp
+    PerceivedType    REG_SZ    video
+    VLC.backup    REG_SZ    WMP11.AssocFile.3GP
+
+HKEY_CLASSES_ROOT\.3gpp\OpenWithProgids
+    AppX6eg8h5sxqq90pv53845wmnbewywdqq5h    REG_NONE    
+    AppXk0g4vb8gvt7b93tg50ybcy892pge6jmt    REG_NONE    
+    WMP11.AssocFile.3GP    REG_NONE    
+
+HKEY_CLASSES_ROOT\.3gpp\ShellEx
+
+HKEY_CLASSES_ROOT\.3gpp\ShellEx\{BB2E617C-0920-11D1-9A0B-00C04FC2D6C1}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.3gpp\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.3mf
+
+HKEY_CLASSES_ROOT\.3mf\OpenWithProgids
+    AppXmgw6pxxs62rbgfp9petmdyb4fx7rnd4k    REG_NONE    
+    AppXcdh38jxzbcberv50vxg2tg4k84kfnewn    REG_NONE    
+
+HKEY_CLASSES_ROOT\.3mf\shellex
+
+HKEY_CLASSES_ROOT\.3mf\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}
+    (Default)    REG_SZ    {E64164EB-1AE0-4C50-BAEF-A413C2B3A4BC}
+
+HKEY_CLASSES_ROOT\.3mf\shellex\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {E64164EB-1AE0-4C50-BAEF-A413C2B3A4BC}
+
+HKEY_CLASSES_ROOT\.669
+    (Default)    REG_SZ    VLC.669
+
+HKEY_CLASSES_ROOT\.7z
+    (Default)    REG_SZ    WinRAR
+
+HKEY_CLASSES_ROOT\.8ba
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8bc
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8be
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8bf
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8bi
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8bp
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8bs
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8bx
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8by
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.8li
+    (Default)    REG_SZ    Photoshop.PlugIn
+
+HKEY_CLASSES_ROOT\.a
+
+HKEY_CLASSES_ROOT\.a\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.a52
+    (Default)    REG_SZ    VLC.a52
+
+HKEY_CLASSES_ROOT\.aa
+    (Default)    REG_SZ    iTunes.aa
+    Content Type    REG_SZ    audio/audible
+    PerceivedType    REG_SZ    audio
+
+HKEY_CLASSES_ROOT\.aa\OpenWithProgids
+    iTunes.aa    REG_BINARY    
+
+HKEY_CLASSES_ROOT\.aac
+    (Default)    REG_SZ    VLC.aac
+    Content Type    REG_SZ    audio/vnd.dlna.adts
+    PerceivedType    REG_SZ    audio
+    VLC.backup    REG_SZ    WMP11.AssocFile.ADTS
+
+HKEY_CLASSES_ROOT\.aac\OpenWithProgids
+    AppXqj98qxeaynz6dv4459ayz6bnqxbyaqcs    REG_NONE    
+    WMP11.AssocFile.ADTS    REG_NONE    
+
+HKEY_CLASSES_ROOT\.aax
+    (Default)    REG_SZ    iTunes.aax
+    Content Type    REG_SZ    audio/vnd.audible.aax
+    PerceivedType    REG_SZ    audio
+
+HKEY_CLASSES_ROOT\.aax\OpenWithProgids
+    iTunes.aax    REG_BINARY    
+
+HKEY_CLASSES_ROOT\.abr
+    (Default)    REG_SZ    Photoshop.BrushesFile
+
+HKEY_CLASSES_ROOT\.ac3
+    (Default)    REG_SZ    VLC.ac3
+    Content Type    REG_SZ    audio/vnd.dolby.dd-raw
+    PerceivedType    REG_SZ    audio
+
+HKEY_CLASSES_ROOT\.ac3\OpenWithProgids
+    AppXqj98qxeaynz6dv4459ayz6bnqxbyaqcs    REG_NONE    
+
+HKEY_CLASSES_ROOT\.acb
+    (Default)    REG_SZ    Photoshop.ColorBooks
+
+HKEY_CLASSES_ROOT\.accdb
+
+HKEY_CLASSES_ROOT\.accdt
+
+HKEY_CLASSES_ROOT\.accdt\ShellEx
+
+HKEY_CLASSES_ROOT\.accdt\ShellEx\PropertyHandler
+    (Default)    REG_SZ    {E3956DCF-D1C7-4375-AAAA-22FF8191C479}
+
+HKEY_CLASSES_ROOT\.accdt\ShellEx\{BB2E617C-0920-11d1-9A0B-00C04FC2D6C1}
+    (Default)    REG_SZ    {C41662BB-1FA0-4CE0-8DC5-9B7F8279FF97}
+
+HKEY_CLASSES_ROOT\.accountpicture-ms
+    (Default)    REG_SZ    accountpicturefile
+    Content Type    REG_SZ    application/windows-accountpicture
+
+HKEY_CLASSES_ROOT\.acf
+    (Default)    REG_SZ    Photoshop.CustomFilterKernel
+
+HKEY_CLASSES_ROOT\.acl
+    (Default)    REG_SZ    ACLFile
+
+HKEY_CLASSES_ROOT\.aco
+    (Default)    REG_SZ    Photoshop.SwatchesFile
+
+HKEY_CLASSES_ROOT\.acrobatsecuritysettings
+    (Default)    REG_SZ    AcroExch.acrobatsecuritysettings
+    Content Type    REG_SZ    application/vnd.adobe.acrobat-security-settings
+
+HKEY_CLASSES_ROOT\.acrobatsecuritysettings\OpenWithList
+
+HKEY_CLASSES_ROOT\.acrobatsecuritysettings\OpenWithList\Acrobat.exe
+    (Default)    REG_SZ    
+
+HKEY_CLASSES_ROOT\.acrobatsecuritysettings\OpenWithList\AcroRd32.exe
+    (Default)    REG_SZ    
+
+HKEY_CLASSES_ROOT\.acrobatsecuritysettings\OpenWithProgids
+    (Default)    REG_SZ    
+    AcroExch.acrobatsecuritysettings    REG_NONE    
+
+HKEY_CLASSES_ROOT\.act
+    (Default)    REG_SZ    Photoshop.ColorTableFile
+
+HKEY_CLASSES_ROOT\.acv
+    (Default)    REG_SZ    Photoshop.CurvesFile
+
+HKEY_CLASSES_ROOT\.ado
+    (Default)    REG_SZ    Photoshop.DuotoneSettingsFile
+
+HKEY_CLASSES_ROOT\.adt
+    (Default)    REG_SZ    VLC.adt
+    Content Type    REG_SZ    audio/vnd.dlna.adts
+    PerceivedType    REG_SZ    audio
+    VLC.backup    REG_SZ    WMP11.AssocFile.ADTS
+
+HKEY_CLASSES_ROOT\.adt\OpenWithProgids
+    AppXqj98qxeaynz6dv4459ayz6bnqxbyaqcs    REG_NONE    
+    WMP11.AssocFile.ADTS    REG_NONE    
+
+HKEY_CLASSES_ROOT\.adts
+    (Default)    REG_SZ    VLC.adts
+    Content Type    REG_SZ    audio/vnd.dlna.adts
+    PerceivedType    REG_SZ    audio
+    VLC.backup    REG_SZ    WMP11.AssocFile.ADTS
+
+HKEY_CLASSES_ROOT\.adts\OpenWithProgids
+    AppXqj98qxeaynz6dv4459ayz6bnqxbyaqcs    REG_NONE    
+    WMP11.AssocFile.ADTS    REG_NONE    
+
+HKEY_CLASSES_ROOT\.aex
+    (Default)    REG_SZ    Adobe.PremierePro.Effect.14
+
+HKEY_CLASSES_ROOT\.ahs
+    (Default)    REG_SZ    Photoshop.HalftoneScreens
+
+HKEY_CLASSES_ROOT\.ahu
+    (Default)    REG_SZ    Photoshop.HueSatFile
+
+HKEY_CLASSES_ROOT\.ai
+    Content Type    REG_SZ    application/postscript
+
+HKEY_CLASSES_ROOT\.aif
+    (Default)    REG_SZ    iTunes.aif
+    Content Type    REG_SZ    audio/aiff
+    PerceivedType    REG_SZ    audio
+    VLC.backup    REG_SZ    WMP11.AssocFile.AIFF
+
+HKEY_CLASSES_ROOT\.aif\OpenWithProgids
+    iTunes.aif    REG_BINARY    
+    WMP11.AssocFile.AIFF    REG_NONE    
+
+HKEY_CLASSES_ROOT\.aif\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.aifc
+    (Default)    REG_SZ    iTunes.aifc
+    Content Type    REG_SZ    audio/aiff
+    PerceivedType    REG_SZ    audio
+    VLC.backup    REG_SZ    WMP11.AssocFile.AIFF
+
+HKEY_CLASSES_ROOT\.aifc\OpenWithProgids
+    iTunes.aifc    REG_BINARY    
+    WMP11.AssocFile.AIFF    REG_NONE    
+
+HKEY_CLASSES_ROOT\.aifc\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.aiff
+    (Default)    REG_SZ    iTunes.aiff
+    Content Type    REG_SZ    audio/aiff
+    PerceivedType    REG_SZ    audio
+    VLC.backup    REG_SZ    WMP11.AssocFile.AIFF
+
+HKEY_CLASSES_ROOT\.aiff\OpenWithProgids
+    iTunes.aiff    REG_BINARY    
+    WMP11.AssocFile.AIFF    REG_NONE    
+
+HKEY_CLASSES_ROOT\.aiff\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.all
+
+HKEY_CLASSES_ROOT\.all\OpenWithProgids
+    AppX6efkedsh4s4yrd49cf5nmjaza776n10d    REG_NONE    
+
+HKEY_CLASSES_ROOT\.alv
+    (Default)    REG_SZ    Photoshop.LevelsFile
+
+HKEY_CLASSES_ROOT\.amp
+    (Default)    REG_SZ    Photoshop.ArbitraryMapFile
+
+HKEY_CLASSES_ROOT\.amr
+    (Default)    REG_SZ    VLC.amr
+
+HKEY_CLASSES_ROOT\.amr\OpenWithProgids
+    AppXqj98qxeaynz6dv4459ayz6bnqxbyaqcs    REG_NONE    
+
+HKEY_CLASSES_ROOT\.ams
+    (Default)    REG_SZ    Photoshop.MonitorSetupFile
+
+HKEY_CLASSES_ROOT\.amv
+    (Default)    REG_SZ    VLC.amv
+
+HKEY_CLASSES_ROOT\.androidproj
+    Content Type    REG_SZ    Application/xml
+
+HKEY_CLASSES_ROOT\.androidproj\OpenWithProgids
+    VisualStudio.Launcher.androidproj.1877b33c    REG_SZ    
+    VisualStudio.androidproj.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.ani
+    (Default)    REG_SZ    anifile
+
+HKEY_CLASSES_ROOT\.ans
+
+HKEY_CLASSES_ROOT\.ans\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.anydesk
+
+HKEY_CLASSES_ROOT\.anydesk\DefaultIcon
+    (Default)    REG_SZ    "C:\Program Files (x86)\AnyDesk\AnyDesk.exe",0
+
+HKEY_CLASSES_ROOT\.anydesk\shell
+
+HKEY_CLASSES_ROOT\.anydesk\shell\open
+
+HKEY_CLASSES_ROOT\.anydesk\shell\open\command
+    (Default)    REG_SZ    "C:\Program Files (x86)\AnyDesk\AnyDesk.exe" --play "%1"
+
+HKEY_CLASSES_ROOT\.aob
+    (Default)    REG_SZ    VLC.aob
+
+HKEY_CLASSES_ROOT\.ape
+    (Default)    REG_SZ    VLC.ape
+
+HKEY_CLASSES_ROOT\.api
+    (Default)    REG_SZ    AcroExch.Plugin
+
+HKEY_CLASSES_ROOT\.api\AcroExch.Plugin
+
+HKEY_CLASSES_ROOT\.api\AcroExch.Plugin\ShellNew
+
+HKEY_CLASSES_ROOT\.api\OpenWithProgids
+    (Default)    REG_SZ    
+    AcroExch.Plugin    REG_NONE    
+
+HKEY_CLASSES_ROOT\.apk
+    (Default)    REG_SZ    Nox.apk
+
+HKEY_CLASSES_ROOT\.apl
+    (Default)    REG_SZ    Photoshop.AdobePlugIn
+
+HKEY_CLASSES_ROOT\.appcontent-ms
+    (Default)    REG_SZ    ApplicationContent
+    Content Type    REG_SZ    application/windows-appcontent+xml
+
+HKEY_CLASSES_ROOT\.appcontent-ms\PersistentHandler
+    (Default)    REG_SZ    {d044309b-5da6-4633-b085-4ed02522e5a5}
+
+HKEY_CLASSES_ROOT\.appcontent-ms\shellex
+
+HKEY_CLASSES_ROOT\.appcontent-ms\shellex\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {7c67eb93-8eff-4e48-889f-45ba299bc46f}
+
+HKEY_CLASSES_ROOT\.appinstaller
+
+HKEY_CLASSES_ROOT\.appinstaller\OpenWithProgids
+    AppXa4x21t18evxksm0kbe6znaz8jjrjvs9e    REG_NONE    
+
+HKEY_CLASSES_ROOT\.application
+    (Default)    REG_SZ    Application.Manifest
+    Content Type    REG_SZ    application/x-ms-application
+
+HKEY_CLASSES_ROOT\.appref-ms
+    (Default)    REG_SZ    Application.Reference
+
+HKEY_CLASSES_ROOT\.appx
+
+HKEY_CLASSES_ROOT\.appx\OpenWithProgids
+    AppXa4x21t18evxksm0kbe6znaz8jjrjvs9e    REG_NONE    
+
+HKEY_CLASSES_ROOT\.appxbundle
+
+HKEY_CLASSES_ROOT\.appxbundle\OpenWithProgids
+    AppXa4x21t18evxksm0kbe6znaz8jjrjvs9e    REG_NONE    
+
+HKEY_CLASSES_ROOT\.aps
+
+HKEY_CLASSES_ROOT\.aps\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.arc
+    DontCompressInPackage    REG_SZ    
+
+HKEY_CLASSES_ROOT\.ari
+    Content Type    REG_SZ    image/ARI
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.ari\OpenWithProgids
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.ari\ShellEx
+
+HKEY_CLASSES_ROOT\.ari\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.arj
+    DontCompressInPackage    REG_SZ    
+    (Default)    REG_SZ    WinRAR
+
+HKEY_CLASSES_ROOT\.art
+
+HKEY_CLASSES_ROOT\.art\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.arw
+    Content Type    REG_SZ    image/ARW
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.arw\OpenWithProgids
+    AppX2jm25qtmp2qxstv333wv5mne3k5bf4bm    REG_NONE    
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.arw\ShellEx
+
+HKEY_CLASSES_ROOT\.arw\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.asa
+    (Default)    REG_SZ    aspfile
+
+HKEY_CLASSES_ROOT\.asc
+
+HKEY_CLASSES_ROOT\.asc\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.ascx
+
+HKEY_CLASSES_ROOT\.ascx\OpenWithProgids
+    VSCode.ascx    REG_SZ    
+
+HKEY_CLASSES_ROOT\.ascx\PersistentHandler
+    (Default)    REG_SZ    {eec97550-47a9-11cf-b952-00aa0051fe20}
+
+HKEY_CLASSES_ROOT\.asd
+    (Default)    REG_SZ    Word.AutoRecovery.8
+    Content Type    REG_SZ    application/msword
+
+HKEY_CLASSES_ROOT\.ase
+    (Default)    REG_SZ    Photoshop.ExchangeableSwatchFile.150
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.asf
+    (Default)    REG_SZ    VLC.asf
+    Content Type    REG_SZ    video/x-ms-asf
+    PerceivedType    REG_SZ    video
+    VLC.backup    REG_SZ    WMP11.AssocFile.ASF
+
+HKEY_CLASSES_ROOT\.asf\OpenWithProgids
+    AppX6eg8h5sxqq90pv53845wmnbewywdqq5h    REG_NONE    
+    AppXk0g4vb8gvt7b93tg50ybcy892pge6jmt    REG_NONE    
+    WMP11.AssocFile.ASF    REG_NONE    
+
+HKEY_CLASSES_ROOT\.asf\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.asf\ShellEx
+
+HKEY_CLASSES_ROOT\.asf\ShellEx\{BB2E617C-0920-11D1-9A0B-00C04FC2D6C1}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.asf\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.asl
+    (Default)    REG_SZ    Photoshop.Styles
+
+HKEY_CLASSES_ROOT\.asm
+    PerceivedType    REG_SZ    text
+    Content Type    REG_SZ    text/plain
+
+HKEY_CLASSES_ROOT\.asm\OpenWithProgids
+    VisualStudio.asm.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.asm\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.asmx
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.asp
+    (Default)    REG_SZ    aspfile
+
+HKEY_CLASSES_ROOT\.asp\DefaultIcon
+    (Default)    REG_SZ    C:\Program Files\Adobe\Adobe Photoshop 2021\Photoshop.exe,15
+
+HKEY_CLASSES_ROOT\.asp\OpenWithProgids
+    VSCode.asp    REG_SZ    
+
+HKEY_CLASSES_ROOT\.asp\PersistentHandler
+    (Default)    REG_SZ    {eec97550-47a9-11cf-b952-00aa0051fe20}
+
+HKEY_CLASSES_ROOT\.aspx
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.aspx\OpenWithProgids
+    VSCode.aspx    REG_SZ    
+
+HKEY_CLASSES_ROOT\.aspx\PersistentHandler
+    (Default)    REG_SZ    {eec97550-47a9-11cf-b952-00aa0051fe20}
+
+HKEY_CLASSES_ROOT\.asr
+
+HKEY_CLASSES_ROOT\.asr\DefaultIcon
+    (Default)    REG_SZ    C:\Program Files\Adobe\Adobe Photoshop 2021\Photoshop.exe,41
+
+HKEY_CLASSES_ROOT\.ast
+    (Default)    REG_SZ    Photoshop.SepTablesFile
+
+HKEY_CLASSES_ROOT\.asv
+    (Default)    REG_SZ    Photoshop.ASVColAdjFile
+
+HKEY_CLASSES_ROOT\.asx
+    PerceivedType    REG_SZ    video
+    (Default)    REG_SZ    VLC.asx
+    Content Type    REG_SZ    video/x-ms-asf
+    VLC.backup    REG_SZ    WMP11.AssocFile.ASX
+
+HKEY_CLASSES_ROOT\.asx\OpenWithProgIds
+    WMP11.AssocFile.ASX    REG_NONE    
+
+HKEY_CLASSES_ROOT\.asx\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.atf
+    (Default)    REG_SZ    Photoshop.TransferFunctionsFile
+
+HKEY_CLASSES_ROOT\.atn
+    (Default)    REG_SZ    Photoshop.ActionsFile
+
+HKEY_CLASSES_ROOT\.au
+    PerceivedType    REG_SZ    audio
+    (Default)    REG_SZ    VLC.au
+    Content Type    REG_SZ    audio/basic
+    VLC.backup    REG_SZ    WMP11.AssocFile.AU
+
+HKEY_CLASSES_ROOT\.au\OpenWithProgIds
+    WMP11.AssocFile.AU    REG_NONE    
+
+HKEY_CLASSES_ROOT\.au\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.ava
+    (Default)    REG_SZ    Photoshop.VariationsFile
+
+HKEY_CLASSES_ROOT\.avci
+    ContentType    REG_SZ    image/avci
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.avcs
+    ContentType    REG_SZ    image/avcs
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.avi
+    (Default)    REG_SZ    BSPlayerFile.AVI
+    BSPbk    REG_SZ    VLC.avi
+    Content Type    REG_SZ    video/avi
+    PerceivedType    REG_SZ    video
+    VLC.backup    REG_SZ    BSPlayerFile.AVI
+
+HKEY_CLASSES_ROOT\.avi\OpenWithProgids
+    AppX6eg8h5sxqq90pv53845wmnbewywdqq5h    REG_NONE    
+    AppXk0g4vb8gvt7b93tg50ybcy892pge6jmt    REG_NONE    
+    BSPlayerFile.AVI    REG_SZ    
+    WMP11.AssocFile.AVI    REG_NONE    
+
+HKEY_CLASSES_ROOT\.avi\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.avi\ShellEx
+
+HKEY_CLASSES_ROOT\.avi\ShellEx\{BB2E617C-0920-11D1-9A0B-00C04FC2D6C1}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.avi\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {9DBD2C50-62AD-11D0-B806-00C04FD706EC}
+
+HKEY_CLASSES_ROOT\.avif
+    ContentType    REG_SZ    image/avif
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.avif\OpenWithProgids
+    AppX43hnxtbyyps62jhe9sqpdzxn1790zetc    REG_NONE    
+
+HKEY_CLASSES_ROOT\.avifs
+    ContentType    REG_SZ    image/avif-sequence
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.aw
+    (Default)    REG_SZ    AWFile
+
+HKEY_CLASSES_ROOT\.axt
+    (Default)    REG_SZ    Photoshop.AXTAdjColFile
+
+HKEY_CLASSES_ROOT\.b4s
+    (Default)    REG_SZ    VLC.b4s
+
+HKEY_CLASSES_ROOT\.bas
+
+HKEY_CLASSES_ROOT\.bas\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.bash
+
+HKEY_CLASSES_ROOT\.bash\OpenWithProgids
+    VSCode.bash    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bashrc
+
+HKEY_CLASSES_ROOT\.bashrc\OpenWithProgids
+    VSCode.bashrc    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bash_login
+
+HKEY_CLASSES_ROOT\.bash_login\OpenWithProgids
+    VSCode.bash_login    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bash_logout
+
+HKEY_CLASSES_ROOT\.bash_logout\OpenWithProgids
+    VSCode.bash_logout    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bash_profile
+
+HKEY_CLASSES_ROOT\.bash_profile\OpenWithProgids
+    VSCode.bash_profile    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bat
+    (Default)    REG_SZ    batfile
+
+HKEY_CLASSES_ROOT\.bat\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.bay
+    Content Type    REG_SZ    image/BAY
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.bay\OpenWithProgids
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.bay\ShellEx
+
+HKEY_CLASSES_ROOT\.bay\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.bcp
+
+HKEY_CLASSES_ROOT\.bcp\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.bib
+
+HKEY_CLASSES_ROOT\.bib\OpenWithProgids
+    VSCode.bib    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bik
+    (Default)    REG_SZ    VLC.bik
+
+HKEY_CLASSES_ROOT\.bin
+    NoOpen    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bin\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.bkf
+
+HKEY_CLASSES_ROOT\.bkf\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.blend
+    (Default)    REG_SZ    blendfile
+
+HKEY_CLASSES_ROOT\.blg
+    (Default)    REG_SZ    Diagnostic.Perfmon.Document
+
+HKEY_CLASSES_ROOT\.blw
+    (Default)    REG_SZ    Photoshop.BWPresets
+
+HKEY_CLASSES_ROOT\.bmd
+    (Default)    REG_SZ    bmd_auto_file
+
+HKEY_CLASSES_ROOT\.bmp
+    (Default)    REG_SZ    Photoshop.BMPFile.150
+    Content Type    REG_SZ    image/bmp
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.bmp\OpenWithList
+
+HKEY_CLASSES_ROOT\.bmp\OpenWithList\MSPaint.exe
+    (Default)    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bmp\OpenWithProgids
+    AppX2jm25qtmp2qxstv333wv5mne3k5bf4bm    REG_NONE    
+    AppX43hnxtbyyps62jhe9sqpdzxn1790zetc    REG_NONE    
+    AppXcdh38jxzbcberv50vxg2tg4k84kfnewn    REG_NONE    
+    Paint.Picture    REG_SZ    
+    VisualStudio.bmp.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bmp\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.bmp\ShellNew
+    ItemName    REG_EXPAND_SZ    @%systemroot%\system32\mspaint.exe,-59414
+    NullFile    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bowerrc
+
+HKEY_CLASSES_ROOT\.bowerrc\OpenWithProgids
+    VSCode.bowerrc    REG_SZ    
+
+HKEY_CLASSES_ROOT\.bpdx
+    (Default)    REG_SZ    BPDXFileType
+
+HKEY_CLASSES_ROOT\.bpdx\BPDXFileType
+
+HKEY_CLASSES_ROOT\.bpdx\BPDXFileType\ShellNew
+
+HKEY_CLASSES_ROOT\.bsc
+    (Default)    REG_SZ    VisualStudio.bsc.1877b33c
+
+HKEY_CLASSES_ROOT\.bsc\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.bsi
+    (Default)    REG_SZ    BSP.inif
+
+HKEY_CLASSES_ROOT\.bsl
+    (Default)    REG_SZ    BSP.plist
+
+HKEY_CLASSES_ROOT\.bsz
+    (Default)    REG_SZ    BSP.SkinZip
+
+HKEY_CLASSES_ROOT\.btwkey
+    (Default)    REG_SZ    BTWKey File
+
+HKEY_CLASSES_ROOT\.btwkey\OpenWithProgids
+    BTWKey File    REG_NONE    
+
+HKEY_CLASSES_ROOT\.bz
+    (Default)    REG_SZ    WinRAR
+
+HKEY_CLASSES_ROOT\.bz2
+    (Default)    REG_SZ    WinRAR
+
+HKEY_CLASSES_ROOT\.c
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.c\OpenWithProgids
+    VSCode.c    REG_SZ    
+    VisualStudio.c.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.c\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.c++
+
+HKEY_CLASSES_ROOT\.c++\OpenWithProgids
+    VSCode.c++    REG_SZ    
+
+HKEY_CLASSES_ROOT\.c5e2524a-ea46-4f67-841f-6a9465d9d515
+
+HKEY_CLASSES_ROOT\.c5e2524a-ea46-4f67-841f-6a9465d9d515\OpenWithProgids
+    AppX8mn6f6acw2d3hves535dpq0zqnxqkec7    REG_NONE    
+
+HKEY_CLASSES_ROOT\.cab
+    (Default)    REG_SZ    WinRAR
+    PerceivedType    REG_SZ    compressed
+
+HKEY_CLASSES_ROOT\.cab\OpenWithProgids
+    CABFolder    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cab\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.caf
+    (Default)    REG_SZ    VLC.caf
+
+HKEY_CLASSES_ROOT\.camp
+    (Default)    REG_SZ    campfile
+
+HKEY_CLASSES_ROOT\.cap
+    Content Type    REG_SZ    image/CAP
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.cap\OpenWithProgids
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.cap\ShellEx
+
+HKEY_CLASSES_ROOT\.cap\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.cat
+    (Default)    REG_SZ    CATFile
+    Content Type    REG_SZ    application/vnd.ms-pki.seccat
+
+HKEY_CLASSES_ROOT\.cc
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.cc\OpenWithProgids
+    VSCode.cc    REG_SZ    
+    VisualStudio.cc.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cc\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.cda
+    (Default)    REG_SZ    iTunes.cda
+    Content Type    REG_SZ    application/x-cdf
+    VLC.backup    REG_SZ    WMP11.AssocFile.CDA
+
+HKEY_CLASSES_ROOT\.cda\OpenWithProgids
+    iTunes.cda    REG_BINARY    
+    WMP11.AssocFile.CDA    REG_NONE    
+
+HKEY_CLASSES_ROOT\.cda\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.cdda
+    (Default)    REG_SZ    iTunes.cdda
+
+HKEY_CLASSES_ROOT\.cdda\OpenWithProgids
+    iTunes.cdda    REG_BINARY    
+
+HKEY_CLASSES_ROOT\.cdmp
+    (Default)    REG_SZ    cdmpfile
+
+HKEY_CLASSES_ROOT\.cdx
+    (Default)    REG_SZ    aspfile
+
+HKEY_CLASSES_ROOT\.cdxml
+    (Default)    REG_SZ    Microsoft.PowerShellCmdletDefinitionXML.1
+    PerceivedType    REG_SZ    Text
+
+HKEY_CLASSES_ROOT\.cer
+    (Default)    REG_SZ    CERFile
+    Content Type    REG_SZ    application/x-x509-ca-cert
+
+HKEY_CLASSES_ROOT\.cfa
+    (Default)    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cfa\DefaultIcon
+    (Default)    REG_SZ    "C:\Program Files\Adobe\Adobe Premiere Pro 2020\Adobe Premiere Pro.exe",11
+
+HKEY_CLASSES_ROOT\.cfg
+
+HKEY_CLASSES_ROOT\.cfg\OpenWithProgids
+    VSCode.cfg    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cgm
+
+HKEY_CLASSES_ROOT\.cgm\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.cha
+    (Default)    REG_SZ    Photoshop.CHAFile
+
+HKEY_CLASSES_ROOT\.chk
+    (Default)    REG_SZ    chkfile
+    PerceivedType    REG_SZ    system
+
+HKEY_CLASSES_ROOT\.chm
+    (Default)    REG_SZ    chm.file
+
+HKEY_CLASSES_ROOT\.cin
+    (Default)    REG_SZ    Photoshop.CINFile.150
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.cjs
+
+HKEY_CLASSES_ROOT\.cjs\OpenWithProgids
+    VSCode.cjs    REG_SZ    
+
+HKEY_CLASSES_ROOT\.clj
+
+HKEY_CLASSES_ROOT\.clj\OpenWithProgids
+    VSCode.clj    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cljs
+
+HKEY_CLASSES_ROOT\.cljs\OpenWithProgids
+    VSCode.cljs    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cljx
+
+HKEY_CLASSES_ROOT\.cljx\OpenWithProgids
+    VSCode.cljx    REG_SZ    
+
+HKEY_CLASSES_ROOT\.clojure
+
+HKEY_CLASSES_ROOT\.clojure\OpenWithProgids
+    VSCode.clojure    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cls
+
+HKEY_CLASSES_ROOT\.cls\OpenWithProgids
+    VSCode.cls    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cls\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.cmake
+
+HKEY_CLASSES_ROOT\.cmake\OpenWithProgids
+    VSCode.cmake    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cmd
+    (Default)    REG_SZ    cmdfile
+
+HKEY_CLASSES_ROOT\.cmd\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.cod
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.cod\OpenWithProgids
+    VisualStudio.cod.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cod\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.code-workspace
+
+HKEY_CLASSES_ROOT\.code-workspace\OpenWithProgids
+    VSCode.code-workspace    REG_SZ    
+
+HKEY_CLASSES_ROOT\.coffee
+
+HKEY_CLASSES_ROOT\.coffee\OpenWithProgids
+    VSCode.coffee    REG_SZ    
+
+HKEY_CLASSES_ROOT\.com
+    (Default)    REG_SZ    comfile
+
+HKEY_CLASSES_ROOT\.com\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.compositefont
+    (Default)    REG_SZ    Windows.CompositeFont
+
+HKEY_CLASSES_ROOT\.config
+    Content Type    REG_SZ    application/xml
+
+HKEY_CLASSES_ROOT\.config\OpenWithProgids
+    VSCode.config    REG_SZ    
+    VisualStudio.config.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.contact
+    Content Type    REG_SZ    text/x-ms-contact
+
+HKEY_CLASSES_ROOT\.contact\shellex
+
+HKEY_CLASSES_ROOT\.contact\shellex\{8895b1c6-b41f-4c1c-a562-0d564250836f}
+    (Default)    REG_SZ    {13D3C4B8-B179-4ebb-BF62-F704173E7448}
+
+HKEY_CLASSES_ROOT\.contact\ShellNew
+    command    REG_EXPAND_SZ    "%programFiles%\Windows Mail\Wab.exe" /CreateContact "%1"
+    iconpath    REG_EXPAND_SZ    %ProgramFiles%\Windows Mail\wab.exe,1
+    MenuText    REG_EXPAND_SZ    @%CommonProgramFiles%\system\wab32res.dll,-10203
+
+HKEY_CLASSES_ROOT\.containerfile
+
+HKEY_CLASSES_ROOT\.containerfile\OpenWithProgids
+    VSCode.containerfile    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cpl
+    (Default)    REG_SZ    cplfile
+    Generic    REG_SZ    system
+
+HKEY_CLASSES_ROOT\.cpl\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.cpp
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.cpp\OpenWithProgids
+    VSCode.cpp    REG_SZ    
+    VisualStudio.cpp.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cpp\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.cppm
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.cppm\OpenWithProgids
+    VisualStudio.cppm.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cr2
+    (Default)    REG_SZ    Photoshop.CameraRawFileCanon2.150
+    Content Type    REG_SZ    image/CR2
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.cr2\OpenWithProgids
+    AppX2jm25qtmp2qxstv333wv5mne3k5bf4bm    REG_NONE    
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.cr2\ShellEx
+
+HKEY_CLASSES_ROOT\.cr2\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.cr3
+    Content Type    REG_SZ    image/CR3
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.cr3\OpenWithProgids
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.cr3\ShellEx
+
+HKEY_CLASSES_ROOT\.cr3\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.crl
+    (Default)    REG_SZ    CRLFile
+    Content Type    REG_SZ    application/pkix-crl
+
+HKEY_CLASSES_ROOT\.crt
+    (Default)    REG_SZ    CERFile
+    Content Type    REG_SZ    application/x-x509-ca-cert
+
+HKEY_CLASSES_ROOT\.crtx
+    (Default)    REG_SZ    CRTXFile
+
+HKEY_CLASSES_ROOT\.crw
+    (Default)    REG_SZ    Photoshop.CameraRawFileCanon.150
+    Content Type    REG_SZ    image/CRW
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.crw\OpenWithProgids
+    AppX2jm25qtmp2qxstv333wv5mne3k5bf4bm    REG_NONE    
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.crw\ShellEx
+
+HKEY_CLASSES_ROOT\.crw\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.cs
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.cs\OpenWithProgids
+    VSCode.cs    REG_SZ    
+    VisualStudio.cs.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cs\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.csa
+
+HKEY_CLASSES_ROOT\.csa\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.csh
+    (Default)    REG_SZ    Photoshop.CustomShapes
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.csh\OpenWithProgids
+    VisualStudio.csh.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cshader
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.cshader\OpenWithProgids
+    VisualStudio.cshader.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cshtml
+
+HKEY_CLASSES_ROOT\.cshtml\OpenWithProgids
+    VSCode.cshtml    REG_SZ    
+
+HKEY_CLASSES_ROOT\.csproj
+    (Default)    REG_SZ    VisualStudio.Launcher.csproj.15.0
+    Content Type    REG_SZ    application/xml
+
+HKEY_CLASSES_ROOT\.csproj\OpenWithProgids
+    VisualStudio.csproj.1877b33c    REG_SZ    
+    VisualStudio.Launcher.csproj.15.0    REG_SZ    
+    VSCode.csproj    REG_SZ    
+
+HKEY_CLASSES_ROOT\.csproj\PersistentHandler
+    (Default)    REG_SZ    {7E9D8D44-6926-426F-AA2B-217A819A5CCE}
+
+HKEY_CLASSES_ROOT\.css
+    (Default)    REG_SZ    CSSfile
+    Content Type    REG_SZ    text/css
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.css\OpenWithProgids
+    VSCode.css    REG_SZ    
+
+HKEY_CLASSES_ROOT\.css\PersistentHandler
+    (Default)    REG_SZ    {eec97550-47a9-11cf-b952-00aa0051fe20}
+
+HKEY_CLASSES_ROOT\.csv
+    (Default)    REG_SZ    Excel.CSV
+    Content Type    REG_SZ    application/vnd.ms-excel
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.csv\OpenWithProgids
+    VSCode.csv    REG_SZ    
+
+HKEY_CLASSES_ROOT\.csv\PersistentHandler
+    (Default)    REG_SZ    {5E941D80-BF96-11CD-B579-08002B30BFEB}
+
+HKEY_CLASSES_ROOT\.csx
+
+HKEY_CLASSES_ROOT\.csx\OpenWithProgids
+    VSCode.csx    REG_SZ    
+
+HKEY_CLASSES_ROOT\.ctp
+
+HKEY_CLASSES_ROOT\.ctp\OpenWithProgids
+    VSCode.ctp    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cue
+    (Default)    REG_SZ    VLC.cue
+
+HKEY_CLASSES_ROOT\.cur
+    (Default)    REG_SZ    curfile
+
+HKEY_CLASSES_ROOT\.cur\OpenWithProgids
+    VisualStudio.cur.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cur\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.cxx
+    Content Type    REG_SZ    text/plain
+    PerceivedType    REG_SZ    text
+
+HKEY_CLASSES_ROOT\.cxx\OpenWithProgids
+    VSCode.cxx    REG_SZ    
+    VisualStudio.cxx.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.cxx\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.dae
+    (Default)    REG_SZ    Photoshop.DAEFileType.150
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.dart
+
+HKEY_CLASSES_ROOT\.dart\OpenWithProgids
+    VSCode.dart    REG_SZ    
+
+HKEY_CLASSES_ROOT\.dat
+    NoOpen    REG_SZ    
+
+HKEY_CLASSES_ROOT\.datasource
+    Content Type    REG_SZ    application/xml
+    PerceivedType    REG_SZ    text
+    (Default)    REG_SZ    VisualStudio.datasource.1877b33c
+
+HKEY_CLASSES_ROOT\.dav
+    (Default)    REG_SZ    VLC.dav
+
+HKEY_CLASSES_ROOT\.db
+    (Default)    REG_SZ    dbfile
+
+HKEY_CLASSES_ROOT\.dbg
+
+HKEY_CLASSES_ROOT\.dbg\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.dbs
+
+HKEY_CLASSES_ROOT\.dbs\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.dcm
+    (Default)    REG_SZ    Photoshop.DCMFileType.150
+
+HKEY_CLASSES_ROOT\.dcp
+    (Default)    REG_SZ    Photoshop.DNGCameraProfile.150
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.dcpr
+    (Default)    REG_SZ    Photoshop.DNGCameraProfileRecipe.150
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.dcr
+    (Default)    REG_SZ    Photoshop.CameraRawFileKodak.150
+    Content Type    REG_SZ    image/DCR
+    PerceivedType    REG_SZ    Image
+
+HKEY_CLASSES_ROOT\.dcr\OpenWithProgids
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.dcr\ShellEx
+
+HKEY_CLASSES_ROOT\.dcr\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.dcs
+    Content Type    REG_SZ    image/DCS
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.dcs\OpenWithProgids
+    AppX9rkaq77s0jzh1tyccadx9ghba15r6t3h    REG_NONE    
+
+HKEY_CLASSES_ROOT\.dcs\ShellEx
+
+HKEY_CLASSES_ROOT\.dcs\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}
+    (Default)    REG_SZ    {C7657C4A-9F68-40fa-A4DF-96BC08EB3551}
+
+HKEY_CLASSES_ROOT\.dct
+
+HKEY_CLASSES_ROOT\.dct\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.dctx
+    (Default)    REG_SZ    IMEDictionaryCompiler
+
+HKEY_CLASSES_ROOT\.dctxc
+    (Default)    REG_SZ    IMEDictionaryCompiler
+
+HKEY_CLASSES_ROOT\.dds
+    (Default)    REG_SZ    ddsfile
+    Content Type    REG_SZ    image/vnd.ms-dds
+    PerceivedType    REG_SZ    image
+
+HKEY_CLASSES_ROOT\.def
+    PerceivedType    REG_SZ    text
+    Content Type    REG_SZ    text/plain
+
+HKEY_CLASSES_ROOT\.def\OpenWithProgids
+    VisualStudio.def.1877b33c    REG_SZ    
+
+HKEY_CLASSES_ROOT\.def\PersistentHandler
+    (Default)    REG_SZ    {5e941d80-bf96-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.del
+    (Default)    REG_SZ    Adobe.Premiere.Edit.Decision.List.14
+
+HKEY_CLASSES_ROOT\.der
+    (Default)    REG_SZ    CERFile
+    Content Type    REG_SZ    application/x-x509-ca-cert
+
+HKEY_CLASSES_ROOT\.desklink
+    (Default)    REG_SZ    CLSID\{9E56BE61-C50F-11CF-9A2C-00A0C90A90CE}
+
+HKEY_CLASSES_ROOT\.desklink\PersistentHandler
+    (Default)    REG_SZ    {098f2470-bae0-11cd-b579-08002b30bfeb}
+
+HKEY_CLASSES_ROOT\.deskthemepack
+    (Default)    REG_SZ    desktopthemepackfile
+
+HKEY_CLASSES_ROOT\.det
+    (Default)    REG_SZ    Outlook.File.det.15
+
+HKEY_CLASSES_ROOT\.deu
+    (Default)    REG_SZ    AcroExch.Lang
+    Version    REG_SZ    7.0
+
+HKEY_CLASSES_ROOT\.diagcab
+    (Default)    REG_SZ    Diagnostic.Cabinet
+
+HKEY_CLASSES_ROOT\.diagcfg
+    (Default)    REG_SZ    Diagnostic.Config
+
+HKEY_CLASSES_ROOT\.diagpkg
+    (Default)    REG_SZ    Diagnostic.Document
+
+HKEY_CLASSES_ROOT\.dib
+    (Default)    REG_SZ    Paint.Picture
+    Content Type    REG_SZ    image/bmp
+    PerceivedType    REG_SZ    image
