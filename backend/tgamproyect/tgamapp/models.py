@@ -11,7 +11,7 @@ from django.db import models
 class Analisis(models.Model):
     id = models.IntegerField(db_column='Id', primary_key=True)  # Field name made lowercase.
     fecha = models.DateTimeField(db_column='Fecha')  # Field name made lowercase.
-    fk_sesion = models.ForeignKey('Sesion',related_name='sesion', on_delete =models.DO_NOTHING, db_column='Fk_Sesion', blank=True, null=True)  # Field name made lowercase.
+    fk_sesion = models.ForeignKey('Sesion',related_name='analisis_sesion', on_delete =models.DO_NOTHING, db_column='Fk_Sesion', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -33,16 +33,16 @@ class Persona(models.Model):
 
 class Proceso(models.Model):
     id = models.BigIntegerField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    node = models.CharField(db_column='Node', max_length=-1, blank=True, null=True)  # Field name made lowercase.
-    commandline = models.CharField(db_column='CommandLine', max_length=-1, blank=True, null=True)  # Field name made lowercase.
-    executablepath = models.CharField(db_column='ExecutablePath', max_length=-1, blank=True, null=True)  # Field name made lowercase.
+    node = models.TextField(db_column='Node',  blank=True, null=True)  # Field name made lowercase.
+    commandline = models.TextField(db_column='CommandLine',  blank=True, null=True)  # Field name made lowercase.
+    executablepath = models.TextField(db_column='ExecutablePath',  blank=True, null=True)  # Field name made lowercase.
     executablestate = models.BigIntegerField(db_column='ExecutableState', blank=True, null=True)  # Field name made lowercase.
     handle = models.BigIntegerField(db_column='Handle', blank=True, null=True)  # Field name made lowercase.
     handlecount = models.BigIntegerField(db_column='HandleCount', blank=True, null=True)  # Field name made lowercase.
     kernelmodetime = models.BigIntegerField(db_column='KernelModeTime', blank=True, null=True)  # Field name made lowercase.
     maximumworkingsetsize = models.BigIntegerField(db_column='MaximumWorkingSetSize', blank=True, null=True)  # Field name made lowercase.
     minimumworkingsetsize = models.BigIntegerField(db_column='MinimumWorkingSetSize', blank=True, null=True)  # Field name made lowercase.
-    osname = models.CharField(db_column='OSName', max_length=-1, blank=True, null=True)  # Field name made lowercase.
+    osname = models.TextField(db_column='OSName',  blank=True, null=True)  # Field name made lowercase.
     otheroperationcount = models.BigIntegerField(db_column='OtherOperationCount', blank=True, null=True)  # Field name made lowercase.
     othertransfercount = models.BigIntegerField(db_column='OtherTransferCount', blank=True, null=True)  # Field name made lowercase.
     pagefaults = models.BigIntegerField(db_column='PageFaults', blank=True, null=True)  # Field name made lowercase.
@@ -64,12 +64,12 @@ class Proceso(models.Model):
     threadcount = models.BigIntegerField(db_column='ThreadCount', blank=True, null=True)  # Field name made lowercase.
     usermodetime = models.BigIntegerField(db_column='UserModeTime', blank=True, null=True)  # Field name made lowercase.
     virtualsize = models.BigIntegerField(db_column='VirtualSize', blank=True, null=True)  # Field name made lowercase.
-    windowsversion = models.CharField(db_column='WindowsVersion', max_length=-1, blank=True, null=True)  # Field name made lowercase.
+    windowsversion = models.TextField(db_column='WindowsVersion',  blank=True, null=True)  # Field name made lowercase.
     workingsetsize = models.BigIntegerField(db_column='WorkingSetSize', blank=True, null=True)  # Field name made lowercase.
     writeoperationcount = models.BigIntegerField(db_column='WriteOperationCount', blank=True, null=True)  # Field name made lowercase.
     writetransfercount = models.BigIntegerField(db_column='WriteTransferCount', blank=True, null=True)  # Field name made lowercase.
-    fk_analisis = models.ForeignKey(Analisis,related_name='analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
-    fk_tipo = models.ForeignKey('Tipo',related_name='tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
+    fk_analisis = models.ForeignKey('Analisis',related_name='proceso_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
+    fk_tipo = models.ForeignKey('Tipo',related_name='proceso_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -78,9 +78,19 @@ class Proceso(models.Model):
 
 class Registro(models.Model):
     id = models.IntegerField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=-1)  # Field name made lowercase.
-    fk_tipo = models.ForeignKey('Tipo',related_name='tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
-    fk_analisis = models.ForeignKey(Analisis,related_name='analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
+    nombre = models.TextField(db_column='Nombre')  # Field name made lowercase.
+    fk_tipo = models.ForeignKey('Tipo',related_name='registro_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
+    fk_analisis = models.ForeignKey('Analisis',related_name='registro_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Registro'
+
+class Directorio(models.Model):
+    id = models.IntegerField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    nombre = models.TextField(db_column='Nombre')  # Field name made lowercase.
+    fk_tipo = models.ForeignKey('Tipo',related_name='directorio_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
+    fk_analisis = models.ForeignKey('Analisis',related_name='directorio_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
