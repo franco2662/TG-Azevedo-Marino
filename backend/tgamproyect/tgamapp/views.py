@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .validations import *
 from json import *
+from .proyect_ai import *
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
@@ -208,7 +209,7 @@ def modify_user(request):
             return Response(str(e),status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
-def modify_person(request):
+def modify_person(request):    
     if request.method == 'POST':
         try:
             received_json = json.loads(request.body)
@@ -224,3 +225,8 @@ def modify_person(request):
             
         except Exception as e:
             return Response(str(e),status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def prueba_ai(request):
+    lista = prueba()
+    return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
