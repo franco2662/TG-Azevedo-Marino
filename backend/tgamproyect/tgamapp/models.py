@@ -9,13 +9,13 @@ from django.db import models
 
 
 class Analisis(models.Model):
-    id = models.IntegerField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
     fecha = models.DateTimeField(db_column='Fecha')  # Field name made lowercase.
     fk_sesion = models.ForeignKey('Sesion',related_name='analisis_sesion', on_delete =models.DO_NOTHING, db_column='Fk_Sesion', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'Flag'
+        db_table = 'Analisis'
 
 
 class Persona(models.Model):
@@ -32,9 +32,11 @@ class Persona(models.Model):
 
 
 class Proceso(models.Model):
-    id = models.BigIntegerField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
     node = models.TextField(db_column='Node',  blank=True, null=True)  # Field name made lowercase.
     commandline = models.TextField(db_column='CommandLine',  blank=True, null=True)  # Field name made lowercase.
+    csname = models.TextField(db_column='CSName',  blank=True, null=True)  # Field name made lowercase.
+    description = models.TextField(db_column='Description',  blank=True, null=True)  # Field name made lowercase.
     executablepath = models.TextField(db_column='ExecutablePath',  blank=True, null=True)  # Field name made lowercase.
     executablestate = models.BigIntegerField(db_column='ExecutableState', blank=True, null=True)  # Field name made lowercase.
     handle = models.BigIntegerField(db_column='Handle', blank=True, null=True)  # Field name made lowercase.
@@ -77,7 +79,7 @@ class Proceso(models.Model):
 
 
 class Registro(models.Model):
-    id = models.IntegerField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
     nombre = models.TextField(db_column='Nombre')  # Field name made lowercase.
     fk_tipo = models.ForeignKey('Tipo',related_name='registro_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
     fk_analisis = models.ForeignKey('Analisis',related_name='registro_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
@@ -87,14 +89,14 @@ class Registro(models.Model):
         db_table = 'Registro'
 
 class Directorio(models.Model):
-    id = models.IntegerField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
     nombre = models.TextField(db_column='Nombre')  # Field name made lowercase.
     fk_tipo = models.ForeignKey('Tipo',related_name='directorio_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
     fk_analisis = models.ForeignKey('Analisis',related_name='directorio_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'Registro'
+        db_table = 'Directorio'
 
 
 class Rol(models.Model):

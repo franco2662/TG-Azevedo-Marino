@@ -36,5 +36,8 @@ urlpatterns = [
     path('insertSesion/',views.insert_sesion),
     path('getUserByEmail/<str:user_email>',views.get_user_by_email),
     path('modifyPerson/',views.modify_person),
-    path('modifyUser/',views.modify_user)
+    path('modifyUser/',views.modify_user),
+    path('analisisTest/',views.analisis_test),
+    path('saveAnalisisTest/',views.save_analisis),
+    path('analisisCompleto/',views.complete_analisis)
 ]

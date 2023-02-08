@@ -227,6 +227,16 @@ def modify_person(request):
             return Response(str(e),status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def prueba_ai(request):
-    lista = prueba()
+def analisis_test(request):
+    lista = analisis_test()
+    return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def save_analisis(request):
+    save_bd_test()
+    return Response(True,status.HTTP_200_OK)
+
+@api_view(['GET'])
+def complete_analisis(request):
+    lista = analisis_completo()
     return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
