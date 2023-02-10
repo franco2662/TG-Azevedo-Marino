@@ -330,6 +330,8 @@ def analisis_procesos(file,analisis):
 
   tipos_num=["float64","int64"]
 
+  nombre_pc =""
+
   for column in data:
     if (data[column].dtype in tipos_num):
       data[column].fillna(0, inplace = True)
@@ -350,6 +352,13 @@ def analisis_procesos(file,analisis):
       col = str.lower(column)
       proceso.__dict__[col]=data[column][ind]
 
+    if(nombre_pc == ""):
+      node = proceso.__dict__["node"]
+      node = node.strip()
+      if (node!=""):
+        nombre_pc = node
+        analisis.nombrepc = nombre_pc
+        analisis.save()
     if(resultado<=50):      
       print(sample.iloc[0][3] +"  %.4f"%(resultado))
       if(resultado<=10):

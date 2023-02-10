@@ -10,6 +10,7 @@ from django.db import models
 
 class Analisis(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    nombrepc = models.TextField(db_column='NombrePc')  # Field name made lowercase.
     fecha = models.DateTimeField(db_column='Fecha')  # Field name made lowercase.
     fk_sesion = models.ForeignKey('Sesion',related_name='analisis_sesion', on_delete =models.DO_NOTHING, db_column='Fk_Sesion', blank=True, null=True)  # Field name made lowercase.
 
