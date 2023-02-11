@@ -15,6 +15,7 @@ from rest_framework import status
 from .validations import *
 from json import *
 from .proyect_ai import *
+from .postgresql import *
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
@@ -240,3 +241,27 @@ def save_analisis(request):
 def complete_analisis(request):
     lista = analisis_completo()
     return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def count_procs(request,id_session):
+    lista=fn_count_procs(id_session)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def count_dirs(request,id_session):
+    lista=fn_count_dirs(id_session)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def count_regs(request,id_session):
+    lista=fn_count_regs(id_session)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+    
+@api_view(['GET'])
+def count_all_analisis(request,id_session):
+    lista=fn_count_all(id_session)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)

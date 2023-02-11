@@ -39,5 +39,9 @@ urlpatterns = [
     path('modifyUser/',views.modify_user),
     path('analisisTest/',views.analisis_test),
     path('saveAnalisisTest/',views.save_analisis),
-    path('analisisCompleto/',views.complete_analisis)
+    path('analisisCompleto/',views.complete_analisis),
+    path('countProcs/<int:id_session>',views.count_procs),
+    path('countDirs/<int:id_session>',views.count_dirs),
+    path('countRegs/<int:id_session>',views.count_regs),
+    path('countAllAnalisis/<int:id_session>',views.count_all_analisis)
 ]
