@@ -363,12 +363,13 @@ def analisis_procesos(file,analisis):
       print(sample.iloc[0][3] +"  %.4f"%(resultado))
       if(resultado<=10):
         lista_no_deseados.append(sample.iloc[0][3])
-        proceso.fk_tipo = Tipo.objects.get(nombre="No Deseado")
+        proceso.fk_tipo = Tipo.objects.get(id=2)
       else:
         lista_prob_no_deseados.append(sample.iloc[0][3])
-        proceso.fk_tipo = Tipo.objects.get(nombre="Prob No Deseado")
+        proceso.fk_tipo = Tipo.objects.get(id=3)
     else:
-      proceso.fk_tipo = Tipo.objects.get(nombre="Deseado")
+      proceso.fk_tipo = Tipo.objects.get(id=1)    
+    proceso.porcentaje_no = round(100 - resultado[0],2)
     proceso.save()
 
   lista_procesos=[{'categoria':'procesos'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
@@ -394,12 +395,13 @@ def analisis_directorios(file,analisis):
       print(sample.iloc[0] +"  %.4f"%(resultado))
       if(resultado<=10):
         lista_no_deseados.append(sample.iloc[0])
-        directorio.fk_tipo = Tipo.objects.get(nombre="No Deseado")
+        directorio.fk_tipo = Tipo.objects.get(id=2)
       else:
         lista_prob_no_deseados.append(sample.iloc[0])
-        directorio.fk_tipo = Tipo.objects.get(nombre="Prob No Deseado")
+        directorio.fk_tipo = Tipo.objects.get(id=3)
     else:
-      directorio.fk_tipo = Tipo.objects.get(nombre="Deseado")
+      directorio.fk_tipo = Tipo.objects.get(id=1)
+    directorio.porcentaje_no = round(100 - resultado[0],2)
     directorio.save()
 
   lista_directorios=[{'categoria':'directorios'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
@@ -425,12 +427,13 @@ def analisis_registros(file,analisis):
       print(sample.iloc[0] +"  %.4f"%(resultado))
       if(resultado<=10):
         lista_no_deseados.append(sample.iloc[0])
-        registro.fk_tipo = Tipo.objects.get(nombre="No Deseado")
+        registro.fk_tipo = Tipo.objects.get(id=2)
       else:
         lista_prob_no_deseados.append(sample.iloc[0])
-        registro.fk_tipo = Tipo.objects.get(nombre="Prob No Deseado")
+        registro.fk_tipo = Tipo.objects.get(id=3)
     else:
-      registro.fk_tipo = Tipo.objects.get(nombre="Deseado")
+      registro.fk_tipo = Tipo.objects.get(id=1)
+    registro.porcentaje_no = round(100 - resultado[0],2)
     registro.save()
 
   lista_registros=[{'categoria':'registros'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]

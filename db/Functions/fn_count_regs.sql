@@ -11,12 +11,12 @@ select
 	FROM public."Analisis" analisis 
 	JOIN "Registro" reg on analisis."Id" = reg."Fk_Analisis"
 	JOIN "Tipo" tp on reg."Fk_Tipo" = tp."Id"
-where tp."Nombre" = 'No Deseado' and analisis."Id" = id_analisis ) as no_deseados,
+where tp."Id" = 2 and analisis."Id" = id_analisis ) as no_deseados,
 (SELECT count(reg.*) as prob_no_deseados
 	FROM public."Analisis" analisis 
 	JOIN "Registro" reg on analisis."Id" = reg."Fk_Analisis"
 	JOIN "Tipo" tp on reg."Fk_Tipo" = tp."Id"
-where tp."Nombre" = 'Prob No Deseado' and analisis."Id" = id_analisis) as prob_no_deseados
+where tp."Id" = 3 and analisis."Id" = id_analisis) as prob_no_deseados
 ;
 end;$$ 
 

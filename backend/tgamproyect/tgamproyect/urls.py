@@ -43,5 +43,8 @@ urlpatterns = [
     path('countProcs/<int:id_session>',views.count_procs),
     path('countDirs/<int:id_session>',views.count_dirs),
     path('countRegs/<int:id_session>',views.count_regs),
-    path('countAllAnalisis/<int:id_session>',views.count_all_analisis)
+    path('countAllAnalisis/<int:id_session>',views.count_all_analisis),
+    path('listBadProcs/<int:id_session>',views.list_bad_procs),
+    path('listBadDirs/<int:id_session>',views.list_bad_dirs),
+    path('listBadRegs/<int:id_session>',views.list_bad_regs)
 ]

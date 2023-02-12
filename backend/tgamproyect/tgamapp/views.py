@@ -265,3 +265,21 @@ def count_all_analisis(request,id_session):
     lista=fn_count_all(id_session)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_procs(request,id_session):
+    lista=fn_list_bad_procs(id_session)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_dirs(request,id_session):
+    lista=fn_list_bad_dirs(id_session)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_regs(request,id_session):
+    lista=fn_list_bad_regs(id_session)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)

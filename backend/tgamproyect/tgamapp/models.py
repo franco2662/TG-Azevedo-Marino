@@ -73,7 +73,7 @@ class Proceso(models.Model):
     writetransfercount = models.BigIntegerField(db_column='WriteTransferCount', blank=True, null=True)  # Field name made lowercase.
     fk_analisis = models.ForeignKey('Analisis',related_name='proceso_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
     fk_tipo = models.ForeignKey('Tipo',related_name='proceso_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
-
+    porcentaje_no =models.DecimalField(db_column='Porcentaje_No', blank=True, null=True, max_digits=5, decimal_places=2)  # Field name made lowercase.
     class Meta:
         managed = False
         db_table = 'Proceso'
@@ -84,7 +84,7 @@ class Registro(models.Model):
     nombre = models.TextField(db_column='Nombre')  # Field name made lowercase.
     fk_tipo = models.ForeignKey('Tipo',related_name='registro_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
     fk_analisis = models.ForeignKey('Analisis',related_name='registro_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
-
+    porcentaje_no =models.DecimalField(db_column='Porcentaje_No', blank=True, null=True, max_digits=5, decimal_places=2)  # Field name made lowercase.
     class Meta:
         managed = False
         db_table = 'Registro'
@@ -94,7 +94,7 @@ class Directorio(models.Model):
     nombre = models.TextField(db_column='Nombre')  # Field name made lowercase.
     fk_tipo = models.ForeignKey('Tipo',related_name='directorio_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
     fk_analisis = models.ForeignKey('Analisis',related_name='directorio_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
-
+    porcentaje_no =models.DecimalField(db_column='Porcentaje_No', blank=True, null=True, max_digits=5, decimal_places=2)  # Field name made lowercase.
     class Meta:
         managed = False
         db_table = 'Directorio'
