@@ -243,43 +243,56 @@ def complete_analisis(request):
     return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def count_procs(request,id_session):
-    lista=fn_count_procs(id_session)
+def count_procs(request,id_analisis):
+    lista=fn_count_procs(id_analisis)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def count_dirs(request,id_session):
-    lista=fn_count_dirs(id_session)
+def count_dirs(request,id_analisis):
+    lista=fn_count_dirs(id_analisis)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def count_regs(request,id_session):
-    lista=fn_count_regs(id_session)
+def count_regs(request,id_analisis):
+    lista=fn_count_regs(id_analisis)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
     
 @api_view(['GET'])
-def count_all_analisis(request,id_session):
-    lista=fn_count_all(id_session)
+def count_all_analisis(request,id_analisis):
+    lista=fn_count_all(id_analisis)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def list_bad_procs(request,id_session):
-    lista=fn_list_bad_procs(id_session)
+def list_bad_procs(request,id_analisis):
+    lista=fn_list_bad_procs(id_analisis)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def list_bad_dirs(request,id_session):
-    lista=fn_list_bad_dirs(id_session)
+def list_bad_dirs(request,id_analisis):
+    lista=fn_list_bad_dirs(id_analisis)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def list_bad_regs(request,id_session):
-    lista=fn_list_bad_regs(id_session)
+def list_bad_regs(request,id_analisis):
+    lista=fn_list_bad_regs(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_all(request,id_analisis):
+    lista=fn_list_bad_all(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_avg(request,id_analisis):
+    lista_completa = fn_list_bad_all(id_analisis)    
+    lista = fn_bad_all_avg(id_analisis,lista_completa)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)

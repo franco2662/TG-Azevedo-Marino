@@ -40,11 +40,13 @@ urlpatterns = [
     path('analisisTest/',views.analisis_test),
     path('saveAnalisisTest/',views.save_analisis),
     path('analisisCompleto/',views.complete_analisis),
-    path('countProcs/<int:id_session>',views.count_procs),
-    path('countDirs/<int:id_session>',views.count_dirs),
-    path('countRegs/<int:id_session>',views.count_regs),
-    path('countAllAnalisis/<int:id_session>',views.count_all_analisis),
-    path('listBadProcs/<int:id_session>',views.list_bad_procs),
-    path('listBadDirs/<int:id_session>',views.list_bad_dirs),
-    path('listBadRegs/<int:id_session>',views.list_bad_regs)
+    path('countProcs/<int:id_analisis>',views.count_procs),
+    path('countDirs/<int:id_analisis>',views.count_dirs),
+    path('countRegs/<int:id_analisis>',views.count_regs),
+    path('countAllAnalisis/<int:id_analisis>',views.count_all_analisis),
+    path('listBadProcs/<int:id_analisis>',views.list_bad_procs),
+    path('listBadDirs/<int:id_analisis>',views.list_bad_dirs),
+    path('listBadRegs/<int:id_analisis>',views.list_bad_regs),
+    path('listBadAll/<int:id_analisis>',views.list_bad_all),
+    path('listBadAvg/<int:id_analisis>',views.list_bad_avg)
 ]

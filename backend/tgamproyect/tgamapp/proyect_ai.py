@@ -345,6 +345,7 @@ def analisis_procesos(file,analisis):
     input_dict = {name: tf.convert_to_tensor([value]) for name, value in sample.items()}
     predictions = model.predict(input_dict,verbose = 0)
     resultado= 100 * predictions[0]
+    resultado=round(100 - resultado[0],2)
 
     proceso = Proceso()
     proceso.fk_analisis = analisis
@@ -359,9 +360,9 @@ def analisis_procesos(file,analisis):
         nombre_pc = node
         analisis.nombrepc = nombre_pc
         analisis.save()
-    if(resultado<=50):      
+    if(resultado>=30):      
       print(sample.iloc[0][3] +"  %.4f"%(resultado))
-      if(resultado<=10):
+      if(resultado>=70):
         lista_no_deseados.append(sample.iloc[0][3])
         proceso.fk_tipo = Tipo.objects.get(id=2)
       else:
@@ -369,7 +370,7 @@ def analisis_procesos(file,analisis):
         proceso.fk_tipo = Tipo.objects.get(id=3)
     else:
       proceso.fk_tipo = Tipo.objects.get(id=1)    
-    proceso.porcentaje_no = round(100 - resultado[0],2)
+    proceso.porcentaje_no = resultado
     proceso.save()
 
   lista_procesos=[{'categoria':'procesos'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
@@ -386,14 +387,15 @@ def analisis_directorios(file,analisis):
     sample = data.iloc[[ind]]["Directorio"]
     predictions = model.predict(sample,verbose = 0)
     resultado= 100 * predictions[0]
+    resultado=round(100 - resultado[0],2)
 
     directorio = Directorio()
     directorio.fk_analisis = analisis    
     directorio.nombre=sample.iloc[0]
 
-    if(resultado<=50):      
+    if(resultado>=30):      
       print(sample.iloc[0] +"  %.4f"%(resultado))
-      if(resultado<=10):
+      if(resultado>=70):
         lista_no_deseados.append(sample.iloc[0])
         directorio.fk_tipo = Tipo.objects.get(id=2)
       else:
@@ -401,7 +403,7 @@ def analisis_directorios(file,analisis):
         directorio.fk_tipo = Tipo.objects.get(id=3)
     else:
       directorio.fk_tipo = Tipo.objects.get(id=1)
-    directorio.porcentaje_no = round(100 - resultado[0],2)
+    directorio.porcentaje_no = resultado
     directorio.save()
 
   lista_directorios=[{'categoria':'directorios'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
@@ -418,14 +420,15 @@ def analisis_registros(file,analisis):
     sample = data.iloc[[ind]]["Registro"]
     predictions = model.predict(sample,verbose = 0)
     resultado= 100 * predictions[0]
+    resultado=round(100 - resultado[0],2)
 
     registro = Registro()
     registro.fk_analisis = analisis    
     registro.nombre=sample.iloc[0]
 
-    if(resultado<=50):      
+    if(resultado>=30):      
       print(sample.iloc[0] +"  %.4f"%(resultado))
-      if(resultado<=10):
+      if(resultado>=70):
         lista_no_deseados.append(sample.iloc[0])
         registro.fk_tipo = Tipo.objects.get(id=2)
       else:
@@ -433,7 +436,7 @@ def analisis_registros(file,analisis):
         registro.fk_tipo = Tipo.objects.get(id=3)
     else:
       registro.fk_tipo = Tipo.objects.get(id=1)
-    registro.porcentaje_no = round(100 - resultado[0],2)
+    registro.porcentaje_no = resultado
     registro.save()
 
   lista_registros=[{'categoria':'registros'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]
