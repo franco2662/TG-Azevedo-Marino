@@ -238,8 +238,8 @@ def save_analisis(request):
     return Response(True,status.HTTP_200_OK)
 
 @api_view(['GET'])
-def complete_analisis(request):
-    lista = analisis_completo()
+def complete_analisis(request,id_sesion):
+    lista = analisis_completo(id_sesion)
     return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
@@ -294,5 +294,11 @@ def list_bad_all(request,id_analisis):
 def list_bad_avg(request,id_analisis):
     lista_completa = fn_list_bad_all(id_analisis)    
     lista = fn_bad_all_avg(id_analisis,lista_completa)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_analisis_by_user(request,id_user):
+    lista = get_analisis_by_user(id_user)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)

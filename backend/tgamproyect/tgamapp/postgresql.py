@@ -157,6 +157,16 @@ def fn_bad_all_avg(id,lista_completa):
     lista_all = [fn_bad_proc_avg(lista_completa),fn_bad_dir_avg(lista_completa),fn_bad_reg_avg(lista_completa)]
     lista.append(lista_all)
     return lista
+
+def get_analisis_by_user(id):
+    sesiones = Sesion.objects.filter(fk_usuario=id).values_list('id', flat=True)
+    analisis = Analisis.objects.filter(fk_sesion__in=sesiones).values()
+    listado=[]
+    for a in analisis:
+        texto = a['nombrepc'] + ' - ' + str(a['fecha'])
+        item = [{'id_analisis':a['id'],'analisis':texto}]
+        listado.append(item)
+    return listado
        
     
 

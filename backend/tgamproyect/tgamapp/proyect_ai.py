@@ -101,8 +101,8 @@ def listar_procesos(file):
 def analisis_test():
   return leer_archivo_ia_test()
 
-def analisis_completo():
-  return leer_archivo_ia()
+def analisis_completo(id_sesion):
+  return leer_archivo_ia(id_sesion)
 
 def leer_procesos():
   f = open('tgamapp/ia_tests/ProcesosTest.txt', 'r')
@@ -294,7 +294,7 @@ def save_bd_test():
   file_procesos.close()
 
 
-def leer_archivo_ia():
+def leer_archivo_ia(id_sesion):
   file = open('tgamapp/ia_tests/ArchivoIAReducido.txt', 'r')
   myFile = io.StringIO(file.read())
   content = myFile.read()  
@@ -307,7 +307,7 @@ def leer_archivo_ia():
   analisis = Analisis()
   fecha_actual = datetime.now()
   analisis.fecha = fecha_actual
-  analisis.fk_sesion = Sesion.objects.first()
+  analisis.fk_sesion = Sesion.objects.get(id=id_sesion)
   analisis.save()
 
   lista_procesos=analisis_procesos(file_procesos,analisis)
