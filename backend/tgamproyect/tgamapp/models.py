@@ -5,20 +5,18 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
-import email
-from email.policy import default
 from django.db import models
 
 
-class Flag(models.Model):
+class Analisis(models.Model):
     id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    tipo = models.CharField(db_column='Tipo', max_length=100)  # Field name made lowercase.
-    comentario = models.CharField(db_column='Comentario', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    fk_tipo = models.ForeignKey('Tipo', models.DO_NOTHING, db_column='Fk_Tipo')  # Field name made lowercase.
+    nombrepc = models.TextField(db_column='NombrePc')  # Field name made lowercase.
+    fecha = models.DateTimeField(db_column='Fecha')  # Field name made lowercase.
+    fk_sesion = models.ForeignKey('Sesion',related_name='analisis_sesion', on_delete =models.DO_NOTHING, db_column='Fk_Sesion', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = 'Flag'
+        db_table = 'Analisis'
 
 
 class Persona(models.Model):
@@ -32,6 +30,74 @@ class Persona(models.Model):
     class Meta:
         managed = False
         db_table = 'Persona'
+
+
+class Proceso(models.Model):
+    id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    node = models.TextField(db_column='Node',  blank=True, null=True)  # Field name made lowercase.
+    commandline = models.TextField(db_column='CommandLine',  blank=True, null=True)  # Field name made lowercase.
+    csname = models.TextField(db_column='CSName',  blank=True, null=True)  # Field name made lowercase.
+    description = models.TextField(db_column='Description',  blank=True, null=True)  # Field name made lowercase.
+    executablepath = models.TextField(db_column='ExecutablePath',  blank=True, null=True)  # Field name made lowercase.
+    executablestate = models.BigIntegerField(db_column='ExecutableState', blank=True, null=True)  # Field name made lowercase.
+    handle = models.BigIntegerField(db_column='Handle', blank=True, null=True)  # Field name made lowercase.
+    handlecount = models.BigIntegerField(db_column='HandleCount', blank=True, null=True)  # Field name made lowercase.
+    kernelmodetime = models.BigIntegerField(db_column='KernelModeTime', blank=True, null=True)  # Field name made lowercase.
+    maximumworkingsetsize = models.BigIntegerField(db_column='MaximumWorkingSetSize', blank=True, null=True)  # Field name made lowercase.
+    minimumworkingsetsize = models.BigIntegerField(db_column='MinimumWorkingSetSize', blank=True, null=True)  # Field name made lowercase.
+    osname = models.TextField(db_column='OSName',  blank=True, null=True)  # Field name made lowercase.
+    otheroperationcount = models.BigIntegerField(db_column='OtherOperationCount', blank=True, null=True)  # Field name made lowercase.
+    othertransfercount = models.BigIntegerField(db_column='OtherTransferCount', blank=True, null=True)  # Field name made lowercase.
+    pagefaults = models.BigIntegerField(db_column='PageFaults', blank=True, null=True)  # Field name made lowercase.
+    pagefileusage = models.BigIntegerField(db_column='PageFileUsage', blank=True, null=True)  # Field name made lowercase.
+    parentprocessid = models.BigIntegerField(db_column='ParentProcessId', blank=True, null=True)  # Field name made lowercase.
+    peakpagefileusage = models.BigIntegerField(db_column='PeakPageFileUsage', blank=True, null=True)  # Field name made lowercase.
+    peakvirtualsize = models.BigIntegerField(db_column='PeakVirtualSize', blank=True, null=True)  # Field name made lowercase.
+    peakworkingsetsize = models.BigIntegerField(db_column='PeakWorkingSetSize', blank=True, null=True)  # Field name made lowercase.
+    priority = models.BigIntegerField(db_column='Priority', blank=True, null=True)  # Field name made lowercase.
+    privatepagecount = models.BigIntegerField(db_column='PrivatePageCount', blank=True, null=True)  # Field name made lowercase.
+    processid = models.BigIntegerField(db_column='ProcessId', blank=True, null=True)  # Field name made lowercase.
+    quotanonpagedpoolusage = models.BigIntegerField(db_column='QuotaNonPagedPoolUsage', blank=True, null=True)  # Field name made lowercase.
+    quotapagedpoolusage = models.BigIntegerField(db_column='QuotaPagedPoolUsage', blank=True, null=True)  # Field name made lowercase.
+    quotapeaknonpagedpoolusage = models.BigIntegerField(db_column='QuotaPeakNonPagedPoolUsage', blank=True, null=True)  # Field name made lowercase.
+    quotapeakpagedpoolusage = models.BigIntegerField(db_column='QuotaPeakPagedPoolUsage', blank=True, null=True)  # Field name made lowercase.
+    readoperationcount = models.BigIntegerField(db_column='ReadOperationCount', blank=True, null=True)  # Field name made lowercase.
+    readtransfercount = models.BigIntegerField(db_column='ReadTransferCount', blank=True, null=True)  # Field name made lowercase.
+    sessionid = models.BigIntegerField(db_column='SessionId', blank=True, null=True)  # Field name made lowercase.
+    threadcount = models.BigIntegerField(db_column='ThreadCount', blank=True, null=True)  # Field name made lowercase.
+    usermodetime = models.BigIntegerField(db_column='UserModeTime', blank=True, null=True)  # Field name made lowercase.
+    virtualsize = models.BigIntegerField(db_column='VirtualSize', blank=True, null=True)  # Field name made lowercase.
+    windowsversion = models.TextField(db_column='WindowsVersion',  blank=True, null=True)  # Field name made lowercase.
+    workingsetsize = models.BigIntegerField(db_column='WorkingSetSize', blank=True, null=True)  # Field name made lowercase.
+    writeoperationcount = models.BigIntegerField(db_column='WriteOperationCount', blank=True, null=True)  # Field name made lowercase.
+    writetransfercount = models.BigIntegerField(db_column='WriteTransferCount', blank=True, null=True)  # Field name made lowercase.
+    fk_analisis = models.ForeignKey('Analisis',related_name='proceso_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
+    fk_tipo = models.ForeignKey('Tipo',related_name='proceso_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
+    porcentaje_no =models.DecimalField(db_column='Porcentaje_No', blank=True, null=True, max_digits=5, decimal_places=2)  # Field name made lowercase.
+    class Meta:
+        managed = False
+        db_table = 'Proceso'
+
+
+class Registro(models.Model):
+    id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    nombre = models.TextField(db_column='Nombre')  # Field name made lowercase.
+    fk_tipo = models.ForeignKey('Tipo',related_name='registro_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
+    fk_analisis = models.ForeignKey('Analisis',related_name='registro_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
+    porcentaje_no =models.DecimalField(db_column='Porcentaje_No', blank=True, null=True, max_digits=5, decimal_places=2)  # Field name made lowercase.
+    class Meta:
+        managed = False
+        db_table = 'Registro'
+
+class Directorio(models.Model):
+    id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    nombre = models.TextField(db_column='Nombre')  # Field name made lowercase.
+    fk_tipo = models.ForeignKey('Tipo',related_name='directorio_tipo', on_delete =models.DO_NOTHING, db_column='Fk_Tipo', blank=True, null=True)  # Field name made lowercase.
+    fk_analisis = models.ForeignKey('Analisis',related_name='directorio_analisis', on_delete =models.DO_NOTHING, db_column='Fk_Analisis', blank=True, null=True)  # Field name made lowercase.
+    porcentaje_no =models.DecimalField(db_column='Porcentaje_No', blank=True, null=True, max_digits=5, decimal_places=2)  # Field name made lowercase.
+    class Meta:
+        managed = False
+        db_table = 'Directorio'
 
 
 class Rol(models.Model):
@@ -86,15 +152,6 @@ class Usuario(models.Model):
         managed = False
         db_table = 'Usuario'
 
-class Virus(models.Model):
-    id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=100)  # Field name made lowercase.
-    fechacreacion = models.DateTimeField(db_column='FechaCreacion')  # Field name made lowercase.
-    descripcion = models.CharField(db_column='Descripcion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Virus'
 
 class ViewUserList(models.Model):
     id = models.BigIntegerField(db_column='id',primary_key=True)  # Field name made lowercase.

@@ -14,6 +14,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .validations import *
 from json import *
+from .proyect_ai import *
+from .postgresql import *
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
@@ -208,7 +210,7 @@ def modify_user(request):
             return Response(str(e),status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
-def modify_person(request):
+def modify_person(request):    
     if request.method == 'POST':
         try:
             received_json = json.loads(request.body)
@@ -224,3 +226,73 @@ def modify_person(request):
             
         except Exception as e:
             return Response(str(e),status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def analisis_test(request):
+    lista = analisis_test()
+    return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def save_analisis(request):
+    save_bd_test()
+    return Response(True,status.HTTP_200_OK)
+
+@api_view(['GET'])
+def complete_analisis(request):
+    lista = analisis_completo()
+    return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def count_procs(request,id_analisis):
+    lista=fn_count_procs(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def count_dirs(request,id_analisis):
+    lista=fn_count_dirs(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def count_regs(request,id_analisis):
+    lista=fn_count_regs(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+    
+@api_view(['GET'])
+def count_all_analisis(request,id_analisis):
+    lista=fn_count_all(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_procs(request,id_analisis):
+    lista=fn_list_bad_procs(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_dirs(request,id_analisis):
+    lista=fn_list_bad_dirs(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_regs(request,id_analisis):
+    lista=fn_list_bad_regs(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_all(request,id_analisis):
+    lista=fn_list_bad_all(id_analisis)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_avg(request,id_analisis):
+    lista_completa = fn_list_bad_all(id_analisis)    
+    lista = fn_bad_all_avg(id_analisis,lista_completa)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
