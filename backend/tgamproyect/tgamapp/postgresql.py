@@ -160,11 +160,11 @@ def fn_bad_all_avg(id,lista_completa):
 
 def get_analisis_by_user(id):
     sesiones = Sesion.objects.filter(fk_usuario=id).values_list('id', flat=True)
-    analisis = Analisis.objects.filter(fk_sesion__in=sesiones).values()
+    analisis = Analisis.objects.filter(fk_sesion__in=sesiones).order_by('-id').values()
     listado=[]
     for a in analisis:
         texto = a['nombrepc'] + ' - ' + str(a['fecha'])
-        item = [{'id_analisis':a['id'],'analisis':texto}]
+        item = {'id_analisis':a['id'],'analisis':texto}
         listado.append(item)
     return listado
        

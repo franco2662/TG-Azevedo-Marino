@@ -168,10 +168,6 @@ const handleSignIn = async(e)=>{
                 value={pass}
                 onChange={(e)=>setPass(e.target.value)}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Recordarme"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -181,13 +177,13 @@ const handleSignIn = async(e)=>{
               >
                 Iniciar Sesión
               </Button>
-              <Grid container>
+              {/* <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
                     Olvidó su contraseña?
                   </Link>
                 </Grid>                
-              </Grid>
+              </Grid> */}
             </Box>
             <Snackbar open={successAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
               <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%' }}>

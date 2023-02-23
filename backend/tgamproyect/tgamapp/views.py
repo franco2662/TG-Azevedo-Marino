@@ -291,7 +291,7 @@ def list_bad_all(request,id_analisis):
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def list_bad_avg(request,id_analisis):
+def list_bad_all_avg(request,id_analisis):
     lista_completa = fn_list_bad_all(id_analisis)    
     lista = fn_bad_all_avg(id_analisis,lista_completa)
     resultado=json.dumps(lista)
