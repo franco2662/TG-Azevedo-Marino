@@ -302,3 +302,24 @@ def list_analisis_by_user(request,id_user):
     lista = get_analisis_by_user(id_user)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_procs_avg(request,id_analisis):
+    lista_completa = fn_list_bad_all(id_analisis)    
+    lista = fn_bad_proc_avg(lista_completa)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_dirs_avg(request,id_analisis):
+    lista_completa = fn_list_bad_all(id_analisis)    
+    lista = fn_bad_dir_avg(lista_completa)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_regs_avg(request,id_analisis):
+    lista_completa = fn_list_bad_all(id_analisis)      
+    lista = fn_bad_reg_avg(lista_completa)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)

@@ -15,6 +15,12 @@ import CantRegs from "./graficos/CantRegs";
 import ListProcs from "./graficos/ListProcs";
 import ListDirs from "./graficos/ListDirs";
 import ListRegs from "./graficos/ListRegs";
+import ProcsAvgCant from "./graficos/ProcsAvgCant";
+import ProcsAvgPerc from "./graficos/ProcsAvgPerc";
+import DirsAvgCant from "./graficos/DirsAvgCant";
+import DirsAvgPerc from "./graficos/DirsAvgPerc";
+import RegsAvgCant from "./graficos/RegsAvgCant";
+import RegsAvgPerc from "./graficos/RegsAvgPerc";
 
 const ModuloReportes = () =>{
   
@@ -72,6 +78,12 @@ const ModuloReportes = () =>{
       <ListProcs id={idAnalisis}/> 
       <ListDirs id={idAnalisis}/>
       <ListRegs id={idAnalisis}/>
+      <ProcsAvgCant id={idAnalisis}/>
+      <ProcsAvgPerc id={idAnalisis}/>
+      <DirsAvgCant id={idAnalisis}/>
+      <DirsAvgPerc id={idAnalisis}/>
+      <RegsAvgCant id={idAnalisis}/>
+      <RegsAvgPerc id={idAnalisis}/>
       </Container>
       </>
       )
