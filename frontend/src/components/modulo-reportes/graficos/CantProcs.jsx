@@ -50,6 +50,9 @@ const setChartConfig = () =>{
 }
 
 const reporte = () =>{
+  if(series[0]==undefined){
+    return(<>cargando chart</>);
+  }
        return(    
         <Chart redraw="true" options={options} series={series} type="pie" width={500} height={400}/>    
     );
@@ -68,7 +71,7 @@ useEffect(() => {
         setChartConfig();
       };
     getListCantProcs();  
-  }, [props.id]);
+  }, [lista]);
 
 
     return (

@@ -52,5 +52,6 @@ urlpatterns = [
     path('listBadDirsAvg/<int:id_analisis>',views.list_bad_dirs_avg),
     path('listBadRegsAvg/<int:id_analisis>',views.list_bad_regs_avg),
     path('listBadAllAvg/<int:id_analisis>',views.list_bad_all_avg),
-    path('listAnalisisByUser/<int:id_user>',views.list_analisis_by_user)
+    path('listAnalisisByUser/<int:id_user>',views.list_analisis_by_user),
+    path('lastIdAnalisisByUser/<int:id_user>',views.last_analisis_id)
 ]

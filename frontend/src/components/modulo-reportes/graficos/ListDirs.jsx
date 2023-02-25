@@ -65,6 +65,9 @@ const setChartConfig = () =>{
 }
 
 const reporte = () =>{
+  if(series[0]==undefined){
+    return(<>cargando chart</>);
+  }
        return(    
         <Chart redraw="true" options={options} series={series} type="bar" width={500} height={400}/>    
     );
@@ -83,7 +86,7 @@ useEffect(() => {
         setChartConfig();
       };
     getListDirs();  
-  }, [props.id]);
+  }, [lista]);
 
 
     return (

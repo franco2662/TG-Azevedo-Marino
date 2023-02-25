@@ -323,3 +323,9 @@ def list_bad_regs_avg(request,id_analisis):
     lista = fn_bad_reg_avg(lista_completa)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def last_analisis_id(request,id_user):
+    id_analisis = last_analisis_by_user(id_user)
+    resultado = json.dumps({'id_analisis':id_analisis})
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)

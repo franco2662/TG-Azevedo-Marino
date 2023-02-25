@@ -23,7 +23,9 @@ const setChartConfig = () =>{
   let data_serie = [];
   let data_label = [];
   lista.map((item) => {
-    data_label.push(item["registro"]);
+    let registro = String(item["registro"]);
+    registro = registro.substring(0, registro.indexOf(' '))
+    data_label.push(registro);
     data_serie.push(item["cantidad"]);
   }
   );
@@ -46,6 +48,9 @@ const setChartConfig = () =>{
     fill: {
       type: 'gradient',
     },
+    legend: {
+      position: 'bottom'
+    },
     responsive: [{
       breakpoint: undefined,
       options: {
@@ -65,6 +70,9 @@ const setChartConfig = () =>{
 }
 
 const reporte = () =>{
+  if(series[0]==undefined){
+    return(<>cargando chart</>);
+  }
        return(    
         <Chart redraw="true" options={options} series={series} type="donut" width={500} height={400}/>    
     );
@@ -83,7 +91,7 @@ useEffect(() => {
         setChartConfig();
       };
       getRegsAvg();  
-  }, [props.id]);
+  }, [lista]);
 
 
     return (
