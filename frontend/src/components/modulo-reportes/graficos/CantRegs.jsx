@@ -12,6 +12,7 @@ const instance = axios.create()
 instance.defaults.baseURL = baseURL;
 const tipo_array = [{'categoria': 'registros', 'No Deseados': 0, 'Prob No Deseados': 0}]
 const[lista,setLista] = useState(tipo_array);
+const[cargado,setCargado] = useState(false);
 
 
 const [options, setOptions] = useState({
@@ -47,6 +48,7 @@ const [options, setOptions] = useState({
 
 const setChartConfig = () =>{
   setSeries([lista['No Deseados'],lista['Prob No Deseados']])
+  setCargado(true);
 }
 
 const reporte = () =>{
@@ -69,9 +71,9 @@ useEffect(() => {
         } finally {   
         }      
         setChartConfig();
-      };
+  };
     getListCantRegs();  
-  }, [lista]);
+  }, [cargado]);
 
 
     return (

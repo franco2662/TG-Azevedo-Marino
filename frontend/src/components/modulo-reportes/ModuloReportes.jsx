@@ -109,7 +109,7 @@ const ModuloReportes = () =>{
       return true;
     };
     getAnalisisList();
-  }, []);
+  }, [idAnalisis]);
 
     return (     
       <>

@@ -12,6 +12,7 @@ const instance = axios.create()
 instance.defaults.baseURL = baseURL;
 const tipo_array = [{'proceso': '', 'cantidad': 0, 'porcentaje': 0.00}]
 const[lista,setLista] = useState(tipo_array);
+const[cargado,setCargado] = useState(false);
 
 
 const [options, setOptions] = useState({});
@@ -65,6 +66,7 @@ const setChartConfig = () =>{
     }]
   })
   setSeries(data_serie);
+  setCargado(true);
 }
 
 const reporte = () =>{
@@ -87,9 +89,9 @@ useEffect(() => {
         } finally {   
         }      
         setChartConfig();
-      };
-      getProcsAvg();  
-  }, [lista]);
+  };
+    getProcsAvg();  
+  }, [cargado]);
 
 
     return (

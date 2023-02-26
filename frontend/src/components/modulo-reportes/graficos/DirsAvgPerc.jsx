@@ -12,6 +12,7 @@ const instance = axios.create()
 instance.defaults.baseURL = baseURL;
 const tipo_array = [{'proceso': '', 'id_tipo': 0, 'porcentaje': 0.00}]
 const[lista,setLista] = useState(tipo_array);
+const[cargado,setCargado] = useState(false);
 
 
 const [options, setOptions] = useState({
@@ -60,6 +61,7 @@ const setChartConfig = () =>{
   }
   );
   setSeries([{name: 'promedio',data:data_serie,color:'#D6A3E7'}]);
+  setCargado(true);
 }
 
 const reporte = () =>{
@@ -82,9 +84,9 @@ useEffect(() => {
       } finally {   
       }      
       setChartConfig();
-    };
-    getDirsAvg();  
-}, [lista]);
+  };
+    getDirsAvg();
+}, [cargado]);
 
 
     return (

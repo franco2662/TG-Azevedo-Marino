@@ -13,6 +13,7 @@ instance.defaults.baseURL = baseURL;
 const tipo_array = [{'proceso': '', 'id_tipo': 0, 'porcentaje': 0.00}]
 const[lista,setLista] = useState(tipo_array);
 const[colores,setColores] = useState([]);
+const[cargado,setCargado] = useState(false);
 
 
 const [options, setOptions] = useState({
@@ -62,6 +63,7 @@ const setChartConfig = () =>{
   }
   )
   setSeries([{name: 'porcentaje',data:data_serie,color:'#7358CB'}]);
+  setCargado(true);
 }
 
 const reporte = () =>{
@@ -84,9 +86,9 @@ useEffect(() => {
         } finally {   
         }      
         setChartConfig();
-      };
+  };
     getListRegs();  
-  }, [lista]);
+  }, [cargado]);
 
 
     return (
