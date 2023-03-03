@@ -4,7 +4,6 @@ import Chart from 'react-apexcharts'
 import { Container } from "@mui/system";
 import { useAppContext } from "../../../AppContext";
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
 
@@ -59,7 +58,7 @@ const reporte = () =>{
     return (<>cargando chart</>);
   }
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth:500,minHeight:400,marginBottom:5,marginRight:2, borderRadius: 5 }} elevation={8}>
       <CardContent>
         <Chart redraw="true" options={options} series={series} type="pie" width={500} height={400} />
       </CardContent>

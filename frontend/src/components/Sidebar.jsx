@@ -55,7 +55,7 @@ const Sidebar = () => {
           <CustomListItemIcon>
             <BarChartIcon />
           </CustomListItemIcon>
-          <ListItemText primary="Reports" />
+          <ListItemText primary="Reportes" />
         </CustomListItemButton>
         </Link>
         {

@@ -5,6 +5,7 @@ import Chart from 'react-apexcharts'
 import { Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -21,6 +22,7 @@ import DirsAvgCant from "./graficos/DirsAvgCant";
 import DirsAvgPerc from "./graficos/DirsAvgPerc";
 import RegsAvgCant from "./graficos/RegsAvgCant";
 import RegsAvgPerc from "./graficos/RegsAvgPerc";
+import CatGif from '../../assets/cat_data.gif'
 
 const ModuloReportes = () =>{
   
@@ -45,7 +47,7 @@ const ModuloReportes = () =>{
     }
   }
 
-  const reportes =()=>{
+  const reportes =()=>{         
     if(isBusy)
       return(<>cargando</>)
     else{
@@ -89,7 +91,13 @@ const ModuloReportes = () =>{
       )
       }        
       else
-        return(<>sin analisis</>)
+        return (
+        <Box sx={{display:'flex',flexDirection:'column' , alignItems:"center",justifyContent : 'space-between'}}>
+          <Typography variant="h4">No se encontraron análisis!</Typography>
+          <Typography variant="h5" sx={{marginBottom:10}}>Ingrese al módulo Archivo para cargar los datos</Typography>
+           <img src={CatGif} />
+           </Box>
+           )
     }   
   }
 
@@ -107,9 +115,9 @@ const ModuloReportes = () =>{
       if(listaAnalisis.length>0)
         setIdAnalisis(listaAnalisis[0]['id_analisis'])
       return true;
-    };
+    };     
     getAnalisisList();
-  }, [idAnalisis]);
+  }, []);
 
     return (     
       <>

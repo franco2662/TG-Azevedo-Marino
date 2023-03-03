@@ -3,6 +3,8 @@ import axios from "axios";
 import Chart from 'react-apexcharts'
 import { Container } from "@mui/system";
 import { useAppContext } from "../../../AppContext";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 
 const RegsAvgPerc = (props) =>{
@@ -68,9 +70,13 @@ const reporte = () =>{
   if(series[0]==undefined){
     return(<>cargando chart</>);
   }
-       return(    
-        <Chart redraw="true" options={options} series={series} type="bar" width={500} height={400}/>    
-    );
+  return (
+    <Card sx={{ minWidth: 500, minHeight: 400, marginBottom: 5, marginRight: 2, borderRadius: 5  }} elevation={8}>
+      <CardContent>
+        <Chart redraw="true" options={options} series={series} type="bar" width={500} height={400} />
+      </CardContent>
+    </Card>
+  );
 }
 
 useEffect(() => {   

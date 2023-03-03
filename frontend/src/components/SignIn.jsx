@@ -30,6 +30,7 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  borderRadius: 5
 };
 const SignIn = () => {
   
@@ -185,12 +186,12 @@ const handleSignIn = async(e)=>{
                 </Grid>                
               </Grid> */}
             </Box>
-            <Snackbar open={successAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
-              <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%' }}>
+            <Snackbar open={successAlert} autoHideDuration={2500} onClose={handleClose} sx={{ width: '90%'}}>
+              <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%'}}>
                 {success}
               </Alert>
             </Snackbar>
-            <Snackbar open={errorAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
+            <Snackbar open={errorAlert} autoHideDuration={2500} onClose={handleClose} sx={{ width: '90%'}}>
               <Alert onClose={handleClose} severity="error" variant='filled' sx={{ width: '100%' }}>
                 {error}
               </Alert>

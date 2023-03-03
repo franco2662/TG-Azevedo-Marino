@@ -329,3 +329,13 @@ def last_analisis_id(request,id_user):
     id_analisis = last_analisis_by_user(id_user)
     resultado = json.dumps({'id_analisis':id_analisis})
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def prueba(request):
+    print(request.FILES['file'])
+    file = open('tgamapp/ia_tests/ArchivoIAReducido.txt', 'r')
+    for line in file:
+        print(line)
+        break
+    file.close
+    return Response(True,status.HTTP_200_OK)
