@@ -238,8 +238,8 @@ def save_analisis(request):
     return Response(True,status.HTTP_200_OK)
 
 @api_view(['GET'])
-def complete_analisis(request):
-    lista = analisis_completo()
+def complete_analisis(request,id_sesion):
+    lista = analisis_completo(id_sesion)
     return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
@@ -291,8 +291,51 @@ def list_bad_all(request,id_analisis):
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def list_bad_avg(request,id_analisis):
+def list_bad_all_avg(request,id_analisis):
     lista_completa = fn_list_bad_all(id_analisis)    
     lista = fn_bad_all_avg(id_analisis,lista_completa)
     resultado=json.dumps(lista)
     return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_analisis_by_user(request,id_user):
+    lista = get_analisis_by_user(id_user)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_procs_avg(request,id_analisis):
+    lista_completa = fn_list_bad_all(id_analisis)    
+    lista = fn_bad_proc_avg(lista_completa)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_dirs_avg(request,id_analisis):
+    lista_completa = fn_list_bad_all(id_analisis)    
+    lista = fn_bad_dir_avg(lista_completa)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def list_bad_regs_avg(request,id_analisis):
+    lista_completa = fn_list_bad_all(id_analisis)      
+    lista = fn_bad_reg_avg(lista_completa)
+    resultado=json.dumps(lista)
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def last_analisis_id(request,id_user):
+    id_analisis = last_analisis_by_user(id_user)
+    resultado = json.dumps({'id_analisis':id_analisis})
+    return JsonResponse(resultado,safe =False,status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def prueba(request):
+    print(request.FILES['file'])
+    file = open('tgamapp/ia_tests/ArchivoIAReducido.txt', 'r')
+    for line in file:
+        print(line)
+        break
+    file.close
+    return Response(True,status.HTTP_200_OK)

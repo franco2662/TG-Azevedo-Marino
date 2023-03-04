@@ -101,8 +101,8 @@ def listar_procesos(file):
 def analisis_test():
   return leer_archivo_ia_test()
 
-def analisis_completo():
-  return leer_archivo_ia()
+def analisis_completo(id_sesion):
+  return leer_archivo_ia(id_sesion)
 
 def leer_procesos():
   f = open('tgamapp/ia_tests/ProcesosTest.txt', 'r')
@@ -294,26 +294,26 @@ def save_bd_test():
   file_procesos.close()
 
 
-def leer_archivo_ia():
-  file = open('tgamapp/ia_tests/ArchivoIAReducido.txt', 'r')
+def leer_archivo_ia(id_sesion):
+  file = open('tgamapp/ia_tests/Archivo_IA.txt', 'r', errors='ignore')
   myFile = io.StringIO(file.read())
   content = myFile.read()  
   file.close()
-  file_procesos = io.StringIO(content[content.index("Node"):content.index("Directorio")-1])
-  file_directorios = io.StringIO(content[content.index("Directorio"):content.index("Registro")-1])
-  file_registros = io.StringIO(content[content.index("Registro"):])
+  file_procesos = io.StringIO(content[content.index("Node"):content.index("Directorio_Columna")-1])
+  file_directorios = io.StringIO(content[content.index("Directorio_Columna"):content.index("Registro_Columna")-1])
+  file_registros = io.StringIO(content[content.index("Registro_Columna"):])
   myFile.close()
-
+  # analisis = Analisis.objects.get(id=32)
   analisis = Analisis()
   fecha_actual = datetime.now()
   analisis.fecha = fecha_actual
-  analisis.fk_sesion = Sesion.objects.first()
+  analisis.fk_sesion = Sesion.objects.get(id=id_sesion)
   analisis.save()
 
   lista_procesos=analisis_procesos(file_procesos,analisis)
   lista_directorios = analisis_directorios(file_directorios,analisis)
   lista_registros = analisis_registros(file_registros,analisis)
-  lista = json.dumps([lista_procesos,lista_directorios,lista_registros]) 
+  lista = json.dumps([lista_procesos,lista_directorios,lista_registros])
 
   file_procesos.close()
   file_directorios.close()
@@ -329,7 +329,6 @@ def analisis_procesos(file,analisis):
   data = pd.read_csv(file, on_bad_lines='skip')
 
   tipos_num=["float64","int64"]
-
   nombre_pc =""
 
   for column in data:
@@ -346,7 +345,6 @@ def analisis_procesos(file,analisis):
     predictions = model.predict(input_dict,verbose = 0)
     resultado= 100 * predictions[0]
     resultado=round(100 - resultado[0],2)
-
     proceso = Proceso()
     proceso.fk_analisis = analisis
     for column in data:
@@ -380,11 +378,9 @@ def analisis_directorios(file,analisis):
   lista_no_deseados=[]
   lista_prob_no_deseados=[]
   model = tf.keras.models.load_model('tgamapp/ia_models/model_directorios')
-
   data = pd.read_csv(file, on_bad_lines='skip')
-
   for ind in data.index:
-    sample = data.iloc[[ind]]["Directorio"]
+    sample = data.iloc[[ind]]["Directorio_Columna"]
     predictions = model.predict(sample,verbose = 0)
     resultado= 100 * predictions[0]
     resultado=round(100 - resultado[0],2)
@@ -417,7 +413,7 @@ def analisis_registros(file,analisis):
   data = pd.read_csv(file, on_bad_lines='skip')
 
   for ind in data.index:
-    sample = data.iloc[[ind]]["Registro"]
+    sample = data.iloc[[ind]]["Registro_Columna"]
     predictions = model.predict(sample,verbose = 0)
     resultado= 100 * predictions[0]
     resultado=round(100 - resultado[0],2)
