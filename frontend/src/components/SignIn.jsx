@@ -30,6 +30,7 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  borderRadius: 5
 };
 const SignIn = () => {
   
@@ -168,10 +169,6 @@ const handleSignIn = async(e)=>{
                 value={pass}
                 onChange={(e)=>setPass(e.target.value)}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Recordarme"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -181,20 +178,20 @@ const handleSignIn = async(e)=>{
               >
                 Iniciar Sesión
               </Button>
-              <Grid container>
+              {/* <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
                     Olvidó su contraseña?
                   </Link>
                 </Grid>                
-              </Grid>
+              </Grid> */}
             </Box>
-            <Snackbar open={successAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
-              <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%' }}>
+            <Snackbar open={successAlert} autoHideDuration={2500} onClose={handleClose} sx={{ width: '90%'}}>
+              <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%'}}>
                 {success}
               </Alert>
             </Snackbar>
-            <Snackbar open={errorAlert} autoHideDuration={3000} onClose={handleClose} sx={{ width: '100%' }}>
+            <Snackbar open={errorAlert} autoHideDuration={2500} onClose={handleClose} sx={{ width: '90%'}}>
               <Alert onClose={handleClose} severity="error" variant='filled' sx={{ width: '100%' }}>
                 {error}
               </Alert>

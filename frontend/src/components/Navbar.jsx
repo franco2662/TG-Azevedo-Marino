@@ -100,8 +100,8 @@ const CustomAppBar = styled(AppBar, {
 
           <Box width="15%" sx={{ display: 'flex', marginLeft: "10px", alignItems: 'center' }}>
             
-            <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={exitSession}>
-              <Typography variant="h7">Cerrar Sesión</Typography>
+            <ListItemButton variant="contained" sx={{ flexGrow: 4,justifyContent:'center', borderRadius: 5  }} onClick={exitSession}>
+            <Button variant="contained" sx={{borderRadius: 1 }}><Typography variant="h7">Cerrar Sesión</Typography></Button>
             </ListItemButton> 
           </Box>
         </Toolbar>

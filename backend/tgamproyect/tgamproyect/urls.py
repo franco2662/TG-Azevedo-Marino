@@ -39,7 +39,7 @@ urlpatterns = [
     path('modifyUser/',views.modify_user),
     path('analisisTest/',views.analisis_test),
     path('saveAnalisisTest/',views.save_analisis),
-    path('analisisCompleto/',views.complete_analisis),
+    path('analisisCompleto/<int:id_sesion>',views.complete_analisis),
     path('countProcs/<int:id_analisis>',views.count_procs),
     path('countDirs/<int:id_analisis>',views.count_dirs),
     path('countRegs/<int:id_analisis>',views.count_regs),
@@ -48,5 +48,11 @@ urlpatterns = [
     path('listBadDirs/<int:id_analisis>',views.list_bad_dirs),
     path('listBadRegs/<int:id_analisis>',views.list_bad_regs),
     path('listBadAll/<int:id_analisis>',views.list_bad_all),
-    path('listBadAvg/<int:id_analisis>',views.list_bad_avg)
+    path('listBadProcsAvg/<int:id_analisis>',views.list_bad_procs_avg),
+    path('listBadDirsAvg/<int:id_analisis>',views.list_bad_dirs_avg),
+    path('listBadRegsAvg/<int:id_analisis>',views.list_bad_regs_avg),
+    path('listBadAllAvg/<int:id_analisis>',views.list_bad_all_avg),
+    path('listAnalisisByUser/<int:id_user>',views.list_analisis_by_user),
+    path('lastIdAnalisisByUser/<int:id_user>',views.last_analisis_id),
+    path('uploadFile/',views.prueba)
 ]
