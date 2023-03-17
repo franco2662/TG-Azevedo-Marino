@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from '@mui/material/styles';
 import { useAppContext } from "../AppContext";
 import { useNavigate } from "react-router-dom";
+import LogoCompleto from '../assets/logo_completo_1.png'
 
 
 const Navbar = () => {
@@ -79,10 +80,9 @@ const CustomAppBar = styled(AppBar, {
     navigate("/");
   };
 
-
   return (
     <Box sx={{  alignItems: "center" }}>
-      <CustomAppBar id="appbar" position="fixed" open={open} sx = {{minHeight:'5%'}}>
+      <CustomAppBar id="appbar" position="fixed" open={open} sx = {{minHeight:'5%',display: 'flex', justifyContent: 'center',backgroundColor: '#34043D',backgroundImage: "linear-gradient(to right,#453FC6, #34043D)"}}>
         <Toolbar id="toolbar" display="flex">
           <IconButton
             color="inherit"
@@ -91,17 +91,29 @@ const CustomAppBar = styled(AppBar, {
             onClick={toggleDrawerOpen}
             sx={{
               marginRight: 5,
-              ...(showSidebar && { display: 'none' }),
+              ...(showSidebar && { display: 'none' }), backgroundColor: '#3530a1', borderRadius: 2, ":hover": {
+                bgcolor: "#2a2681",
+                color: "white"
+              }
             }}
           >
           <MenuIcon />
           </IconButton>
-          <Typography variant="h6" sx={{ flexGrow: 1 }} >Dashboard</Typography>
-
+          {/* <Typography variant="h6" sx={{ flexGrow: 1 }} >Dashboard</Typography> */}
+          <Box id='logoDashboard' sx={{flexGrow: 1,
+        justifyContent: 'center', marginLeft:2
+      }}>
+        <img src={LogoCompleto} height={38} width={184} alt="Logo" />
+      </Box>
           <Box width="15%" sx={{ display: 'flex', marginLeft: "10px", alignItems: 'center' }}>
             
-            <ListItemButton variant="contained" sx={{ flexGrow: 4,justifyContent:'center', borderRadius: 5  }} onClick={exitSession}>
-            <Button variant="contained" sx={{borderRadius: 1 }}><Typography variant="h7">Cerrar Sesión</Typography></Button>
+            <ListItemButton variant="contained" sx={{ flexGrow: 4, justifyContent: 'center', borderRadius: 5 }} onClick={exitSession}>
+              <Button variant="contained" sx={{
+                backgroundColor: '#453FC6', borderRadius: 2, ":hover": {
+                  bgcolor: "#3530a1",
+                  color: "white"
+                }
+              }}><Typography variant="h7">Cerrar Sesión</Typography></Button>
             </ListItemButton> 
           </Box>
         </Toolbar>

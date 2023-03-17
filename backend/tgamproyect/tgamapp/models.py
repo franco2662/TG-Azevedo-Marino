@@ -287,3 +287,13 @@ class MyappTipo(models.Model):
     class Meta:
         managed = False
         db_table = 'myapp_tipo'
+
+class Virus(models.Model):
+    id = models.BigAutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    ruta = models.CharField(db_column='Ruta', max_length=100, blank=True, null=True)
+    descripcion = models.CharField(db_column='Descripcion', max_length=100, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Virus'

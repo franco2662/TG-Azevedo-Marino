@@ -179,5 +179,20 @@ def last_analisis_by_user(id):
     id_analisis = Analisis.objects.filter(fk_sesion__in=sesiones).latest('id').id    
     return id_analisis    
     
+def save_virus_list():
+    file = open('tgamapp/ia_tests/ArregladoVirusMalwareLessColumn.csv', 'r', errors='ignore')
+    lineas = file.readlines()[1:]
+    # registro = {'nombre':'','ruta':'','descripcion':''}
+    virus = Virus()
+    for line in lineas:
+        archivo = line.split(',')
+        # registro['descripcion'] = archivo[3]
+        # registro['nombre'] = archivo[8]
+        # registro['ruta'] = archivo[9]
+        virus = Virus()
+        virus.nombre = archivo[8]
+        virus.ruta = archivo[9]
+        virus.descripcion = archivo[3]
+        virus.save()
 
     

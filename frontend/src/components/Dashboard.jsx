@@ -33,12 +33,12 @@ const Dashboard = () => {
     return (
         <div className="App">
             <CssBaseline />
-            <Box>
+            <Box >
                 <Sidebar />
                 <Navbar />
                 <section className="Modulos">
                 <Box
-                    sx={{ marginLeft: feedMarginLeft, marginTop: feedMarginTop, marginRight: feedMarginRight }}
+                    sx={{ marginLeft: feedMarginLeft, marginTop: feedMarginTop, marginRight: feedMarginRight}}
                 >
                    <Outlet/>
                 </Box>
