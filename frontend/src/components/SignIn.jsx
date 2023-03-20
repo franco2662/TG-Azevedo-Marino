@@ -19,6 +19,7 @@ import { useState } from 'react';
 import axios from "axios";
 import { useAppContext } from "../AppContext";
 import { useNavigate } from "react-router-dom";
+import LogoCompleto from '../assets/logo_completo_1.png'
 
 const style = {
   position: 'absolute',
@@ -27,177 +28,186 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '3px solid #000',
   boxShadow: 24,
   p: 4,
   borderRadius: 5
 };
 const SignIn = () => {
-  
+
   const {
     baseURL,
     makeSesion,
-    usuarioObjeto} = useAppContext();
-  
+    usuarioObjeto } = useAppContext();
+
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
   const navigate = useNavigate();
   const theme = createTheme();
-  const[user,setUser]=useState("");
-  const[pass,setPass]=useState("");
-  const[error,setError]=useState("");
-  const[success,setSuccess]=useState("");
-  const[errorAlert,setErrorAlert]=useState(false);  
-  const[successAlert,setSuccessAlert]=useState(false);
-  
-  const handleClose = ()=>{
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [successAlert, setSuccessAlert] = useState(false);
+
+  const handleClose = () => {
     setSuccessAlert(false);
     setErrorAlert(false);
   }
 
-  async function setUserData(){
-    try{      
+  async function setUserData() {
+    try {
       await makeSesion(user);
-    }catch{
+    } catch {
 
-    }finally{
-      setTimeout(1000,navigate("/dashboard"));
+    } finally {
+      setTimeout(1000, navigate("/dashboard"));
     }
   }
 
-async function verifyUser(){
-  try
-  { 
-    setSuccessAlert(false);
-    setErrorAlert(false);
-    const response = await instance.get("verifyuser/"+user);
-    if(!response?.data)
-      return false;
-    else 
-      if(response.data == true)
-        return true;
-      else
+  async function verifyUser() {
+    try {
+      setSuccessAlert(false);
+      setErrorAlert(false);
+      const response = await instance.get("verifyuser/" + user);
+      if (!response?.data)
         return false;
-  }
-  catch(err)
-  {
-    if (!err?.response) 
-    {
-      console.log("No Server Response");
+      else
+        if (response.data == true)
+          return true;
+        else
+          return false;
     }
-    else
-    {
-      console.log("User verification failed");
+    catch (err) {
+      if (!err?.response) {
+        console.log("No Server Response");
+      }
+      else {
+        console.log("User verification failed");
+      }
+      return false;
     }
-    return false;    
   }
-}
 
-const handleSignIn = async(e)=>{
-  try
-  { 
-    e.preventDefault();
-    const verificacion_usuario = await verifyUser();
-    if(verificacion_usuario)
-    {
-      const obj = { email: user, clave: pass };
-      const json_request = JSON.stringify(obj);
-      const response = await instance.post("validatesignin/", json_request);
-      if(response.data==true){    
-        setSuccess("Ha iniciado sesión!");
-        setSuccessAlert(true);
-        setUserData();        
-      }      
+  const handleSignIn = async (e) => {
+    try {
+      e.preventDefault();
+      const verificacion_usuario = await verifyUser();
+      if (verificacion_usuario) {
+        const obj = { email: user, clave: pass };
+        const json_request = JSON.stringify(obj);
+        const response = await instance.post("validatesignin/", json_request);
+        if (response.data == true) {
+          setSuccess("Ha iniciado sesión!");
+          setSuccessAlert(true);
+          setUserData();
+        }
+      }
+      else {
+        setError("Usuario Inválido");
+        setErrorAlert(true);
+      }
     }
-    else
-    {
-      setError("Usuario Inválido");
+    catch (err) {
+      if (!err?.response) {
+        setError("Error en el servidor");
+      }
+      else {
+        setError("Credenciales incorrectas")
+      }
+      setSuccessAlert(false);
       setErrorAlert(true);
-    }       
-  }
-  catch(err)
-  {
-    if (!err?.response) 
-    {
-      setError("Error en el servidor");
     }
-    else
-    {
-      setError("Credenciales incorrectas")
-    }
-    setSuccessAlert(false);
-    setErrorAlert(true);    
   }
-}
   return (
-    
-      <Box
-          
-      sx={{
-        ...style
-      }}
-    >
-          <CssBaseline />
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Iniciar Sesión
-            </Typography>
-            <Box component="form" noValidate sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Correo Electrónico"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                value={user}
-                onChange={(e)=>setUser(e.target.value)}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={pass}
-                onChange={(e)=>setPass(e.target.value)}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick ={handleSignIn}
-              >
-                Iniciar Sesión
-              </Button>
-              {/* <Grid container>
+    <Box id='primerBox' sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: '#34043D',
+      backgroundImage: "radial-gradient(#453FC6, #34043D)",
+      minHeight: "100vh",
+      margin: '0',
+      padding: '0'
+    }}>
+      <Box id='segundoBox' sx={{
+        marginTop:12,
+        marginBottom: 4,
+        height:'100%',
+        width: '100%',
+        textAlign: 'center'
+      }}>
+        <img src={LogoCompleto} height={128} width={613} alt="Logo" />
+      </Box>
+      <Box id='tercerBox'sx={{
+        ...style,
+        marginTop:8,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Iniciar Sesión
+        </Typography>
+        <Box id='cuartoBox'component="form" noValidate sx={{ mt: 1, paddingBottom: "20px"}}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Correo Electrónico"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Contraseña"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={handleSignIn}
+          >
+            Iniciar Sesión
+          </Button>
+          {/* <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
                     Olvidó su contraseña?
                   </Link>
                 </Grid>                
               </Grid> */}
-            </Box>
-            <Snackbar open={successAlert} autoHideDuration={2500} onClose={handleClose} sx={{ width: '90%'}}>
-              <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%'}}>
-                {success}
-              </Alert>
-            </Snackbar>
-            <Snackbar open={errorAlert} autoHideDuration={2500} onClose={handleClose} sx={{ width: '90%'}}>
-              <Alert onClose={handleClose} severity="error" variant='filled' sx={{ width: '100%' }}>
-                {error}
-              </Alert>
-            </Snackbar>
-          </Box>
-    );
-  }
+        </Box>
+        <Snackbar open={successAlert} autoHideDuration={2500} onClose={handleClose} sx={{ width: '90%' }}>
+          <Alert onClose={handleClose} severity="success" variant='filled' sx={{ width: '100%' }}>
+            {success}
+          </Alert>
+        </Snackbar>
+        <Snackbar open={errorAlert} autoHideDuration={2500} onClose={handleClose} sx={{ width: '90%' }}>
+          <Alert onClose={handleClose} severity="error" variant='filled' sx={{ width: '100%' }}>
+            {error}
+          </Alert>
+        </Snackbar>
+      </Box>
+    </Box>
+  );
+}
 
 export default SignIn;

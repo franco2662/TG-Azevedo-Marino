@@ -339,3 +339,8 @@ def prueba(request):
         break
     file.close
     return Response(True,status.HTTP_200_OK)
+
+@api_view(['POST'])
+def save_virus_info(request):
+    save_virus_list()
+    return Response(True,status.HTTP_200_OK)

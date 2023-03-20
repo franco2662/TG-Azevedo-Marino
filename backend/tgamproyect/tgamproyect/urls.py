@@ -54,5 +54,6 @@ urlpatterns = [
     path('listBadAllAvg/<int:id_analisis>',views.list_bad_all_avg),
     path('listAnalisisByUser/<int:id_user>',views.list_analisis_by_user),
     path('lastIdAnalisisByUser/<int:id_user>',views.last_analisis_id),
-    path('uploadFile/',views.prueba)
+    path('uploadFile/',views.prueba),
+    path('saveVirusInfo/',views.save_virus_info)
 ]

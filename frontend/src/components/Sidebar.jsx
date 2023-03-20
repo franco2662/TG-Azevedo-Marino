@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar,Drawer,IconButton, styled, Typography, Box, InputBase, Badge, Grid, ListItem, ListItemButton, ListItemIcon, ListItemText, tableFooterClasses, Divider } from "@mui/material";
+import { AppBar, Toolbar,Drawer,IconButton, styled, Typography, Box, InputBase, Badge, Grid, ListItem, ListItemButton, ListItemIcon, ListItemText, tableFooterClasses, Divider, Button } from "@mui/material";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import LayersIcon from '@mui/icons-material/Layers';
@@ -38,24 +38,33 @@ const Sidebar = () => {
   });
 
   return (
-    <Drawer variant="persistent" open={showSidebar} >
-        <DrawerHeader>
-          <IconButton onClick={handleSidebar}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+    <Drawer variant="persistent" open={showSidebar}>
+        <DrawerHeader sx={{backgroundColor: '#453FC6'}}>
+        <IconButton onClick={handleSidebar}>
+          {theme.direction === 'rtl' ? <ChevronRightIcon sx={{
+            color: '#FFFFFF', backgroundColor: '#3530a1', borderRadius: 2, ":hover": {
+              bgcolor: "#2a2681",
+              color: "white"
+            }
+          }} /> : <ChevronLeftIcon sx={{
+            color: '#FFFFFF', backgroundColor: '#3530a1', borderRadius: 2, ":hover": {
+              bgcolor: "#2a2681",
+              color: "white"
+            }
+          }} />}
+        </IconButton>
         </DrawerHeader>
-        <Divider />
       <Box
         flex={1}
         p={4}
-        sx={{ display: { xs: "none", sm: "block" } }}
+        sx={{ display: { xs: "none", sm: "block",backgroundColor: '#34043D',backgroundImage: "linear-gradient(to bottom,#453FC6, #34043D)" } }}
       >
         <Link to="/dashboard">
-        <CustomListItemButton>
+        <CustomListItemButton sx={{backgroundColor: '#453FC6',borderRadius: 2}}>
           <CustomListItemIcon>
-            <BarChartIcon />
+            <BarChartIcon sx={{color: '#FFFFFF'}}/>
           </CustomListItemIcon>
-          <ListItemText primary="Reportes" />
+          <ListItemText primary="Reportes" sx={{color: '#FFFFFF'}} />
         </CustomListItemButton>
         </Link>
         {
@@ -63,22 +72,22 @@ const Sidebar = () => {
           <> 
           <Divider/>
         <Link to="/dashboard/usuarios">
-        <CustomListItemButton>
+        <CustomListItemButton sx={{backgroundColor: '#453FC6',borderRadius: 2, marginTop:1}}>
           <CustomListItemIcon>
-            <PeopleIcon />
+            <PeopleIcon sx={{color: '#FFFFFF'}}/>
           </CustomListItemIcon>
-          <ListItemText primary="Usuarios" />
+          <ListItemText primary="Usuarios" sx={{color: '#FFFFFF'}}/>
         </CustomListItemButton>
         </Link>
         </>   
         :<></>}             
         <Divider/>
         <Link to="/dashboard/archivo">
-        <CustomListItemButton>
+        <CustomListItemButton sx={{backgroundColor: '#453FC6',borderRadius: 2, marginTop:1}}>
           <CustomListItemIcon>
-            <LayersIcon />
+            <LayersIcon sx={{color: '#FFFFFF'}}/>
           </CustomListItemIcon>
-          <ListItemText primary="Archivo" />
+          <ListItemText primary="Archivo" sx={{color: '#FFFFFF'}} />
         </CustomListItemButton>
         </Link>
       </Box>
