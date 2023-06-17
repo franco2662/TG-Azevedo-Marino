@@ -55,5 +55,7 @@ urlpatterns = [
     path('listAnalisisByUser/<int:id_user>',views.list_analisis_by_user),
     path('lastIdAnalisisByUser/<int:id_user>',views.last_analisis_id),
     path('uploadFile/',views.prueba),
-    path('saveVirusInfo/',views.save_virus_info)
+    path('saveVirusInfo/',views.save_virus_info),
+    path('analisisOptimizado/<int:id_user>',views.analisis_optimizado),
+    path('analisisHistory/<int:id_user>',views.historial_analisis)
 ]

@@ -195,4 +195,13 @@ def save_virus_list():
         virus.descripcion = archivo[3]
         virus.save()
 
-    
+def get_analisis_history(id_user):
+    sesiones = Sesion.objects.filter(fk_usuario=id_user).only('id')
+    analisis = Analisis.objects.filter(fk_sesion__in=sesiones).order_by('id')
+    listado=[]
+    listado = [{'id_analisis': item.id, 'nombre_pc': item.nombrepc, 'fecha': str(item.fecha)} for item in analisis]
+    return listado
+
+def last_session_by_user(id_user):
+    id_sesion = Sesion.objects.filter(fk_usuario=id_user).latest('id').id      
+    return id_sesion    

@@ -1,8 +1,7 @@
 from ast import parse
 from datetime import datetime
-import email
-import imp
 import json
+import time
 from os import stat
 from signal import signal
 from django.shortcuts import render
@@ -20,6 +19,7 @@ from .postgresql import *
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
+import threading
 
 # Create your views here.
 @api_view(['GET'])
@@ -332,15 +332,64 @@ def last_analisis_id(request,id_user):
 
 @api_view(['POST'])
 def prueba(request):
-    print(request.FILES['file'])
-    file = open('tgamapp/ia_tests/ArchivoIAReducido.txt', 'r')
-    for line in file:
-        print(line)
-        break
-    file.close
-    return Response(True,status.HTTP_200_OK)
+    try:
+        print(request.FILES['file'])
+        file = open('tgamapp/ia_tests/ArchivoIAReducido.txt', 'r')
+        for line in file:
+            print(line)
+            break
+        file.close
+        time.sleep(3)
+        return Response(True,status.HTTP_200_OK)
+    except Exception as e:
+        return Response(False,status.HTTP_200_OK)
 
 @api_view(['POST'])
 def save_virus_info(request):
     save_virus_list()
     return Response(True,status.HTTP_200_OK)
+
+@api_view(['POST'])
+def analisis_optimizado(request,id_user):
+    try:
+        id_sesion = last_session_by_user(id_user)        
+        # Crear una lista compartida para almacenar los resultados de los hilos
+        results = [[] for _ in range(3)]
+        with request.FILES['file'].open() as file:
+            content = file.read().decode()
+            file_procesos = io.StringIO(content[content.index("Node"):content.index("Directorio_Columna")-1])
+            file_directorios = io.StringIO(content[content.index("Directorio_Columna"):content.index("Registro_Columna")-1])
+            file_registros = io.StringIO(content[content.index("Registro_Columna"):])
+
+            analisis = Analisis()
+            fecha_actual = datetime.now()
+            analisis.fecha = fecha_actual
+            analisis.fk_sesion = Sesion.objects.get(id=id_sesion)
+            analisis.save()
+
+
+            hilo_procs = threading.Thread(target=analisis_procs_results, args=(file_procesos,analisis,results[0]))
+            hilo_dirs  = threading.Thread(target=analisis_dirs_results, args=(file_directorios,analisis,results[1]))
+            hilo_regs  = threading.Thread(target=analisis_regs_results, args=(file_registros,analisis,results[2]))
+            # Iniciar los hilos
+            hilo_procs.start()
+            hilo_dirs.start()
+            hilo_regs.start()
+
+            # Esperar a que todos los hilos terminen
+            hilo_procs.join()
+            hilo_dirs.join()
+            hilo_regs.join()
+
+
+        lista = json.dumps([results[0],results[1],results[2]])    
+        return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)
+    except Exception as e:
+        print(e)
+        lista = json.dumps([results[0],results[1],results[2]])        
+        return JsonResponse(lista, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+def historial_analisis(request,id_user):
+    lista = json.dumps(get_analisis_history(id_user))    
+    return JsonResponse(lista,safe =False,status=status.HTTP_200_OK)

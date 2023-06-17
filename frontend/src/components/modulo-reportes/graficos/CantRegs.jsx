@@ -5,6 +5,8 @@ import { Container } from "@mui/system";
 import { useAppContext } from "../../../AppContext";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import NoElements from '../../../assets/no_elements.png'
+import { Typography } from "@mui/material";
 
 
 const CantRegs = (props) =>{
@@ -54,16 +56,35 @@ const setChartConfig = () =>{
 }
 
 const reporte = () =>{
-  if(series[0]==undefined){
-    return(<>cargando chart</>);
-  }
-    return (
+  if (series[0] == undefined || (series[0]+series[1]==0)) {
+    if(series[0] == undefined){
+      return (
         <Card sx={{ minWidth:500,minHeight:400,marginBottom:5,marginRight:2, borderRadius: 5 }} elevation={8}>
-        <CardContent>
-        <Chart redraw="true" options={options} series={series} type="pie" width={500} height={400}/>
-        </CardContent >   
-        </Card >  
-    );
+          <CardContent>
+            cargando chart
+          </CardContent>
+        </Card>
+        );
+    }
+    else{
+      return (
+        <Card sx={{ minWidth:500,minHeight:400,marginBottom:5,marginRight:2, borderRadius: 5 }} elevation={8}>
+        <Typography variant="h6" sx ={{marginTop:2, marginLeft:2,fontSize:'14px',fontWeight:'bold',fontFamily: 'Helvetica, Arial, sans-serif'}}>Cantidad de Registros</Typography>
+          <CardContent>
+          <img src={NoElements} />
+          </CardContent>
+        </Card>
+        );
+    }    
+  }
+  else
+  return (
+    <Card sx={{ minWidth:500,minHeight:400,marginBottom:5,marginRight:2, borderRadius: 5 }} elevation={8}>
+      <CardContent>
+        <Chart redraw="true" options={options} series={series} type="pie" width={500} height={400} />
+      </CardContent>
+    </Card>
+  );
 }
 
 useEffect(() => {   
@@ -79,8 +100,12 @@ useEffect(() => {
         setChartConfig();
   };
     getListCantRegs();  
-  }, [cargado]);
+  }, [props.id]);
 
+  
+  useEffect(() => {   
+    setChartConfig();
+  }, [lista]);
 
     return (
         <>

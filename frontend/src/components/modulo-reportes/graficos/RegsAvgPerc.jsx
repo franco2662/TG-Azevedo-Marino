@@ -5,6 +5,10 @@ import { Container } from "@mui/system";
 import { useAppContext } from "../../../AppContext";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import NoElements from '../../../assets/no_elements.png'
+import { Typography } from "@mui/material";
+
+
 
 
 const RegsAvgPerc = (props) =>{
@@ -23,7 +27,7 @@ const [options, setOptions] = useState({
     width:300
   },
   title: {
-    text: 'Reincidencia en Directorios Promedio de Porcentajes'
+    text: 'Reincidencia en Registros Promedio de Porcentajes'
   },
   plotOptions: {
     bar: {
@@ -67,9 +71,28 @@ const setChartConfig = () =>{
 }
 
 const reporte = () =>{
-  if(series[0]==undefined){
-    return(<>cargando chart</>);
+  if (series[0] == undefined || (lista.length==0)) {
+    if(series[0] == undefined){
+      return (
+        <Card sx={{ minWidth:500,minHeight:400,marginBottom:5,marginRight:2, borderRadius: 5 }} elevation={8}>
+          <CardContent>
+            cargando chart
+          </CardContent>
+        </Card>
+        );
+    }
+    else{
+      return (
+        <Card sx={{ minWidth:500,minHeight:400,marginBottom:5,marginRight:2, borderRadius: 5 }} elevation={8}>
+        <Typography variant="h6" sx ={{marginTop:2, marginLeft:2,fontSize:'14px',fontWeight:'bold',fontFamily: 'Helvetica, Arial, sans-serif'}}>Reincidencia en Registros Promedio de Porcentajes</Typography>
+          <CardContent>
+          <img src={NoElements} />
+          </CardContent>
+        </Card>
+        );
+    }    
   }
+  else
   return (
     <Card sx={{ minWidth: 500, minHeight: 400, marginBottom: 5, marginRight: 2, borderRadius: 5  }} elevation={8}>
       <CardContent>
@@ -92,7 +115,11 @@ useEffect(() => {
       setChartConfig();
   };
     getRegsAvg();
-}, [cargado]);
+}, [props.id]);
+  
+useEffect(() => {   
+  setChartConfig();
+}, [lista]);
 
 
     return (

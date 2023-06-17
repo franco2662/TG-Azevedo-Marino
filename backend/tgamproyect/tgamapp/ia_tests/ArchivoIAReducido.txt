@@ -273,7 +273,7 @@ COTINLENW10001,C:\Windows\System32\SystemSettingsBroker.exe -Embedding,COTINLENW
 COTINLENW10001,C:\WINDOWS\system32\AUDIODG.EXE 0x0000000000000660,COTINLENW10001,audiodg.exe,C:\WINDOWS\system32\AUDIODG.EXE,0,92460,253,0,156250,11100,9920,audiodg.exe,Microsoft Windows 11 Pro|C:\WINDOWS|\Device\Harddisk0\Partition3,18216,402328,3637,7492,5056,7580,92209152,13784,8,7671808,92460,15,97,22,97,0,0,0,0,0,10,156250,92209152,10.0.22621,14045184,0,0
 COTINLENW10001,"wmic  /output:""csvProcesos.txt"" process list /format:csv",COTINLENW10001,WMIC.exe,C:\WINDOWS\System32\Wbem\WMIC.exe,0,90168,243,0,156250,1380,200,WMIC.exe,Microsoft Windows 11 Pro|C:\WINDOWS|\Device\Harddisk0\Partition3,332,4564,4829,7968,84500,8080,138670080,18056,8,8159232,90168,20,175,20,175,3,13811,1,0,0,10,156250,138670080,10.0.22621,18464768,2,4
 COTINLENW10001,C:\WINDOWS\system32\wbem\wmiprvse.exe,COTINLENW10001,WmiPrvSE.exe,C:\WINDOWS\system32\wbem\wmiprvse.exe,0,83784,202,0,2500000,1380,200,WmiPrvSE.exe,Microsoft Windows 11 Pro|C:\WINDOWS|\Device\Harddisk0\Partition3,127,2260,4772,7596,1176,7596,94896128,13444,8,7778304,83784,14,97,14,97,0,0,0,0,0,11,312500,94896128,10.0.22621,13766656,0,0
-Directorio
+Directorio_Columna
 c:\$SysReset
 c:\Directorios.txt
 c:\Drivers
@@ -338,7 +338,7 @@ c:\Program Files\Genshin Impact
 c:\Program Files\Git
 c:\Program Files\Google
 c:\Program Files\HP
-Registro
+Registro_Columna
 HKEY_CLASSES_ROOT    EditFlags    REG_BINARY    00000000
 HKEY_CLASSES_ROOT\*    AlwaysShowExt    REG_SZ        ConflictPrompt    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified;System.DateCreated    ContentViewModeForBrowse    REG_SZ    prop:~System.ItemNameDisplay;System.ItemTypeText;~System.LayoutPattern.PlaceHolder;~System.LayoutPattern.PlaceHolder;System.DateModified;System.Size    ContentViewModeForSearch    REG_SZ    prop:~System.ItemNameDisplay;~System.ItemFolderPathDisplay;~System.LayoutPattern.PlaceHolder;System.ItemTypeText;System.DateModified;System.Size    ContentViewModeLayoutPatternForBrowse    REG_SZ    delta    ContentViewModeLayoutPatternForSearch    REG_SZ    delta    ExtendedTileInfo    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified;System.OfflineAvailability    FullDetails    REG_SZ    prop:System.PropGroup.FileSystem;System.ItemNameDisplay;System.ItemTypeText;System.ItemFolderPathDisplay;System.Size;System.DateCreated;System.DateModified;System.FileAttributes;*System.StorageProviderState;*System.OfflineAvailability;*System.OfflineStatus;*System.SharedWith;*System.FileOwner;*System.ComputerName    InfoTip    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified    NoRecentDocs    REG_SZ        NoStaticDefaultVerb    REG_SZ        PreviewDetails    REG_SZ    prop:System.DateModified;System.Size;System.DateCreated;*System.StorageProviderState;*System.OfflineAvailability;*System.OfflineStatus;*System.SharedWith    PreviewTitle    REG_SZ    prop:System.ItemNameDisplay;System.ItemTypeText    QuickTip    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified    SetDefaultsFor    REG_SZ    prop:System.Author;System.Document.DateCreated    TileInfo    REG_SZ    prop:System.ItemTypeText;System.Size;System.DateModified
 HKEY_CLASSES_ROOT\*\shellex\PropertySheetHandlers\CryptoSignMenu    (Default)    REG_SZ    {7444C719-39BF-11D1-8CD9-00C04FC29D45}

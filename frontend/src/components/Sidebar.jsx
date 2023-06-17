@@ -11,6 +11,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Link, NavLink } from "react-router-dom";
 import { useEffect } from "react";
+import HistoryIcon from '@mui/icons-material/History';
 
 const Sidebar = () => {
 
@@ -72,7 +73,7 @@ const Sidebar = () => {
           <> 
           <Divider/>
         <Link to="/dashboard/usuarios">
-        <CustomListItemButton sx={{backgroundColor: '#453FC6',borderRadius: 2, marginTop:1}}>
+        <CustomListItemButton sx={{backgroundColor: '#453FC6',borderRadius: 2, marginTop:2.5}}>
           <CustomListItemIcon>
             <PeopleIcon sx={{color: '#FFFFFF'}}/>
           </CustomListItemIcon>
@@ -83,11 +84,19 @@ const Sidebar = () => {
         :<></>}             
         <Divider/>
         <Link to="/dashboard/archivo">
-        <CustomListItemButton sx={{backgroundColor: '#453FC6',borderRadius: 2, marginTop:1}}>
+        <CustomListItemButton sx={{backgroundColor: '#453FC6',borderRadius: 2, marginTop:2.5}}>
           <CustomListItemIcon>
             <LayersIcon sx={{color: '#FFFFFF'}}/>
           </CustomListItemIcon>
           <ListItemText primary="Archivo" sx={{color: '#FFFFFF'}} />
+        </CustomListItemButton>
+        </Link>
+        <Link to="/dashboard/historial">
+        <CustomListItemButton sx={{backgroundColor: '#453FC6',borderRadius: 2, marginTop:2.5}}>
+          <CustomListItemIcon>
+            <HistoryIcon sx={{color: '#FFFFFF'}}/>
+          </CustomListItemIcon>
+          <ListItemText primary="Historial" sx={{color: '#FFFFFF'}} />
         </CustomListItemButton>
         </Link>
       </Box>

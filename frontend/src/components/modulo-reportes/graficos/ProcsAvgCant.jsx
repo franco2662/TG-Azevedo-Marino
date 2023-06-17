@@ -5,6 +5,8 @@ import { Container } from "@mui/system";
 import { useAppContext } from "../../../AppContext";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import NoElements from '../../../assets/no_elements.png'
+import { Typography } from "@mui/material";
 
 
 const ProcsAvgCant = (props) =>{
@@ -14,13 +16,13 @@ const instance = axios.create()
 instance.defaults.baseURL = baseURL;
 const tipo_array = [{'proceso': '', 'cantidad': 0, 'porcentaje': 0.00}]
 const[lista,setLista] = useState(tipo_array);
-const[cargado,setCargado] = useState(false);
+const[cargando,setCargando] = useState(true);
 
 
 const [options, setOptions] = useState({});
    
   
-  const [series,setSeries] = useState([]);
+const [series,setSeries] = useState([]);
 
 const setChartConfig = () =>{
   let data_serie = [];
@@ -68,13 +70,31 @@ const setChartConfig = () =>{
     }]
   })
   setSeries(data_serie);
-  setCargado(true);
 }
 
 const reporte = () =>{
-  if(series[0]==undefined){
-    return(<>cargando chart</>);
+  if (cargando || (lista.length==0)) {
+    if(cargando){
+      return (
+        <Card sx={{ minWidth:500,minHeight:400,marginBottom:5,marginRight:2, borderRadius: 5 }} elevation={8}>
+          <CardContent>
+            cargando chart
+          </CardContent>
+        </Card>
+        );
+    }
+    else{
+      return (
+        <Card sx={{ minWidth:500,minHeight:400,marginBottom:5,marginRight:2, borderRadius: 5 }} elevation={8}>
+        <Typography variant="h6" sx ={{marginTop:2, marginLeft:2,fontSize:'14px',fontWeight:'bold',fontFamily: 'Helvetica, Arial, sans-serif'}}>Cantidad de Reincidencia Procesos</Typography>
+          <CardContent>
+          <img src={NoElements} />
+          </CardContent>
+        </Card>
+        );
+    }    
   }
+  else
   return (
     <Card sx={{ minWidth: 500, minHeight: 400, marginBottom: 5, marginRight: 2, borderRadius: 5  }} elevation={8}>
       <CardContent>
@@ -92,12 +112,18 @@ useEffect(() => {
         } catch (error) {
           console.log(error);
           throw new Error(error);
-        } finally {   
+        } finally {
+          setCargando(false);   
         }      
         setChartConfig();
   };
     getProcsAvg();  
-  }, [cargado]);
+  }, [props.id]);
+  
+  useEffect(() => {   
+    setChartConfig();
+    setCargando(false);
+  }, [lista]);
 
 
     return (

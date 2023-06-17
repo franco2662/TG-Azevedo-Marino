@@ -438,3 +438,137 @@ def analisis_registros(file,analisis):
   lista_registros=[{'categoria':'registros'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]
   return lista_registros
 
+def analisis_procs_results(file,analisis,results):
+  lista_no_deseados=[]
+  lista_prob_no_deseados=[]
+  model = tf.keras.models.load_model('tgamapp/ia_models/model_procesos')
+  try:
+    data = pd.read_csv(file, on_bad_lines='skip')
+
+    tipos_num=["float64","int64"]
+    nombre_pc =""
+
+    for column in data:
+      if (data[column].dtype in tipos_num):
+        data[column].fillna(0, inplace = True)
+        data[column] = data[column].astype(int)
+      else:    
+        data[column].fillna("", inplace = True)    
+        data[column] = data[column].astype(str)
+
+    for ind in data.index:
+      sample = data.iloc[[ind]]
+      input_dict = {name: tf.convert_to_tensor([value]) for name, value in sample.items()}
+      predictions = model.predict(input_dict,verbose = 0)
+      resultado= 100 * predictions[0]
+      resultado=round(100 - resultado[0],2)
+      proceso = Proceso()
+      proceso.fk_analisis = analisis
+      for column in data:
+        col = str.lower(column)
+        proceso.__dict__[col]=data[column][ind]
+
+      if(nombre_pc == ""):
+        node = proceso.__dict__["node"]
+        node = node.strip()
+        if (node!=""):
+          nombre_pc = node
+          analisis.nombrepc = nombre_pc
+          analisis.save()
+      if(resultado>=30):      
+        print(sample.iloc[0][3] +"  %.4f"%(resultado))
+        if(resultado>=70):
+          lista_no_deseados.append(sample.iloc[0][3])
+          proceso.fk_tipo = Tipo.objects.get(id=2)
+        else:
+          lista_prob_no_deseados.append(sample.iloc[0][3])
+          proceso.fk_tipo = Tipo.objects.get(id=3)
+      else:
+        proceso.fk_tipo = Tipo.objects.get(id=1)    
+      proceso.porcentaje_no = resultado
+      proceso.save()
+      lista_procesos=[{'categoria':'procesos'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
+      results.extend(lista_procesos)
+      return lista_procesos
+  except Exception as e:
+    print(e)
+    lista_procesos=[{'categoria':'procesos'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
+    results.extend(lista_procesos)
+    return lista_procesos
+  
+def analisis_dirs_results(file,analisis,results):
+  lista_no_deseados=[]
+  lista_prob_no_deseados=[]
+  model = tf.keras.models.load_model('tgamapp/ia_models/model_directorios')
+  try:
+  
+    data = pd.read_csv(file, on_bad_lines='skip')
+    for ind in data.index:
+      sample = data.iloc[[ind]]["Directorio_Columna"]
+      predictions = model.predict(sample,verbose = 0)
+      resultado= 100 * predictions[0]
+      resultado=round(100 - resultado[0],2)
+
+      directorio = Directorio()
+      directorio.fk_analisis = analisis    
+      directorio.nombre=sample.iloc[0]
+
+      if(resultado>=30):      
+        print(sample.iloc[0] +"  %.4f"%(resultado))
+        if(resultado>=70):
+          lista_no_deseados.append(sample.iloc[0])
+          directorio.fk_tipo = Tipo.objects.get(id=2)
+        else:
+          lista_prob_no_deseados.append(sample.iloc[0])
+          directorio.fk_tipo = Tipo.objects.get(id=3)
+      else:
+        directorio.fk_tipo = Tipo.objects.get(id=1)
+      directorio.porcentaje_no = resultado
+      directorio.save()
+  except Exception as e:
+    print(e)
+    lista_directorios=[{'categoria':'directorios'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
+    results.extend(lista_directorios)
+    return lista_directorios
+  lista_directorios=[{'categoria':'directorios'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
+  results.extend(lista_directorios)
+  return lista_directorios
+
+def analisis_regs_results(file,analisis,results):
+  lista_no_deseados=[]
+  lista_prob_no_deseados=[]
+  model = tf.keras.models.load_model('tgamapp/ia_models/model_registros')
+  try:
+  
+    data = pd.read_csv(file, on_bad_lines='skip')
+
+    for ind in data.index:
+      sample = data.iloc[[ind]]["Registro_Columna"]
+      predictions = model.predict(sample,verbose = 0)
+      resultado= 100 * predictions[0]
+      resultado=round(100 - resultado[0],2)
+
+      registro = Registro()
+      registro.fk_analisis = analisis    
+      registro.nombre=sample.iloc[0]
+
+      if(resultado>=30):      
+        print(sample.iloc[0] +"  %.4f"%(resultado))
+        if(resultado>=70):
+          lista_no_deseados.append(sample.iloc[0])
+          registro.fk_tipo = Tipo.objects.get(id=2)
+        else:
+          lista_prob_no_deseados.append(sample.iloc[0])
+          registro.fk_tipo = Tipo.objects.get(id=3)
+      else:
+        registro.fk_tipo = Tipo.objects.get(id=1)
+      registro.porcentaje_no = resultado
+      registro.save()
+  except Exception as e:
+    print(e)
+    lista_registros=[{'categoria':'registros'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]
+    results.extend(lista_registros)
+    return lista_registros
+  lista_registros=[{'categoria':'registros'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]
+  results.extend(lista_registros)
+  return lista_registros

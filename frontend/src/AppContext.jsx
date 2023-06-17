@@ -26,7 +26,6 @@ export function AppContextProvider(props){
   const usuarioObjeto = useRef({
   id:'',
   email:'',
-  clave:'',
   fechacreacion:'',
   estado:'',
   fk_persona:'',
@@ -56,7 +55,6 @@ export function AppContextProvider(props){
     usuarioObjeto.current = {
       id:userInfo.id,
       email:userInfo.email,
-      clave:userInfo.clave,
       fechacreacion:userInfo.fechacreacion,
       estado:userInfo.estado,
       fk_persona:userInfo.fk_persona,
@@ -84,6 +82,7 @@ export function AppContextProvider(props){
     sessionStorage.removeItem('user_session');
     
   }
+  const idAnalisisFromHistory = useRef(0)
 
   const value  = useMemo(()=>{
     return({
@@ -93,9 +92,10 @@ export function AppContextProvider(props){
       makeSesion,
       usuarioObjeto,
       getSession,
-      singOut  
+      singOut,
+      idAnalisisFromHistory  
     })
-  },[usuarioObjeto,showSidebar])
+  },[usuarioObjeto,showSidebar,idAnalisisFromHistory])
   
   return <AppContext.Provider value = {value}{...props}/>
 }

@@ -1,4 +1,4 @@
-import { React,useState, useEffect } from "react";
+import { React,useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useAppContext } from "../../AppContext";
 import Chart from 'react-apexcharts'
@@ -22,29 +22,32 @@ import DirsAvgCant from "./graficos/DirsAvgCant";
 import DirsAvgPerc from "./graficos/DirsAvgPerc";
 import RegsAvgCant from "./graficos/RegsAvgCant";
 import RegsAvgPerc from "./graficos/RegsAvgPerc";
-import CatGif from '../../assets/cat_data.gif'
+import ChartLoad from '../../assets/chart_loading.gif'
 
 const ModuloReportes = () =>{
   
-  const {usuarioObjeto,baseURL} = useAppContext();
+  const {usuarioObjeto,baseURL,idAnalisisFromHistory} = useAppContext();
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
-  instance.defaults.timeout = 3600;
+  instance.defaults.timeout = 18000000;
   const navigate = useNavigate();
   const tipo_array = [{'id_analisis':0,'analisis':''}]
   const [listaAnalisis, setListaAnalisis] = useState([]);
-  const [idAnalisis, setIdAnalisis] = useState(0);
+  const [idAnalisis, setIdAnalisis] = useState(idAnalisisFromHistory.current);
   const [isBusy,setIsBusy] = useState(true);
 
 
   function handleChange(event){
     setIdAnalisis(event.target.value);
   };
-  
+
   function seleccionarId(){
+    setIsBusy(true);
     if(idAnalisis==0 && listaAnalisis.length>0){
       setIdAnalisis(listaAnalisis[0]['id_analisis'])
+      setIsBusy(false);
     }
+    setIsBusy(false);   
   }
 
   const reportes =()=>{         
@@ -54,26 +57,26 @@ const ModuloReportes = () =>{
       if(listaAnalisis.length>0){ 
       return(
         <>
-        <Box sx={{ maxWidth: '30%',marginBottom:10}}>
+        <Box id="box-graficos"sx={{ maxWidth: '30%',marginBottom:10}}>
         <FormControl fullWidth>
           <InputLabel id="analisis-label">Analisis</InputLabel>
           <Select
             labelId="analisis-label"
-            id="analisis-select"   
+            id="analisis-select"               
             value={idAnalisis}
             label="Analisis"
             onChange={(event)=>handleChange(event)}
-            onClick={seleccionarId()}
+            onClick={seleccionarId}
             
           >
             {listaAnalisis.map((row) => (
-            <MenuItem key={row.id_analisis} value={row.id_analisis}>{row.analisis}</MenuItem>
+            <MenuItem key={row.id_analisis} value={row.id_analisis} >{row.analisis}</MenuItem>
             ))}
             
           </Select>
         </FormControl>
       </Box>
-      <Container sx={{display:'flex',flexDirection: 'row',flexWrap: 'wrap',justifyContent : 'space-between'}}>
+      <Container id="cont-graficos" sx={{display:'flex',flexDirection: 'row',flexWrap: 'wrap',justifyContent : 'space-between'}}>
       <CantProcs id={idAnalisis} />
       <CantDirs id={idAnalisis}/>
       <CantRegs id={idAnalisis}/>
@@ -95,7 +98,7 @@ const ModuloReportes = () =>{
         <Box sx={{display:'flex',flexDirection:'column' , alignItems:"center",justifyContent : 'space-between'}}>
           <Typography variant="h4">No se encontraron análisis!</Typography>
           <Typography variant="h5" sx={{marginBottom:10}}>Ingrese al módulo Archivo para cargar los datos</Typography>
-           <img src={CatGif} />
+           <img src={ChartLoad} />
            </Box>
            )
     }   
@@ -112,13 +115,18 @@ const ModuloReportes = () =>{
       } finally {      
       }
       setIsBusy(false);
-      if(listaAnalisis.length>0)
+      if(listaAnalisis.length>0){
         setIdAnalisis(listaAnalisis[0]['id_analisis'])
+      }
       return true;
-    };     
+    };         
     getAnalisisList();
   }, []);
 
+  useEffect(() => {
+    seleccionarId()
+  }, [idAnalisis, listaAnalisis]);
+  
     return (     
       <>
     {reportes()}
