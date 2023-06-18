@@ -24,3 +24,6 @@ def format_date(date_str):
         datetime_object = datetime.strptime('01/01/1900', '%d/%m/%Y').date()
         return datetime_object
 
+
+
+

@@ -15,11 +15,12 @@ import { useAppContext } from "../../AppContext";
 import RuleIcon from '@mui/icons-material/Rule';
 import AddIcon from '@mui/icons-material/Add';
 import UserMoreOptions from "./UserMoreOptions";
-import Register from "../Register";
+import Register from "./Register";
 import { Container } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const ModuloUsuario = () =>{
-  const {baseURL} = useAppContext();
+  const {usuarioObjeto,baseURL} = useAppContext();
   const instance = axios.create()
   instance.defaults.baseURL = baseURL;
 
@@ -29,6 +30,17 @@ const ModuloUsuario = () =>{
   const [idSelected,setIdSelected] = useState([]);
   const [numSelected,setNumSelected] = useState(0);
   const [openRegister, setRegister] = useState(false);
+  const navigate = useNavigate();
+
+  const tableStyle = {
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.1)",
+  };
+  const headerCellStyle = {
+    fontSize: "18px",
+    fontWeight: 600,
+  };
 
   function selectAllRows(){    
     if(idSelected.length>0){
@@ -62,6 +74,7 @@ const ModuloUsuario = () =>{
             String(item.email).toLowerCase().includes(filterName.toLowerCase()) ||
             String(item.doc_identidad).toLowerCase().includes(filterName.toLowerCase()) ||
             String(item.rol).toLowerCase().includes(filterName.toLowerCase()) ||
+            String(item.empresa).toLowerCase().includes(filterName.toLowerCase()) ||
               ( 
                 (filterName.toLowerCase()=="activo" && item.estado) || //Para buscar por estado
                 (filterName.toLowerCase()=="inactivo" && !item.estado )
@@ -73,9 +86,9 @@ const ModuloUsuario = () =>{
     }
   }
 
-  useEffect(() => {
+  useEffect(() => {   
     getUserList();
-    setNumSelected(0);
+    setNumSelected(0);    
   }, []);
 
   useEffect(() => {
@@ -133,7 +146,12 @@ const ModuloUsuario = () =>{
           <Typography variant="h4" gutterBottom>
             Listado de Usuarios
           </Typography>
-          <Button variant="contained" startIcon={<AddIcon/>} onClick={openRegisterModal}>
+          <Button variant="contained" sx={{
+            backgroundColor: '#453FC6', borderRadius: 2, ":hover": {
+              bgcolor: "#3530a1",
+              color: "white"
+            }
+          }} startIcon={<AddIcon />} onClick={openRegisterModal}>
             Registrar Usuario
           </Button>
         </Stack>
@@ -170,17 +188,18 @@ const ModuloUsuario = () =>{
 
       
               
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableContainer component={Paper} sx={{...tableStyle }}>
+          <Table sx={{ minWidth: 650}} aria-label="simple table">
             <TableHead>
             
               <TableRow>
-                <TableCell align="center" sx={{width:'10%'}}><Checkbox onClick={()=>selectAllRows()}/>ID</TableCell>           
-                <TableCell align="left">Nombre Completo</TableCell>
-                <TableCell align="left">Email</TableCell>
-                <TableCell align="left">Doc Identidad</TableCell>
-                <TableCell align="left">Rol</TableCell>
-                <TableCell align="left">Estado</TableCell>
+                <TableCell align="center" sx={{width:'10%',...headerCellStyle}}><Checkbox onClick={()=>selectAllRows()}/>ID</TableCell>           
+                <TableCell align="left" sx={{...headerCellStyle}}>Nombre Completo</TableCell>
+                <TableCell align="left" sx={{...headerCellStyle}}>Email</TableCell>
+                <TableCell align="left" sx={{...headerCellStyle}}>Doc Identidad</TableCell>
+                <TableCell align="left" sx={{...headerCellStyle}}>Rol</TableCell>
+                <TableCell align="left" sx={{...headerCellStyle}}>Empresa</TableCell>
+                <TableCell align="left" sx={{...headerCellStyle}}>Estado</TableCell>
                 <TableCell align="left"></TableCell>
               </TableRow>
             </TableHead>
@@ -198,7 +217,8 @@ const ModuloUsuario = () =>{
                     </TableCell>
                   <TableCell align="left">{row.email}</TableCell>                  
                   <TableCell align="left">{row.doc_identidad}</TableCell>                  
-                  <TableCell align="left">{row.rol}</TableCell>                  
+                  <TableCell align="left">{row.rol}</TableCell>
+                  <TableCell align="left">{row.empresa}</TableCell>                  
                   {getEstadoTableCell(row.estado)}
                   <TableCell align="right">
                     <UserMoreOptions userId={row.id}/>

@@ -5,14 +5,24 @@ import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAppContext } from "../AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-    const { showSidebar,handleSidebar} = useAppContext();
+    const {showSidebar,getSession,usuarioObjeto,singOut} = useAppContext();
+    const navigate = useNavigate();
     const [feedMarginTop,setFeedMarginTop] = useState('5%');
     const [feedMarginLeft,setFeedMarginLeft] = useState('10%');
     const [feedMarginRight,setFeedMarginRight] = useState('5%');
-
+    useEffect(() => {
+        getSession();
+      }, []);
+    
     useEffect(() => {    
+        
+        if (usuarioObjeto.current.id == '') {
+            singOut();
+            navigate("/");
+        }     
         if (showSidebar) {
             setFeedMarginLeft('15%');
         }
@@ -23,12 +33,12 @@ const Dashboard = () => {
     return (
         <div className="App">
             <CssBaseline />
-            <Box>
+            <Box >
                 <Sidebar />
                 <Navbar />
                 <section className="Modulos">
                 <Box
-                    sx={{ marginLeft: feedMarginLeft, marginTop: feedMarginTop, marginRight: feedMarginRight }}
+                    sx={{ marginLeft: feedMarginLeft, marginTop: feedMarginTop, marginRight: feedMarginRight}}
                 >
                    <Outlet/>
                 </Box>

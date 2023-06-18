@@ -7,14 +7,15 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState, useEffect } from "react";
 import { useTheme } from '@mui/material/styles';
-import SignIn from "./SignIn";
-import Register from "./Register";
 import { useAppContext } from "../AppContext";
+import { useNavigate } from "react-router-dom";
+import LogoCompleto from '../assets/logo_completo_1.png'
 
 
 const Navbar = () => {
-const {usuarioPrueba,cambiarUsuario,showSidebar,handleSidebar} = useAppContext();
+const {showSidebar,handleSidebar,singOut} = useAppContext();
 
+const navigate = useNavigate();
 const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
   padding: "0 10px",
@@ -51,8 +52,6 @@ const CustomAppBar = styled(AppBar, {
 
   const theme = useTheme();
   const [open, setOpen] = useState(showSidebar);
-  const [openSignIn, setSignIn] = useState(false);
-  const [openRegister, setRegister] = useState(false);
 
   const toggleDrawerOpen = () => {
       setOpen(true);      
@@ -65,8 +64,6 @@ const CustomAppBar = styled(AppBar, {
 
   useEffect(() => {
     setOpen(true);
-    setSignIn(false);
-    setRegister(false);
   }, []);
 
   useEffect(() => {
@@ -78,25 +75,14 @@ const CustomAppBar = styled(AppBar, {
     }
   }, [showSidebar]);
 
-  const openSingInModal = () => {
-    setSignIn(true);
-  };
-
-  const closeSingInModal = () => {
-    setSignIn(false);
-  };
-
-  const openRegisterModal = () => {
-    setRegister(true);
-  };
-
-  const closeRegisterModal = () => {
-    setRegister(false);
+  const exitSession = () => {    
+    singOut()
+    navigate("/");
   };
 
   return (
     <Box sx={{  alignItems: "center" }}>
-      <CustomAppBar id="appbar" position="fixed" open={open} sx = {{minHeight:'5%'}}>
+      <CustomAppBar id="appbar" position="fixed" open={open} sx = {{minHeight:'5%',display: 'flex', justifyContent: 'center',backgroundColor: '#34043D',backgroundImage: "linear-gradient(to right,#453FC6, #34043D)"}}>
         <Toolbar id="toolbar" display="flex">
           <IconButton
             color="inherit"
@@ -105,36 +91,30 @@ const CustomAppBar = styled(AppBar, {
             onClick={toggleDrawerOpen}
             sx={{
               marginRight: 5,
-              ...(showSidebar && { display: 'none' }),
+              ...(showSidebar && { display: 'none' }), backgroundColor: '#3530a1', borderRadius: 2, ":hover": {
+                bgcolor: "#2a2681",
+                color: "white"
+              }
             }}
           >
           <MenuIcon />
           </IconButton>
-          <Typography variant="h6" sx={{ flexGrow: 1 }} >Dashboard</Typography>
-
-          {/* <Search sx={{ display: { xs: "none", sm: "block" } }} ><InputBase placeholder="search..." /></Search> */}
-
+          {/* <Typography variant="h6" sx={{ flexGrow: 1 }} >Dashboard</Typography> */}
+          <Box id='logoDashboard' sx={{flexGrow: 1,
+        justifyContent: 'center', marginLeft:2
+      }}>
+        <img src={LogoCompleto} height={38} width={184} alt="Logo" />
+      </Box>
           <Box width="15%" sx={{ display: 'flex', marginLeft: "10px", alignItems: 'center' }}>
             
-            {/* <ListItem sx={{ flexGrow: 1 }}>
-              <Badge badgeContent={1} color="error">
-                <NotificationsIcon />
-              </Badge>
-
-            </ListItem> */}
-            <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={openSingInModal}>
-              <Typography variant="h7">Iniciar Sesión</Typography>
-            </ListItemButton>            
-            <Modal open={openSignIn} onClose={closeSingInModal}>
-                <Container><SignIn></SignIn></Container>
-              </Modal>
-{/*             
-            <ListItemButton variant="contained" sx={{ flexGrow: 4 }} onClick={openRegisterModal}>
-              <Typography variant="h8">Registrarse</Typography>
-            </ListItemButton>            
-            <Modal open={openRegister} onClose={closeRegisterModal}>
-                <Container><Register onCloseModal={closeRegisterModal}></Register></Container>
-              </Modal> */}
+            <ListItemButton variant="contained" sx={{ flexGrow: 4, justifyContent: 'center', borderRadius: 5 }} onClick={exitSession}>
+              <Button variant="contained" sx={{
+                backgroundColor: '#453FC6', borderRadius: 2, ":hover": {
+                  bgcolor: "#3530a1",
+                  color: "white"
+                }
+              }}><Typography variant="h7">Cerrar Sesión</Typography></Button>
+            </ListItemButton> 
           </Box>
         </Toolbar>
       </CustomAppBar>      

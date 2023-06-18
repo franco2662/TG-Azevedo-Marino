@@ -1,7 +1,12 @@
+Para backup de BD:
+- Especificar carpeta destino y escribir en la ruta el nombre de la tabla (terminar en .sql)
+- Finalizar
+
+
 Para hacer backup de tablas:
 - Buscar la tabla
 - Clic derecho, Backup
-- Pag 1 Filename: Especificar carpeta destino y escribir en la ruta el nombre de la tabla
+- Pag 1 Filename: Especificar carpeta destino y escribir en la ruta el nombre de la tabla (terminar en .sql)
 - Pag 1 Formato Plain
 - Pag 2 Seleccionar Data y Quitar Blobs
 - Pag 3 Seleccionar Column Inserts y quitar Verbose Messages.

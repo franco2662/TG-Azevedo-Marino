@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState,useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText,Modal } from '@mui/material';
 import { Container } from "@mui/system";
@@ -17,6 +17,22 @@ const UserMoreOptions = (userId)=> {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);  
   const [openEdit, setOpenEdit] = useState(false);
+  const usuarioEdit = useRef([]);
+
+  const getUser = async ()=>{
+    try {
+        let response = await instance.get("getUserById/" + userId.userId);
+        //console.log(response.data);
+        if (response?.data) {
+          usuarioEdit.current = JSON.parse(response.data);            
+        }
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+    finally{
+    } 
+};
 
   async function updateUserState() {
     try {
@@ -34,12 +50,14 @@ const UserMoreOptions = (userId)=> {
   }
 
   const openEditModal = () => {
-    setOpenEdit(true);
+    getUser().then(() => { setOpenEdit(true) });
   };
 
   const closeEditModal = () => {
     setOpenEdit(false);
   };
+
+  
 
   return (
     <>
@@ -64,7 +82,7 @@ const UserMoreOptions = (userId)=> {
           <ListItemText primary="Editar" primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
         <Modal open={openEdit} onClose={closeEditModal}>
-          <Container><EditarUsuario onCloseModal={closeEditModal} IdUser={userId}></EditarUsuario></Container>
+          <Container><EditarUsuario onCloseModal={closeEditModal} usuarioProp={usuarioEdit.current}></EditarUsuario></Container>
         </Modal>
 
         <MenuItem sx={{ color: 'text.secondary' }} onClick={handleUpdateUser}>
