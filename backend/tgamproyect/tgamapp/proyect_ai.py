@@ -443,18 +443,23 @@ def analisis_procs_results(file,analisis,results):
   lista_prob_no_deseados=[]
   model = tf.keras.models.load_model('tgamapp/ia_models/model_procesos')
   try:
-    data = pd.read_csv(file, on_bad_lines='skip')
-
-    tipos_num=["float64","int64"]
+    data = pd.read_csv(file, on_bad_lines='skip')    
     nombre_pc =""
-
-    for column in data:
-      if (data[column].dtype in tipos_num):
-        data[column].fillna(0, inplace = True)
-        data[column] = data[column].astype(int)
-      else:    
-        data[column].fillna("", inplace = True)    
-        data[column] = data[column].astype(str)
+    string_columns = ['Node','CommandLine','CSName','Description','ExecutablePath','ExecutionState','Name','OSName','WindowsVersion']
+    # Recorre todas las columnas del DataFrame
+    for columna in data.columns:
+    # Verifica si el nombre de la columna está en la lista de columnas a convertir a object
+      if columna in string_columns:
+        data[columna] = data[columna].astype('object')
+        data[columna].fillna("", inplace = True)
+      else:
+        # Reemplaza los valores no finitos con NaN
+        data[columna] = pd.to_numeric(data[columna], errors='coerce')
+        # Reemplaza los NaN y los valores infinitos con 0
+        data[columna].fillna(0, inplace=True)
+        data[columna].replace(np.inf, 0, inplace=True)
+        # Convierte la columna a int64
+        data[columna] = data[columna].astype('int64')
 
     for ind in data.index:
       sample = data.iloc[[ind]]
@@ -487,9 +492,9 @@ def analisis_procs_results(file,analisis,results):
         proceso.fk_tipo = Tipo.objects.get(id=1)    
       proceso.porcentaje_no = resultado
       proceso.save()
-      lista_procesos=[{'categoria':'procesos'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
-      results.extend(lista_procesos)
-      return lista_procesos
+    lista_procesos=[{'categoria':'procesos'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
+    results.extend(lista_procesos)
+    return lista_procesos
   except Exception as e:
     print(e)
     lista_procesos=[{'categoria':'procesos'},{'tipo_lista':"prob_no_deseados",'lista':lista_prob_no_deseados}, {'tipo_lista':"no_deseados",'lista':lista_no_deseados}]  
