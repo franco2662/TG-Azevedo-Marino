@@ -2,6 +2,7 @@ from ast import parse
 from datetime import datetime
 import json
 import time
+import time
 from os import stat
 from signal import signal
 from django.shortcuts import render
@@ -15,10 +16,13 @@ from .validations import *
 from json import *
 from .proyect_ai import *
 from .postgresql import *
+from .proyect_ai import *
+from .postgresql import *
 
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
+import threading
 import threading
 
 # Create your views here.
@@ -79,6 +83,7 @@ def person_list(request):
 
 @api_view(['GET'])
 def role_list(request):
+    roles = Rol.objects.all().order_by('id')
     roles = Rol.objects.all().order_by('id')
     serializer = RolSerializer(roles, many=True)
     return Response(serializer.data,status.HTTP_200_OK)
