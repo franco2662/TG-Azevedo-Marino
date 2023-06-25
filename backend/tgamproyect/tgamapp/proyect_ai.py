@@ -443,7 +443,10 @@ def analisis_procs_results(file,analisis,results):
   lista_prob_no_deseados=[]
   model = tf.keras.models.load_model('tgamapp/ia_models/model_procesos')
   try:
-    data = pd.read_csv(file, on_bad_lines='skip')    
+    try:
+      data = pd.read_csv(file, on_bad_lines='skip')
+    except:
+      data = pd.read_csv(file, encoding='Windows-1252', on_bad_lines='skip')   
     nombre_pc =""
     string_columns = ['Node','CommandLine','CSName','Description','ExecutablePath','ExecutionState','Name','OSName','WindowsVersion']
     # Recorre todas las columnas del DataFrame
@@ -506,8 +509,10 @@ def analisis_dirs_results(file,analisis,results):
   lista_prob_no_deseados=[]
   model = tf.keras.models.load_model('tgamapp/ia_models/model_directorios')
   try:
-  
-    data = pd.read_csv(file, on_bad_lines='skip')
+    try:
+      data = pd.read_csv(file, on_bad_lines='skip')
+    except:
+      data = pd.read_csv(file, encoding='Windows-1252', on_bad_lines='skip')
     for ind in data.index:
       sample = data.iloc[[ind]]["Directorio_Columna"]
       predictions = model.predict(sample,verbose = 0)
@@ -544,8 +549,10 @@ def analisis_regs_results(file,analisis,results):
   lista_prob_no_deseados=[]
   model = tf.keras.models.load_model('tgamapp/ia_models/model_registros')
   try:
-  
-    data = pd.read_csv(file, on_bad_lines='skip')
+    try:
+      data = pd.read_csv(file, on_bad_lines='skip')
+    except:
+      data = pd.read_csv(file, encoding='Windows-1252', on_bad_lines='skip')
 
     for ind in data.index:
       sample = data.iloc[[ind]]["Registro_Columna"]
