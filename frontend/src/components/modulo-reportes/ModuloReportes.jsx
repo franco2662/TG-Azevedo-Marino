@@ -36,6 +36,18 @@ const ModuloReportes = () =>{
   const [idAnalisis, setIdAnalisis] = useState(idAnalisisFromHistory.current);
   const [isBusy,setIsBusy] = useState(true);
 
+  async function getLastAnalisis(){
+    const instance = axios.create()
+    instance.defaults.baseURL = baseURL;
+    console.log(usuarioObjeto.current.id);
+    if(usuarioObjeto.current.id!="" && idAnalisis==0){
+      const response = await instance.get("lastIdAnalisisByUser/"+usuarioObjeto.current.id);
+      console.log(JSON.parse(response.data)["id_analisis"]);
+      if(response?.data)
+      setIdAnalisis(Number.parseInt(JSON.parse(response.data)["id_analisis"]));
+    }
+  
+}
 
   function handleChange(event){
     setIdAnalisis(event.target.value);
@@ -111,15 +123,18 @@ const ModuloReportes = () =>{
         const response = await instance.get("listAnalisisByUser/"+usuarioObjeto.current.id);
         setListaAnalisis(JSON.parse(response.data));
       } catch (error) {              
-        setIdAnalisis(0);
+        getLastAnalisis();
       } finally {      
       }
       setIsBusy(false);
       if(listaAnalisis.length>0){
+        getLastAnalisis();
         setIdAnalisis(listaAnalisis[0]['id_analisis'])
       }
       return true;
-    };         
+    };
+    getLastAnalisis().then(
+    idAnalisisFromHistory.current=idAnalisis);        
     getAnalisisList();
   }, []);
 

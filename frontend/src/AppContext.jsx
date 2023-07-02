@@ -82,7 +82,19 @@ export function AppContextProvider(props){
     sessionStorage.removeItem('user_session');
     
   }
-  const idAnalisisFromHistory = useRef(0)
+  async function getLastAnalisis(){
+    const instance = axios.create()
+    instance.defaults.baseURL = baseURL;
+    console.log(usuarioObjeto.current.id);
+    if(usuarioObjeto.current.id!=""){
+      const response = await instance.get("lastIdAnalisisByUser/"+usuarioObjeto.current.id);
+      console.log(JSON.parse(response.data)["id_analisis"]);
+      if(response?.data)
+      return Number.parseInt(JSON.parse(response.data)["id_analisis"]);
+    }
+  
+}
+  const idAnalisisFromHistory = useRef(0);
 
   const value  = useMemo(()=>{
     return({
